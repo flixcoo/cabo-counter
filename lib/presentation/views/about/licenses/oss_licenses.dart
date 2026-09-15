@@ -38567,13 +38567,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// syncfusion_flutter_charts 34.2.7
+/// syncfusion_flutter_charts 34.2.8
 const _syncfusion_flutter_charts = Package(
     name: 'syncfusion_flutter_charts',
     description: 'A Flutter Charts library which includes data visualization widgets such as cartesian and circular charts, to create real-time, interactive, high-performance, animated charts.',
     homepage: 'https://github.com/syncfusion/flutter-widgets/tree/master/packages/syncfusion_flutter_charts',
     authors: [],
-    version: '34.2.7',
+    version: '34.2.8',
     spdxIdentifiers: [],
     isMarkdown: false,
     isSdk: false,
@@ -38593,13 +38593,13 @@ The Syncfusion<sup>&reg;</sup> license that contains the terms and conditions ca
 https://www.syncfusion.com/content/downloads/syncfusion_license.pdf''',
   );
 
-/// syncfusion_flutter_core 34.2.7
+/// syncfusion_flutter_core 34.2.8
 const _syncfusion_flutter_core = Package(
     name: 'syncfusion_flutter_core',
     description: 'Syncfusion Flutter Core is a dependent package for all the Syncfusion Flutter widgets.',
     homepage: 'https://github.com/syncfusion/flutter-widgets/tree/master/packages/syncfusion_flutter_core',
     authors: [],
-    version: '34.2.7',
+    version: '34.2.8',
     spdxIdentifiers: [],
     isMarkdown: false,
     isSdk: false,
