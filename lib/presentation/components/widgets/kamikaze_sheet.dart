@@ -1,6 +1,6 @@
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
-import 'package:cabo_counter/presentation/components/widgets/buttons/floating_animated_button.dart';
+import 'package:cabo_counter/presentation/components/widgets/buttons/animated_text_button.dart';
 import 'package:cabo_counter/presentation/components/widgets/selectable_tile.dart';
 import 'package:cabo_counter/presentation/controllers/game_session_controller.dart';
 import 'package:cabo_counter/services/icon_service.dart';
@@ -136,7 +136,7 @@ class _KamikazeSheetState extends State<KamikazeSheet> {
               ),
 
               // Submit
-              FloatingAnimatedButton(
+              AnimtedTextButton(
                 text: loc.submit,
                 onPressed: selectedIndex == null
                     ? null

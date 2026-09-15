@@ -124,7 +124,13 @@ class _ScoreEnterTileState extends State<ScoreEnterTile> {
                 ),
                 keyboardType: Platform.isAndroid
                     ? TextInputType.number
-                    : const TextInputType.numberWithOptions(decimal: false),
+                    // Even though negative input isnt possible, signed needs
+                    // to be true for ios to show the normal keyboard type and
+                    // not the numbers input
+                    : const TextInputType.numberWithOptions(
+                        decimal: false,
+                        signed: true,
+                      ),
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 textInputAction: widget.textInputAction,
                 controller: widget.controller,

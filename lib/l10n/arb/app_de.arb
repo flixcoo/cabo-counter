@@ -32,7 +32,6 @@
   "contact_email": "E-Mail schreiben",
   "continu": "Weiter",
   "create_game": "Spiel erstellen",
-  "created_at": "Erstellt am",
   "date": "Datum",
   "dealer": "Mischer:in",
   "delete": "Löschen",
@@ -50,6 +49,7 @@
   },
   "delete_game_title": "Spiel löschen?",
   "descending": "Absteigend",
+  "detailed_analytics": "Detaillierte Auswertung",
   "done": "Fertig",
   "email_body": "Ich habe folgendes Feedback...",
   "email_subject": "Feedback: Cabo Counter App",
@@ -74,7 +74,6 @@
     }
   },
   "end_of_game_title": "Spiel beendet",
-  "evaluation": "Auswertung",
   "export_data": "Spieldaten exportieren",
   "export_error_message": "Datei konnte nicht exportiert werden",
   "export_error_title": "Fehler",
@@ -82,6 +81,7 @@
   "filter": "Filter",
   "game": "Spiel",
   "game_data": "Spieldaten",
+  "game_graph": "Spielgraph",
   "game_name": "Spielname",
   "gamemode": "Spielmodus",
   "games": "Spiele",
@@ -131,7 +131,6 @@
       }
     }
   },
-  "point_overview": "Punktetabelle",
   "points": "Punkte",
   "points_per_round": "Punkte pro Runde",
   "pre_rating_message": "Feedback hilft mir, die App zu verbessern. Vielen Dank!",
@@ -149,7 +148,7 @@
   "round": "Runde",
   "rounds": "Runden",
   "rounds_won": "Gewonnene Runden",
-  "scoring_history": "Spielverlauf",
+  "score_table": "Punktetabelle",
   "settings": "Einstellungen",
   "sort_by": "Sortieren nach",
   "sort_order": "Reihenfolge",

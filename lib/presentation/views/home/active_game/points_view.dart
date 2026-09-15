@@ -24,7 +24,7 @@ class _PointsViewState extends State<PointsView> {
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppBar(title: Text(loc.point_overview)),
+      appBar: AppBar(title: Text(loc.score_table)),
       body: SafeArea(
         bottom: false,
         child: LayoutBuilder(

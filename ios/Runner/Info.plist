@@ -41,6 +41,10 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>This app does not access your camera. This message is required for technical reasons only.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app does not access your location. This message is required for technical reasons only.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app does not access your photo library. This message is required for technical reasons only.</string>
 	<key>UIApplicationSceneManifest</key>

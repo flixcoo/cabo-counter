@@ -10,7 +10,7 @@ import 'package:cabo_counter/presentation/components/widgets/active_game/active_
 import 'package:cabo_counter/presentation/components/widgets/active_game/active_game_list_tile.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/add_player_button.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_icon_button.dart';
-import 'package:cabo_counter/presentation/components/widgets/buttons/floating_animated_button.dart';
+import 'package:cabo_counter/presentation/components/widgets/buttons/animated_text_button.dart';
 import 'package:cabo_counter/presentation/views/home/active_game/active_game_view.dart';
 import 'package:cabo_counter/presentation/views/home/create_game/mode_selection_view.dart';
 import 'package:cabo_counter/services/config_service.dart';
@@ -359,7 +359,7 @@ class _CreateGameViewState extends State<CreateGameView> {
                   right: 16,
                   left: 16,
                 ),
-                child: FloatingAnimatedButton(
+                child: AnimtedTextButton(
                   text: loc.create_game,
                   onPressed: isValidGame ? () async => createGame() : null,
                 ),

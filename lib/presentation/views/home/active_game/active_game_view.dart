@@ -19,10 +19,10 @@ import 'package:cabo_counter/presentation/views/home/create_game/create_game_vie
 import 'package:cabo_counter/services/data_transfer_service.dart';
 import 'package:cabo_counter/services/popup_service.dart';
 import 'package:cabo_counter/services/rating_service.dart';
+import 'package:cabo_counter/services/vibration_service.dart';
 import 'package:collection/collection.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 /// Displays the active game view, showing game details, player rankings, rounds, and statistics.
@@ -53,13 +53,6 @@ class _ActiveGameViewState extends State<ActiveGameView> {
 
   /// A list of player indices sorted by their scores in ascending order.
   late List<int> sortedPlayerIndices;
-
-  String get formattedDate {
-    final locale = Localizations.localeOf(context).toLanguageTag();
-    return DateFormat.yMd(locale)
-        .add_Hm()
-        .format(gameSession.createdAt.toLocal());
-  }
 
   bool get hasGameValues =>
       gameSession.roundNumber > 1 || gameSession.isGameFinished;
@@ -132,17 +125,6 @@ class _ActiveGameViewState extends State<ActiveGameView> {
                               gameSession.isPointsLimitEnabled
                                   ? getPointLabel(loc, gameSession.pointLimit!)
                                   : loc.unlimited,
-                              style: const TextStyle(
-                                color: CustomTheme.primaryColor,
-                              ),
-                            ),
-                          ),
-
-                          // Date
-                          ActiveGameListTile(
-                            title: Text(loc.created_at),
-                            trailing: Text(
-                              formattedDate,
                               style: const TextStyle(
                                 color: CustomTheme.primaryColor,
                               ),
@@ -232,7 +214,7 @@ class _ActiveGameViewState extends State<ActiveGameView> {
                         content: [
                           ActiveGameListTile(
                             showChevron: true,
-                            title: Text(loc.evaluation),
+                            title: Text(loc.detailed_analytics),
                             onTap: hasGameValues
                                 ? () => Navigator.push(
                                     context,
@@ -246,7 +228,7 @@ class _ActiveGameViewState extends State<ActiveGameView> {
                           ),
                           ActiveGameListTile(
                             showChevron: true,
-                            title: Text(loc.scoring_history),
+                            title: Text(loc.game_graph),
                             onTap: hasGameValues
                                 ? () => Navigator.push(
                                     context,
@@ -259,7 +241,7 @@ class _ActiveGameViewState extends State<ActiveGameView> {
                           ),
                           ActiveGameListTile(
                             showChevron: true,
-                            title: Text(loc.point_overview),
+                            title: Text(loc.score_table),
                             onTap: hasGameValues
                                 ? () => Navigator.push(
                                     context,
@@ -485,6 +467,7 @@ class _ActiveGameViewState extends State<ActiveGameView> {
     return await PopupService.showSelectionPopup<bool>(
           context: context,
           icon: Icons.delete_outline_rounded,
+          iconColor: Colors.red,
           title: loc.delete_game_title,
           message: loc.delete_game_message(gameSession.title),
           actions: [
@@ -565,12 +548,13 @@ class _ActiveGameViewState extends State<ActiveGameView> {
   /// Plays the confetti animation and shows a dialog with the winner's information.
   Future<void> playFinishAnimation(BuildContext context) async {
     final loc = AppLocalizations.of(context);
-    String winner = widget.gameSession.winner;
 
     int winnerPoints = widget.gameSession.getScoresList.min;
-    int winnerAmount = winner.contains('&') ? 2 : 1;
+    int winnerCount = widget.gameSession.winner.length;
+    String winnerString = widget.gameSession.winnerAsString;
 
     confettiController.play();
+    VibrationService.successNotification();
 
     await Future.delayed(const Duration(milliseconds: Constants.POP_UP_DELAY));
 
@@ -580,7 +564,11 @@ class _ActiveGameViewState extends State<ActiveGameView> {
         icon: Icons.emoji_events_rounded,
         iconColor: CustomTheme.kamikazeColor,
         title: loc.end_of_game_title,
-        message: loc.end_of_game_message(winnerAmount, winner, winnerPoints),
+        message: loc.end_of_game_message(
+          winnerCount,
+          winnerString,
+          winnerPoints,
+        ),
         onAfterPop: () {
           confettiController.stop();
           RatingService.maybeShowRatingDialog(context);

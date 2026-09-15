@@ -1,9 +1,10 @@
 import 'dart:math';
 
+import 'package:cabo_counter/core/common.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_icon_button.dart';
-import 'package:cabo_counter/presentation/components/widgets/buttons/floating_animated_button.dart';
+import 'package:cabo_counter/presentation/components/widgets/buttons/animated_text_button.dart';
 import 'package:cabo_counter/presentation/components/widgets/custom_segmented_control.dart';
 import 'package:cabo_counter/presentation/components/widgets/kamikaze_sheet.dart';
 import 'package:cabo_counter/presentation/components/widgets/tiles/score_enter_tile.dart';
@@ -255,7 +256,7 @@ class _RoundViewState extends State<RoundView> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
-                      child: FloatingAnimatedButton(
+                      child: AnimtedTextButton(
                         onPressed: canSubmitRound
                             ? () => endOfRoundNavigation(
                                 context: context,
@@ -267,7 +268,7 @@ class _RoundViewState extends State<RoundView> {
                     ),
                     if (!isGameFinished)
                       Expanded(
-                        child: FloatingAnimatedButton(
+                        child: AnimtedTextButton(
                           onPressed: canSubmitRound
                               ? () => endOfRoundNavigation(
                                   context: context,
@@ -478,7 +479,7 @@ class _RoundViewState extends State<RoundView> {
     final pointLimit = widget.gameSession.pointLimit!;
     final bonusPoints = (pointLimit / 2).round();
 
-    String resultText = getBonusPopupMessageString(
+    String resultText = getBonusPopupMessage(
       pointLimit,
       bonusPoints,
       bonusPlayers,
@@ -494,36 +495,26 @@ class _RoundViewState extends State<RoundView> {
   }
 
   /// Generates the message string for the bonus popup.
-  /// It takes the [pointLimit], [bonusPoints] and the list of [bonusPlayers]
+  /// It takes the [pointLimit], [bonusPoints] and the list of [bonusPlayersIndices]
   /// and returns a formatted string.
-  String getBonusPopupMessageString(
+  String getBonusPopupMessage(
     int pointLimit,
     int bonusPoints,
-    List<int> bonusPlayers,
+    List<int> bonusPlayersIndices,
   ) {
     final loc = AppLocalizations.of(context);
-    List<String> nameList = bonusPlayers
-        .map((i) => widget.gameSession.players[i].name)
+    List<String> playerNames = bonusPlayersIndices
+        .map((index) => widget.gameSession.players[index].name)
         .toList();
-    String resultText = '';
-    if (nameList.length == 1) {
-      resultText = loc.bonus_points_message(
-        nameList.length,
-        nameList.first,
-        pointLimit,
-        bonusPoints,
-      );
-    } else {
-      resultText = nameList.length == 2
-          ? '${nameList[0]} & ${nameList[1]}'
-          : '${nameList.sublist(0, nameList.length - 1).join(', ')} & ${nameList.last}';
-      resultText = loc.bonus_points_message(
-        nameList.length,
-        resultText,
-        pointLimit,
-        bonusPoints,
-      );
-    }
+
+    String resultText = concatenateNames(playerNames);
+    resultText = loc.bonus_points_message(
+      playerNames.length,
+      concatenateNames(playerNames),
+      pointLimit,
+      bonusPoints,
+    );
+
     return resultText;
   }
 

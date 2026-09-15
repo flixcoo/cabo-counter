@@ -135,6 +135,19 @@ abstract class IconService {
 
   static IconData get legal =>
       Platform.isIOS ? SFIcons.sf_building_columns : Icons.directions;
+
+  static IconData get brush =>
+      Platform.isIOS ? SFIcons.sf_paintbrush_fill : Icons.brush;
+
+  static IconData get haptic_feedback => Platform.isIOS
+      ? SFIcons.sf_iphone_gen1_radiowaves_left_and_right
+      : Icons.vibration;
+
+  static IconData get player =>
+      Platform.isIOS ? SFIcons.sf_person_fill : Icons.person;
+
+  static IconData get tool =>
+      Platform.isIOS ? SFIcons.sf_wrench_adjustable_fill : Icons.build;
 }
 
 /// Wrapper for Icons / SFIcons

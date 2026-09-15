@@ -28,3 +28,24 @@ extension FilenameSanitization on String {
     return sanitized.isEmpty ? fallback : sanitized;
   }
 }
+
+/// Concatenates a list of names into a single readable string.
+///
+/// The output depends on the number of names:
+/// - **0 names:** returns an empty string (`''`).
+/// - **1 name:** returns that name unchanged (e.g. `'Anna'`).
+/// - **2 names:** joins both with an ampersand (e.g. `'Anna & Ben'`).
+/// - **3 or more names:** joins all but the last with commas and appends the
+///   last one with an ampersand (e.g. `'Anna, Ben & Carla'`).
+String concatenateNames(List<String> names) {
+  switch (names.length) {
+    case 0:
+      return '';
+    case 1:
+      return names.first;
+    case 2:
+      return names[0] + ' & ' + names[1];
+    default:
+      return names.sublist(0, names.length - 1).join(', ') + ' & ' + names.last;
+  }
+}

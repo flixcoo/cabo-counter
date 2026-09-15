@@ -52,12 +52,14 @@ class PopupService {
     required String message,
     required List<CustomPopupAction<T>> actions,
     IconData? icon,
+    Color? iconColor,
   }) async {
     return await CustomPopup.show<T>(
       context: context,
       title: title,
       message: message,
       icon: icon,
+      iconColor: iconColor,
       actions: actions,
     );
   }

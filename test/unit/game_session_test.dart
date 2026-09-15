@@ -117,12 +117,16 @@ void main() {
 
   test('winner works correctly', () {
     var winner = gameSession1.winner;
-    expect(winner, '');
+    expect(winner, isEmpty);
 
     winner = gameSession2.winner;
-    expect(winner, 'player4');
+    expect(winner.length, 1);
+    expect(winner.first, 'player4');
+    expect(gameSession2.winnerAsString, 'player4');
 
     winner = gameSession3.winner;
-    expect(winner, 'player3, player4 & player5');
+    expect(winner.length, 3);
+    expect(winner, containsAll(['player3', 'player4', 'player5']));
+    expect(gameSession3.winnerAsString, 'player3, player4 & player5');
   });
 }

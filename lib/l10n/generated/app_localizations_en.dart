@@ -75,9 +75,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get create_game => 'Create Game';
 
   @override
-  String get created_at => 'Created At';
-
-  @override
   String get date => 'Date';
 
   @override
@@ -109,6 +106,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get descending => 'Descending';
+
+  @override
+  String get detailed_analytics => 'Detailed Analytics';
 
   @override
   String get done => 'Done';
@@ -155,9 +155,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get end_of_game_title => 'End of Game';
 
   @override
-  String get evaluation => 'Evaluation';
-
-  @override
   String get export_data => 'Export Data';
 
   @override
@@ -177,6 +174,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get game_data => 'Game Data';
+
+  @override
+  String get game_graph => 'Game Graph';
 
   @override
   String get game_name => 'Game Name';
@@ -273,7 +273,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get no_default_mode => 'No default mode';
 
   @override
-  String get no_games_created_yet => 'No games created yet';
+  String get no_games_created_yet => 'No games created yet.';
 
   @override
   String get no_license_text => 'No license available';
@@ -309,9 +309,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String point_limit_description(int pointLimit) {
     return 'The game ends when a player scores more than $pointLimit points.';
   }
-
-  @override
-  String get point_overview => 'Point Overview';
 
   @override
   String get points => 'Points';
@@ -367,7 +364,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get rounds_won => 'Rounds Won';
 
   @override
-  String get scoring_history => 'Scoring History';
+  String get score_table => 'Score Table';
 
   @override
   String get settings => 'Settings';

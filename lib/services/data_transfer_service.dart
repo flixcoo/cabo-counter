@@ -138,12 +138,7 @@ class DataTransferService {
       final schema = JsonSchema.create(json.decode(schemaString));
       final jsonData = json.decode(jsonString);
       final result = schema.validate(jsonData);
-      print(result);
-
-      if (result.isValid) {
-        return true;
-      }
-      return false;
+      return result.isValid;
     } catch (e, stack) {
       print('[DataTransferService] $e');
       print(stack);

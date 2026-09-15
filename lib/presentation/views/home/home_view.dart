@@ -12,7 +12,7 @@ import 'package:cabo_counter/l10n/generated/app_localizations.dart';
 import 'package:cabo_counter/presentation/components/placeholders/empty_filter_placeholder.dart';
 import 'package:cabo_counter/presentation/components/placeholders/empty_games_placeholder.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_icon_button.dart';
-import 'package:cabo_counter/presentation/components/widgets/buttons/floating_animated_button.dart';
+import 'package:cabo_counter/presentation/components/widgets/buttons/animated_text_button.dart';
 import 'package:cabo_counter/presentation/components/widgets/popups/custom_popup_action.dart';
 import 'package:cabo_counter/presentation/components/widgets/sorting_sheet.dart';
 import 'package:cabo_counter/presentation/components/widgets/tiles/game_tile.dart';
@@ -38,7 +38,6 @@ class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _HomeViewState createState() => _HomeViewState();
 }
 
@@ -253,7 +252,7 @@ class _HomeViewState extends State<HomeView> {
                   ),
             Positioned(
               bottom: MediaQuery.paddingOf(context).bottom + 10,
-              child: FloatingAnimatedButton(
+              child: AnimtedTextButton(
                 text: loc.new_game,
                 onPressed: () => Navigator.push(
                   context,

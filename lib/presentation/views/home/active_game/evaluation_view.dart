@@ -36,7 +36,7 @@ class _EvaluationViewState extends State<EvaluationView> {
     final loc = AppLocalizations.of(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text(loc.evaluation)),
+      appBar: AppBar(title: Text(loc.detailed_analytics)),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

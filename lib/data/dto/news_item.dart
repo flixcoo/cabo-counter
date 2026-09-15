@@ -1,9 +1,26 @@
-import 'package:flutter_sficon/flutter_sficon.dart';
+import 'package:cabo_counter/l10n/generated/app_localizations.dart';
+import 'package:cabo_counter/services/icon_service.dart';
 
 class NewsItem {
-  final String title;
-  final String text;
-  final SFIcon icon;
+  final Map<String, String> localizedTitle;
+  final Map<String, String> localizedText;
+  final AppIcon icon;
 
-  NewsItem({required this.title, required this.text, required this.icon});
+  NewsItem({
+    required this.localizedTitle,
+    required this.localizedText,
+    required this.icon,
+  }) {
+    for (final locale
+        in AppLocalizations.supportedLocales.map((e) => e.languageCode)) {
+      assert(
+        localizedTitle[locale]?.isNotEmpty ?? false,
+        'NewsItem is missing a title for locale "$locale"',
+      );
+      assert(
+        localizedText[locale]?.isNotEmpty ?? false,
+        'NewsItem is missing a text for locale "$locale"',
+      );
+    }
+  }
 }

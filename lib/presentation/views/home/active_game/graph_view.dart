@@ -51,7 +51,7 @@ class _GraphViewState extends State<GraphView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(loc.scoring_history),
+        title: Text(loc.game_graph),
         actions: [
           /*AnimatedIconButton(
             onPressed: isGraphAvailable && hasZoomed

@@ -2,8 +2,8 @@ import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
 import 'package:flutter/material.dart';
 
-class FloatingAnimatedButton extends StatefulWidget {
-  const FloatingAnimatedButton({
+class AnimtedTextButton extends StatefulWidget {
+  const AnimtedTextButton({
     super.key,
     required this.onPressed,
     required this.text,
@@ -13,10 +13,10 @@ class FloatingAnimatedButton extends StatefulWidget {
   final String text;
 
   @override
-  State<FloatingAnimatedButton> createState() => _FloatingAnimatedButtonState();
+  State<AnimtedTextButton> createState() => _AnimtedTextButtonState();
 }
 
-class _FloatingAnimatedButtonState extends State<FloatingAnimatedButton>
+class _AnimtedTextButtonState extends State<AnimtedTextButton>
     with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<double> scaleAnimation;

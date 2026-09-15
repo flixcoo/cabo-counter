@@ -201,7 +201,9 @@ void main() {
     test('_setWinner via updatePoints', () {
       controller.addRoundScoresToList(1, [101, 20, 30], [101, 0, 30], 1);
       controller.updatePoints();
-      expect(session.winner, 'Bobby'); // Bobby has lowest score (20)
+
+      expect(session.winner.length, 1);
+      expect(session.winner.first, 'Bobby'); // Bobby has lowest score (20)
     });
   });
 }

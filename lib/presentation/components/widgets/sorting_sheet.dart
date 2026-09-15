@@ -1,7 +1,7 @@
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/core/enums.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
-import 'package:cabo_counter/presentation/components/widgets/buttons/floating_animated_button.dart';
+import 'package:cabo_counter/presentation/components/widgets/buttons/animated_text_button.dart';
 import 'package:cabo_counter/presentation/components/widgets/selectable_tile.dart';
 import 'package:cabo_counter/services/icon_service.dart';
 import 'package:flutter/material.dart';
@@ -203,7 +203,7 @@ class _SortingSheetState extends State<SortingSheet> {
               ),
 
               // Submit button
-              FloatingAnimatedButton(
+              AnimtedTextButton(
                 text: loc.submit,
                 onPressed: () => {
                   propagateChangedOptions(),

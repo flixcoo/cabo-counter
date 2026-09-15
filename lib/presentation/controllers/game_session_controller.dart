@@ -48,7 +48,7 @@ class GameSessionController extends ChangeNotifier {
 
   bool get isGameFinished => session.isGameFinished;
 
-  String get winner => session.winner;
+  List<String> get winner => session.winner;
 
   int get roundNumber => session.roundNumber;
 

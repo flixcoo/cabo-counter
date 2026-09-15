@@ -35,15 +35,24 @@ class SettingsView extends StatefulWidget {
 }
 
 class _SettingsViewState extends State<SettingsView> {
-  UniqueKey _stepperKey1 = UniqueKey();
-  UniqueKey _stepperKey2 = UniqueKey();
+  UniqueKey stepperKey1 = UniqueKey();
+  UniqueKey stepperKey2 = UniqueKey();
   GameMode defaultMode = ConfigService.getGameMode();
   bool rotateShuffler = ConfigService.getRotateShuffler();
   bool enableVibrations = ConfigService.getVibrationsEnabled();
+  int pointLimit = ConfigService.getPointLimit();
+  int caboPenalty = ConfigService.getCaboPenalty();
 
-  @override
-  void initState() {
-    super.initState();
+  String get defaultModeString {
+    final loc = AppLocalizations.of(context);
+    switch (defaultMode) {
+      case GameMode.none:
+        return loc.no_default_mode;
+      case GameMode.pointLimit:
+        return getPointLabel(loc, pointLimit);
+      case GameMode.unlimited:
+        return loc.unlimited;
+    }
   }
 
   @override
@@ -72,7 +81,7 @@ class _SettingsViewState extends State<SettingsView> {
                     prefixIcon: IconService.cabo_penalty,
                     showChevron: false,
                     suffixWidget: CustomStepper(
-                      key: _stepperKey1,
+                      key: stepperKey1,
                       initialValue: ConfigService.getCaboPenalty(),
                       minValue: 0,
                       maxValue: 50,
@@ -91,15 +100,14 @@ class _SettingsViewState extends State<SettingsView> {
                     prefixIcon: IconService.point_limit,
                     showChevron: false,
                     suffixWidget: CustomStepper(
-                      key: _stepperKey2,
+                      key: stepperKey2,
                       initialValue: ConfigService.getPointLimit(),
                       minValue: 30,
                       maxValue: 1000,
                       step: 10,
                       onChanged: (newPointLimit) {
-                        setState(() {
-                          ConfigService.setPointLimit(newPointLimit);
-                        });
+                        setState(() => pointLimit = newPointLimit);
+                        ConfigService.setPointLimit(newPointLimit);
                       },
                     ),
                   ),
@@ -109,14 +117,7 @@ class _SettingsViewState extends State<SettingsView> {
                     prefixText: loc.standard_mode,
                     prefixIcon: IconService.mode,
                     suffixWidget: Text(
-                      defaultMode == GameMode.none
-                          ? loc.no_default_mode
-                          : (defaultMode == GameMode.pointLimit
-                                ? getPointLabel(
-                                    loc,
-                                    ConfigService.getPointLimit(),
-                                  )
-                                : loc.unlimited),
+                      defaultModeString,
                       style: const TextStyle(color: CustomTheme.primaryColor),
                     ),
                     onPressed: () async {
@@ -158,7 +159,7 @@ class _SettingsViewState extends State<SettingsView> {
                   CustomFormRow(
                     prefixText: loc.reset_to_default,
                     prefixIcon: IconService.reset,
-                    onPressed: () => showConfirmPopup(),
+                    onPressed: () => showResetConfirmPopup(),
                   ),
                 ],
               ),
@@ -183,7 +184,7 @@ class _SettingsViewState extends State<SettingsView> {
                       final status = await DataTransferService.importJsonFile(
                         context,
                       );
-                      if (mounted) showFeedbackDialog(status);
+                      if (mounted) showImportFeedbackDialog(status);
                       widget.onSessionsUpdated.call();
                     },
                   ),
@@ -193,7 +194,7 @@ class _SettingsViewState extends State<SettingsView> {
                     prefixText: loc.delete_data,
                     prefixIcon: IconService.delete,
                     showChevron: false,
-                    onPressed: () => _deleteAllGames(),
+                    onPressed: () => showDeleteAllGamesPopup(),
                   ),
                 ],
               ),
@@ -266,7 +267,7 @@ class _SettingsViewState extends State<SettingsView> {
 
   /// Shows a dialog to confirm the deletion of all game data.
   /// When confirmed, it deletes all game data from local storage.
-  void _deleteAllGames() {
+  void showDeleteAllGamesPopup() {
     final loc = AppLocalizations.of(context);
     final db = Provider.of<AppDatabase>(context, listen: false);
     final dialogActions = [
@@ -285,9 +286,11 @@ class _SettingsViewState extends State<SettingsView> {
       ),
     ];
 
+    VibrationService.warningNotification();
     PopupService.showSelectionPopup<void>(
       context: context,
       icon: Icons.delete_outline_rounded,
+      iconColor: CustomTheme.red,
       title: loc.delete_data_title,
       message: loc.delete_data_message,
       actions: dialogActions,
@@ -296,15 +299,22 @@ class _SettingsViewState extends State<SettingsView> {
 
   /// Displays a feedback dialog for import operations based on the [ImportStatus].
   /// If the import was canceled, no dialog is shown.
-  void showFeedbackDialog(ImportStatus status) {
+  void showImportFeedbackDialog(ImportStatus status) {
     if (status == ImportStatus.canceled) return;
     final (title, message) = getDialogContent(status);
 
+    final icon = status == ImportStatus.success
+        ? Icons.check_circle_outline_rounded
+        : Icons.error_outline_rounded;
+    final iconColor = status == ImportStatus.success
+        ? CustomTheme.primaryColor
+        : CustomTheme.red;
+
+    VibrationService.errorNotification();
     PopupService.showInfoPopup(
       context: context,
-      icon: status == ImportStatus.success
-          ? Icons.check_circle_outline_rounded
-          : Icons.error_outline_rounded,
+      icon: icon,
+      iconColor: iconColor,
       title: title,
       message: message,
     );
@@ -337,7 +347,7 @@ class _SettingsViewState extends State<SettingsView> {
   }
 
   /// Shows a popup for the user to confirm the reset of their settings
-  void showConfirmPopup() {
+  void showResetConfirmPopup() {
     final loc = AppLocalizations.of(context);
     final dialogActions = [
       CustomPopupAction<void>(
@@ -346,8 +356,8 @@ class _SettingsViewState extends State<SettingsView> {
         onPressed: () {
           ConfigService.resetUserConfig();
           setState(() {
-            _stepperKey1 = UniqueKey();
-            _stepperKey2 = UniqueKey();
+            stepperKey1 = UniqueKey();
+            stepperKey2 = UniqueKey();
             defaultMode = ConfigService.getGameMode();
             rotateShuffler = ConfigService.getRotateShuffler();
           });
@@ -358,6 +368,8 @@ class _SettingsViewState extends State<SettingsView> {
         label: loc.cancel,
       ),
     ];
+
+    VibrationService.warningNotification();
     PopupService.showSelectionPopup<void>(
       context: context,
       icon: Icons.settings_backup_restore_rounded,

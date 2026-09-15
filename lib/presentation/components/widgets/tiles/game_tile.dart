@@ -68,7 +68,7 @@ class _GameTileState extends State<GameTile> {
 
                 Text(
                   session.isGameFinished
-                      ? '\u{1F947} ${session.winner}'
+                      ? '\u{1F947} ${session.winnerAsString}'
                       : '${loc.round} ${session.roundNumber}',
                   style: TextStyle(
                     fontSize: 16,
