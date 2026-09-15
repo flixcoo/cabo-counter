@@ -1,8 +1,9 @@
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
+import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
 import 'package:cabo_counter/presentation/views/about/about_view.dart';
 import 'package:cabo_counter/presentation/views/home/home_view.dart';
-import 'package:cabo_counter/services/icon_service.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
 import 'package:flutter/material.dart';
 
@@ -46,11 +47,11 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: AppIcon(IconService.home, size: 24),
+            icon: AppIcon(AppIcons.home, size: 24),
             label: loc.home,
           ),
           BottomNavigationBarItem(
-            icon: AppIcon(IconService.info, size: 24),
+            icon: AppIcon(AppIcons.info, size: 24),
             label: loc.about,
           ),
         ],

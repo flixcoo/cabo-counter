@@ -1,5 +1,5 @@
 import 'package:cabo_counter/core/custom_theme.dart';
-import 'package:cabo_counter/presentation/components/widgets/settings/custom_form_row.dart';
+import 'package:cabo_counter/presentation/components/widgets/grouped_lists/custom_form_row.dart';
 import 'package:flutter/material.dart';
 
 class CustomFormSection extends StatelessWidget {

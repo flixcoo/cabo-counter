@@ -1,12 +1,12 @@
 import 'package:cabo_counter/core/adaptive_page_route.dart';
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/constants.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_icon_button.dart';
-import 'package:cabo_counter/presentation/components/widgets/settings/custom_form_row.dart';
-import 'package:cabo_counter/presentation/components/widgets/settings/custom_form_section.dart';
+import 'package:cabo_counter/presentation/components/widgets/grouped_lists/custom_form_row.dart';
+import 'package:cabo_counter/presentation/components/widgets/grouped_lists/custom_form_section.dart';
 import 'package:cabo_counter/presentation/views/about/licenses/license_view.dart';
-import 'package:cabo_counter/services/icon_service.dart';
 import 'package:cabo_counter/services/version_service.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -65,7 +65,7 @@ class AboutView extends StatelessWidget {
                   // Support me
                   CustomFormRow(
                     prefixText: loc.support_me,
-                    prefixIcon: IconService.support,
+                    prefixIcon: AppIcons.support,
                     onPressed: () =>
                         launchUrl(Uri.parse(Constants.DONATE_LINK)),
                   ),
@@ -73,7 +73,7 @@ class AboutView extends StatelessWidget {
                   // Licenses
                   CustomFormRow(
                     prefixText: loc.licenses,
-                    prefixIcon: IconService.license,
+                    prefixIcon: AppIcons.license,
                     onPressed: () => Navigator.push(
                       context,
                       adaptivePageRoute(builder: (_) => const LicenseView()),
@@ -83,7 +83,7 @@ class AboutView extends StatelessWidget {
                   // Privacy policy
                   CustomFormRow(
                     prefixText: loc.privacy_policy,
-                    prefixIcon: IconService.privacy,
+                    prefixIcon: AppIcons.privacy,
                     onPressed: () => launchUrl(
                       Uri.parse(
                         '${Constants.PRIVACY_POLICY_LINK}?lang=${loc.localeName}',
@@ -94,7 +94,7 @@ class AboutView extends StatelessWidget {
                   // Legal notice
                   CustomFormRow(
                     prefixText: loc.legal_notice,
-                    prefixIcon: IconService.legal,
+                    prefixIcon: AppIcons.legal,
                     onPressed: () => launchUrl(
                       Uri.parse(
                         '${Constants.LEGAL_LINK}?lang=${loc.localeName}',
@@ -118,7 +118,7 @@ class AboutView extends StatelessWidget {
                       AnimatedIconButton(
                         onPressed: () =>
                             launchUrl(Uri.parse(Constants.WEBSITE_LINK)),
-                        icon: IconService.website,
+                        icon: AppIcons.website,
                         color: CustomTheme.primaryColor,
                       ),
 
@@ -127,7 +127,7 @@ class AboutView extends StatelessWidget {
                         onPressed: () => launchUrl(
                           Uri.parse('mailto:${Constants.CONTACT_EMAIL}'),
                         ),
-                        icon: IconService.e_mail,
+                        icon: AppIcons.e_mail,
                         color: CustomTheme.primaryColor,
                       ),
 
@@ -135,7 +135,7 @@ class AboutView extends StatelessWidget {
                       AnimatedIconButton(
                         onPressed: () =>
                             launchUrl(Uri.parse(Constants.GITHUB_LINK)),
-                        icon: IconService.brand_github,
+                        icon: AppIcons.brand_github,
                       ),
                     ],
                   ),

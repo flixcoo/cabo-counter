@@ -1,10 +1,11 @@
 import 'dart:ui' as dart_ui;
 
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
+import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_icon_button.dart';
 import 'package:cabo_counter/presentation/controllers/game_session_controller.dart';
-import 'package:cabo_counter/services/icon_service.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -57,11 +58,11 @@ class _GraphViewState extends State<GraphView> {
             onPressed: isGraphAvailable && hasZoomed
                 ? () => zoomPanBehavior.reset()
                 : null,
-            icon: IconService.reset,
+            icon: AppIcons.reset,
           ),*/
           AnimatedIconButton(
             onPressed: isGraphAvailable ? () => shareImage() : null,
-            icon: IconService.share,
+            icon: AppIcons.share,
           ),
         ],
       ),
@@ -73,7 +74,7 @@ class _GraphViewState extends State<GraphView> {
             crossAxisAlignment: CrossAxisAlignment.center,
             spacing: 10,
             children: [
-              Center(child: AppIcon(IconService.chart, size: 60)),
+              Center(child: AppIcon(AppIcons.chart, size: 60)),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Text(

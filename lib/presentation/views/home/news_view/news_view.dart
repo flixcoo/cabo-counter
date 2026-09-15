@@ -1,7 +1,7 @@
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_text_button.dart';
-import 'package:cabo_counter/presentation/components/widgets/news_tile.dart';
+import 'package:cabo_counter/presentation/components/widgets/tiles/news_tile.dart';
 import 'package:cabo_counter/presentation/views/home/news_view/news.dart';
 import 'package:cabo_counter/services/version_service.dart';
 import 'package:flutter/material.dart';

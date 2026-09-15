@@ -1,8 +1,10 @@
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
-import 'package:cabo_counter/services/icon_service.dart';
+import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class AddPlayerButton extends StatefulWidget {
   final VoidCallback onPressed;
@@ -34,7 +36,7 @@ class _AddPlayerButtonState extends State<AddPlayerButton> {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            AppIcon(IconService.add, size: 20, color: CustomTheme.primaryColor),
+            AppIcon(AppIcons.add, size: 20, color: CustomTheme.primaryColor),
             const SizedBox(width: 8),
             Text(
               loc.add_player,

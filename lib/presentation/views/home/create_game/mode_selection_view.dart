@@ -1,9 +1,9 @@
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/common.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/core/enums.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
-import 'package:cabo_counter/presentation/components/widgets/selectable_tile.dart';
-import 'package:cabo_counter/services/icon_service.dart';
+import 'package:cabo_counter/presentation/components/widgets/tiles/selectable_tile.dart';
 import 'package:flutter/material.dart';
 
 /// A stateless widget that displays a menu for selecting the game mode.
@@ -51,7 +51,7 @@ class _ModeSelectionViewState extends State<ModeSelectionView> {
         children: [
           // Point limit mode
           SelectableTile(
-            icon: IconService.point_limit,
+            icon: AppIcons.point_limit,
             title: getPointLabel(loc, widget.pointLimit),
             description: loc.point_limit_description(widget.pointLimit),
             onTap: supressTap ? null : () => onTapTile(GameMode.pointLimit),
@@ -61,7 +61,7 @@ class _ModeSelectionViewState extends State<ModeSelectionView> {
 
           // Unlimited mode
           SelectableTile(
-            icon: IconService.infinity,
+            icon: AppIcons.infinity,
             title: loc.unlimited,
             description: loc.unlimited_description,
             onTap: supressTap ? null : () => onTapTile(GameMode.unlimited),

@@ -1,9 +1,10 @@
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
+import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_text_button.dart';
-import 'package:cabo_counter/presentation/components/widgets/selectable_tile.dart';
+import 'package:cabo_counter/presentation/components/widgets/tiles/selectable_tile.dart';
 import 'package:cabo_counter/presentation/controllers/game_session_controller.dart';
-import 'package:cabo_counter/services/icon_service.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
 import 'package:flutter/material.dart';
 
@@ -81,7 +82,7 @@ class _KamikazeSheetState extends State<KamikazeSheet> {
                     ),
                     child: Center(
                       child: AppIcon(
-                        IconService.kamikaze,
+                        AppIcons.kamikaze,
                         color: CustomTheme.kamikazeColor,
                         size: 30,
                       ),

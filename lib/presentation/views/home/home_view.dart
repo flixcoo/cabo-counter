@@ -2,6 +2,7 @@ import 'dart:core';
 
 import 'package:cabo_counter/core/adaptive_page_route.dart';
 import 'package:cabo_counter/core/adaptive_sheet_route.dart';
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/constants.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/core/enums.dart';
@@ -11,17 +12,17 @@ import 'package:cabo_counter/data/models/player.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
 import 'package:cabo_counter/presentation/components/placeholders/empty_filter_placeholder.dart';
 import 'package:cabo_counter/presentation/components/placeholders/empty_games_placeholder.dart';
+import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_icon_button.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_text_button.dart';
 import 'package:cabo_counter/presentation/components/widgets/popups/custom_popup_action.dart';
-import 'package:cabo_counter/presentation/components/widgets/sorting_sheet.dart';
+import 'package:cabo_counter/presentation/components/widgets/sheets/sorting_sheet.dart';
 import 'package:cabo_counter/presentation/components/widgets/tiles/game_tile.dart';
 import 'package:cabo_counter/presentation/views/home/active_game/active_game_view.dart';
 import 'package:cabo_counter/presentation/views/home/create_game/create_game_view.dart';
 import 'package:cabo_counter/presentation/views/home/news_view/news_view.dart';
 import 'package:cabo_counter/presentation/views/home/settings_view.dart';
 import 'package:cabo_counter/services/config_service.dart';
-import 'package:cabo_counter/services/icon_service.dart';
 import 'package:cabo_counter/services/popup_service.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
 import 'package:flutter/material.dart';
@@ -118,7 +119,7 @@ class _HomeViewState extends State<HomeView> {
               ),
             );
           },
-          icon: IconService.settings,
+          icon: AppIcons.settings,
         ),
         title: Text(loc.games),
         actions: [sortingButton()],
@@ -154,7 +155,7 @@ class _HomeViewState extends State<HomeView> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   AppIcon(
-                                    IconService.visibility_off,
+                                    AppIcons.visibility_off,
                                     color: CustomTheme.white.withAlpha(150),
                                     size: 16.0,
                                   ),
@@ -189,7 +190,7 @@ class _HomeViewState extends State<HomeView> {
                                       child: Align(
                                         alignment: Alignment.centerRight,
                                         child: AppIcon(
-                                          IconService.delete,
+                                          AppIcons.delete,
                                           color: CustomTheme.white,
                                         ),
                                       ),
@@ -438,7 +439,7 @@ class _HomeViewState extends State<HomeView> {
           onFilterChanged: () => toggleShowOnlyActiveGames(),
         );
       },
-      icon: IconService.sort,
+      icon: AppIcons.sort,
     );
   }
 }

@@ -4,8 +4,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_sficon/flutter_sficon.dart';
 
-/// A service that provides platform-specific icons for use in the app.
-abstract class IconService {
+/// A class that provides platform-specific icons for use in the app.
+abstract class AppIcons {
   static IconData get add => Platform.isIOS ? SFIcons.sf_plus : Icons.add;
 
   static IconData get add_player =>
@@ -148,28 +148,4 @@ abstract class IconService {
 
   static IconData get tool =>
       Platform.isIOS ? SFIcons.sf_wrench_adjustable_fill : Icons.build;
-}
-
-/// Wrapper for Icons / SFIcons
-class AppIcon extends StatelessWidget {
-  const AppIcon(this.icon, {super.key, this.size, this.color});
-
-  final IconData icon;
-  final double? size;
-  final Color? color;
-
-  bool get _isSFSymbol => icon.fontPackage == 'flutter_sficon';
-
-  @override
-  Widget build(BuildContext context) {
-    if (_isSFSymbol) {
-      final iconTheme = IconTheme.of(context);
-      return SFIcon(
-        icon,
-        fontSize: size ?? iconTheme.size ?? 24,
-        color: color ?? iconTheme.color,
-      );
-    }
-    return Icon(icon, size: size, color: color);
-  }
 }

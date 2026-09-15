@@ -1,7 +1,8 @@
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
+import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/opacity_button.dart';
-import 'package:cabo_counter/services/icon_service.dart';
 import 'package:flutter/cupertino.dart';
 
 /// A placeholder for the [MainMenuView] when the filter does not return any games
@@ -23,7 +24,7 @@ class EmptyFilterPlaceholder extends StatelessWidget {
         const SizedBox(height: 30),
         Center(
           child: AppIcon(
-            IconService.visibility_off,
+            AppIcons.visibility_off,
             size: 60,
             color: CustomTheme.primaryColor,
           ),

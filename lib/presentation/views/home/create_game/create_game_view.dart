@@ -1,4 +1,5 @@
 import 'package:cabo_counter/core/adaptive_page_route.dart';
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/common.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/core/enums.dart';
@@ -6,15 +7,15 @@ import 'package:cabo_counter/data/db/database.dart';
 import 'package:cabo_counter/data/models/game_session.dart';
 import 'package:cabo_counter/data/models/player.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
-import 'package:cabo_counter/presentation/components/widgets/active_game/active_game_list_set.dart';
-import 'package:cabo_counter/presentation/components/widgets/active_game/active_game_list_tile.dart';
+import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/add_player_button.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_icon_button.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_text_button.dart';
+import 'package:cabo_counter/presentation/components/widgets/grouped_lists/active_game_list_set.dart';
+import 'package:cabo_counter/presentation/components/widgets/grouped_lists/active_game_list_tile.dart';
 import 'package:cabo_counter/presentation/views/home/active_game/active_game_view.dart';
 import 'package:cabo_counter/presentation/views/home/create_game/mode_selection_view.dart';
 import 'package:cabo_counter/services/config_service.dart';
-import 'package:cabo_counter/services/icon_service.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -215,7 +216,7 @@ class _CreateGameViewState extends State<CreateGameView> {
                                 children: [
                                   // Remove button
                                   AnimatedIconButton(
-                                    icon: IconService.remove_player,
+                                    icon: AppIcons.remove_player,
                                     color: CustomTheme.red,
                                     onPressed: () =>
                                         removePlayerTextfield(index),
@@ -285,7 +286,7 @@ class _CreateGameViewState extends State<CreateGameView> {
                                     child: ReorderableDragStartListener(
                                       index: index,
                                       child: AppIcon(
-                                        IconService.drag,
+                                        AppIcons.drag,
                                         color: CustomTheme.subtitleColor,
                                       ),
                                     ),

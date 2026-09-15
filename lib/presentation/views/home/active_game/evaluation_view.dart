@@ -1,8 +1,8 @@
 import 'package:cabo_counter/core/common.dart';
 import 'package:cabo_counter/data/models/round.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
-import 'package:cabo_counter/presentation/components/widgets/active_game/active_game_list_set.dart';
-import 'package:cabo_counter/presentation/components/widgets/active_game/active_game_list_tile.dart';
+import 'package:cabo_counter/presentation/components/widgets/grouped_lists/active_game_list_set.dart';
+import 'package:cabo_counter/presentation/components/widgets/grouped_lists/active_game_list_tile.dart';
 import 'package:cabo_counter/presentation/controllers/game_session_controller.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';

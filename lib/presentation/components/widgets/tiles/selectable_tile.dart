@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:cabo_counter/core/custom_theme.dart';
-import 'package:cabo_counter/services/icon_service.dart';
+import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
 import 'package:flutter/material.dart';
 

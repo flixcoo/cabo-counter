@@ -1,8 +1,9 @@
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/common.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/data/models/game_session.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
-import 'package:cabo_counter/services/icon_service.dart';
+import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -30,14 +31,14 @@ class _GameTileState extends State<GameTile> {
     List<({IconData icon, String text})> attributes = [
       (
         icon: session.isPointsLimitEnabled
-            ? IconService.point_limit
-            : IconService.infinity,
+            ? AppIcons.point_limit
+            : AppIcons.infinity,
         text: session.isPointsLimitEnabled
             ? getPointLabel(loc, session.pointLimit!)
             : loc.unlimited,
       ),
       (
-        icon: IconService.cabo_penalty,
+        icon: AppIcons.cabo_penalty,
         text: getPointLabel(loc, session.caboPenalty),
       ),
     ];

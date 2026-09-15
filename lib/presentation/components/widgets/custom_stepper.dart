@@ -1,6 +1,6 @@
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/opacity_button.dart';
-import 'package:cabo_counter/services/icon_service.dart';
 import 'package:flutter/cupertino.dart'; // Für iOS-Style
 
 /// A custom stepper widget for incrementing and decrementing a value.
@@ -53,7 +53,7 @@ class _CustomStepperState extends State<CustomStepper> {
         OpacityButton.icon(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           onPressed: _decrement,
-          icon: IconService.minus,
+          icon: AppIcons.minus,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -65,7 +65,7 @@ class _CustomStepperState extends State<CustomStepper> {
         OpacityButton.icon(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           onPressed: _increment,
-          icon: IconService.add,
+          icon: AppIcons.add,
         ),
       ],
     );

@@ -1,16 +1,16 @@
 import 'dart:math';
 
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/common.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_icon_button.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_text_button.dart';
 import 'package:cabo_counter/presentation/components/widgets/custom_segmented_control.dart';
-import 'package:cabo_counter/presentation/components/widgets/kamikaze_sheet.dart';
+import 'package:cabo_counter/presentation/components/widgets/sheets/kamikaze_sheet.dart';
 import 'package:cabo_counter/presentation/components/widgets/tiles/score_enter_tile.dart';
 import 'package:cabo_counter/presentation/controllers/game_session_controller.dart';
 import 'package:cabo_counter/services/config_service.dart';
-import 'package:cabo_counter/services/icon_service.dart';
 import 'package:cabo_counter/services/popup_service.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
 import 'package:flutter/material.dart';
@@ -96,12 +96,12 @@ class _RoundViewState extends State<RoundView> {
       appBar: AppBar(
         leading: AnimatedIconButton(
           onPressed: () => Navigator.of(context).pop(-1),
-          icon: IconService.close,
+          icon: AppIcons.close,
         ),
         title: Text(loc.results),
         actions: [
           AnimatedIconButton(
-            icon: IconService.kamikaze,
+            icon: AppIcons.kamikaze,
             color: CustomTheme.kamikazeColor,
             onPressed: () async {
               if (await showKamikazeSheet(context)) {
