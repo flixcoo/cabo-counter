@@ -12,6 +12,7 @@ permissions:
 jobs:
   version:
     name: "Bump version number"
+    if: github.ref == 'refs/heads/development'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
