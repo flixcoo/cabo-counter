@@ -1,10 +1,10 @@
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
-import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 
 class NewsItem {
   final Map<String, String> localizedTitle;
   final Map<String, String> localizedText;
-  final AppIcon icon;
+  final IconData icon;
 
   NewsItem({
     required this.localizedTitle,
