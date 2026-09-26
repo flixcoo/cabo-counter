@@ -1,6 +1,6 @@
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/presentation/components/widgets/grouped_lists/active_game_list_tile.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ActiveGameListSet extends StatefulWidget {
   const ActiveGameListSet({

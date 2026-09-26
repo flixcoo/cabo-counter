@@ -1,10 +1,9 @@
 import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
-import 'package:cabo_counter/l10n/generated/app_localizations.dart'
-    show AppLocalizations;
+import 'package:cabo_counter/l10n/generated/app_localizations.dart';
 import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
 import 'package:cabo_counter/presentation/views/about/licenses/oss_licenses.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LicenseDetailView extends StatelessWidget {

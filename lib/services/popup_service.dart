@@ -2,7 +2,7 @@ import 'package:cabo_counter/core/enums.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
 import 'package:cabo_counter/presentation/components/widgets/popups/custom_popup.dart';
 import 'package:cabo_counter/presentation/components/widgets/popups/custom_popup_action.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class PopupService {
   /// Displays an informational pop-up with a title, message and a single

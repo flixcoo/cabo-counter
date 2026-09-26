@@ -1,4 +1,4 @@
-import 'dart:ui' as dart_ui;
+import 'dart:ui';
 
 import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
@@ -6,7 +6,7 @@ import 'package:cabo_counter/l10n/generated/app_localizations.dart';
 import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_icon_button.dart';
 import 'package:cabo_counter/presentation/controllers/game_session_controller.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -198,9 +198,7 @@ class _GraphViewState extends State<GraphView> {
 
     // Capture the chart as an image with a pixel ratio of 5.0 for high quality.
     final image = await _key.currentState?.toImage(pixelRatio: 5.0);
-    final byteData = await image?.toByteData(
-      format: dart_ui.ImageByteFormat.png,
-    );
+    final byteData = await image?.toByteData(format: ImageByteFormat.png);
 
     // Exit if image capture failed.
     if (byteData == null) return;

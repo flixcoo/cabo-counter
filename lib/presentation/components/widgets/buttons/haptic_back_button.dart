@@ -1,7 +1,7 @@
 import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_icon_button.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 
 class HapticBackButton extends StatefulWidget {
   const HapticBackButton({super.key});

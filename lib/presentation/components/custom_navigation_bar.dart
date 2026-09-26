@@ -5,7 +5,7 @@ import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
 import 'package:cabo_counter/presentation/views/about/about_view.dart';
 import 'package:cabo_counter/presentation/views/home/home_view.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// TabBar for navigating between the main menu and about section.
 ///

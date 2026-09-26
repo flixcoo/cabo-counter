@@ -8,7 +8,7 @@ import 'package:cabo_counter/presentation/components/widgets/grouped_lists/custo
 import 'package:cabo_counter/presentation/components/widgets/grouped_lists/custom_form_section.dart';
 import 'package:cabo_counter/presentation/views/about/licenses/license_view.dart';
 import 'package:cabo_counter/services/version_service.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// A view that displays information about the app, including its name, version,

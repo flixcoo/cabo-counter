@@ -23,19 +23,32 @@ An open-source app to track your Cabo games, manage rounds and get detailed stat
 -->
 </p>
 
-![Version](https://img.shields.io/badge/App--Version-1.0.7-orange)![Flutter](https://img.shields.io/badge/Flutter-3.38.6-027DFD?logo=flutter)
+![Version](https://img.shields.io/badge/App--Version-1.1.4-orange)
+![Flutter](https://img.shields.io/badge/Flutter-3.47.2-027DFD?logo=flutter)
 ![iOS26](https://img.shields.io/badge/iOS-26-white?logo=apple)
-![Android16](https://img.shields.io/badge/Android-16-3DDC84?logo=android)
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/flixcoo/Cabo-Counter?logo=github)
+[![Push Pipeline](https://github.com/flixcoo/cabo-counter/actions/workflows/push.yml/badge.svg)](https://github.com/flixcoo/cabo-counter/actions/workflows/push.yml)
+<!--![Android17](https://img.shields.io/badge/Android-17-3DDC84?logo=android)-->
+
+## Features
+
+- Games with multiple players and two modes: point limit or unlimited
+- Round-by-round scoring with Cabo penalty, Kamikaze, bonus rule and rotating dealer
+- Overview of all games with sorting by date or title
+- Statistics and a graph showing the score progression per game
+- Detailed analytics: rounds won, average points, Cabo penalties and win streaks
+- Configurable settings for penalty, point limit and default mode
+- Import and export of your game data as JSON
+- Available in English and German
 
 ## Screenshots
 
 <table align="center" cellspacing="8">
   <tr>
-    <td><img src="/artefacts/screenshot-1.webp" alt="Screenshot 1" width="240" /></td>
-    <td><img src="/artefacts/screenshot-2.webp" alt="Screenshot 2" width="240" /></td>
-    <td><img src="/artefacts/screenshot-3.webp" alt="Screenshot 3" width="240" /></td>
-    <td><img src="/artefacts/screenshot-4.webp" alt="Screenshot 4" width="240" /></td>
+    <td><img src="/artefacts/wireframe-1.webp" alt="Screenshot of the main menu" width="240" /></td>
+    <td><img src="/artefacts/wireframe-2.webp" alt="Screenshot of the round view" width="240" /></td>
+    <td><img src="/artefacts/wireframe-3.webp" alt="Screenshot of the game overview" width="240" /></td>
+    <td><img src="/artefacts/wireframe-4.webp" alt="Screenshot of the graph" width="240" /></td>
   </tr>
 </table>
 

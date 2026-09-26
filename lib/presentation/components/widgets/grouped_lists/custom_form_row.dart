@@ -2,7 +2,7 @@ import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 
 class CustomFormRow extends StatefulWidget {
   const CustomFormRow({

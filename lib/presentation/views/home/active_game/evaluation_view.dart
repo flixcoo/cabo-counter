@@ -5,7 +5,7 @@ import 'package:cabo_counter/presentation/components/widgets/grouped_lists/activ
 import 'package:cabo_counter/presentation/components/widgets/grouped_lists/active_game_list_tile.dart';
 import 'package:cabo_counter/presentation/controllers/game_session_controller.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EvaluationView extends StatefulWidget {
   const EvaluationView({super.key, required this.gameSession});
