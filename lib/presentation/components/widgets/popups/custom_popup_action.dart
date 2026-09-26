@@ -2,7 +2,7 @@ import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/core/enums.dart';
 import 'package:cabo_counter/services/icon_service.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A pressable, animated action button used inside [CustomPopup].
 class CustomPopupAction<T> extends StatefulWidget {

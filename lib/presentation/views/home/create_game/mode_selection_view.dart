@@ -4,7 +4,7 @@ import 'package:cabo_counter/core/enums.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
 import 'package:cabo_counter/presentation/components/widgets/selectable_tile.dart';
 import 'package:cabo_counter/services/icon_service.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A stateless widget that displays a menu for selecting the game mode.
 ///

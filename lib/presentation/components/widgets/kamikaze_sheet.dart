@@ -5,7 +5,7 @@ import 'package:cabo_counter/presentation/components/widgets/selectable_tile.dar
 import 'package:cabo_counter/presentation/controllers/game_session_controller.dart';
 import 'package:cabo_counter/services/icon_service.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A bottom sheet for selecting the player who has Kamikaze.
 ///

@@ -22,7 +22,7 @@ import 'package:cabo_counter/services/rating_service.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
 import 'package:collection/collection.dart';
 import 'package:confetti/confetti.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
 /// Displays the active game view, showing game details, player rankings, rounds, and statistics.
