@@ -10,11 +10,11 @@ class AppIcon extends StatelessWidget {
   final double? size;
   final Color? color;
 
-  bool get isSFSymbol => icon.fontPackage == 'flutter_sficon';
+  bool get _isSFSymbol => icon.fontPackage == 'flutter_sficon';
 
   @override
   Widget build(BuildContext context) {
-    if (isSFSymbol) {
+    if (_isSFSymbol) {
       final iconTheme = IconTheme.of(context);
       return SFIcon(
         icon,
