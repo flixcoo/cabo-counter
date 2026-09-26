@@ -1,4 +1,5 @@
 import 'package:cabo_counter/core/adaptive_page_route.dart';
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/common.dart';
 import 'package:cabo_counter/core/constants.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
@@ -6,14 +7,13 @@ import 'package:cabo_counter/core/enums.dart';
 import 'package:cabo_counter/data/db/database.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
 import 'package:cabo_counter/presentation/components/widgets/adaptive_switch.dart';
+import 'package:cabo_counter/presentation/components/widgets/custom_stepper.dart';
+import 'package:cabo_counter/presentation/components/widgets/grouped_lists/custom_form_row.dart';
+import 'package:cabo_counter/presentation/components/widgets/grouped_lists/custom_form_section.dart';
 import 'package:cabo_counter/presentation/components/widgets/popups/custom_popup_action.dart';
-import 'package:cabo_counter/presentation/components/widgets/settings/custom_form_row.dart';
-import 'package:cabo_counter/presentation/components/widgets/settings/custom_form_section.dart';
-import 'package:cabo_counter/presentation/components/widgets/settings/custom_stepper.dart';
 import 'package:cabo_counter/presentation/views/home/create_game/mode_selection_view.dart';
 import 'package:cabo_counter/services/config_service.dart';
 import 'package:cabo_counter/services/data_transfer_service.dart';
-import 'package:cabo_counter/services/icon_service.dart';
 import 'package:cabo_counter/services/popup_service.dart';
 import 'package:cabo_counter/services/version_service.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
@@ -78,7 +78,7 @@ class _SettingsViewState extends State<SettingsView> {
                   // Cabo penalty
                   CustomFormRow(
                     prefixText: loc.cabo_penalty,
-                    prefixIcon: IconService.cabo_penalty,
+                    prefixIcon: AppIcons.cabo_penalty,
                     showChevron: false,
                     suffixWidget: CustomStepper(
                       key: stepperKey1,
@@ -97,7 +97,7 @@ class _SettingsViewState extends State<SettingsView> {
                   // Point limit
                   CustomFormRow(
                     prefixText: loc.point_limit,
-                    prefixIcon: IconService.point_limit,
+                    prefixIcon: AppIcons.point_limit,
                     showChevron: false,
                     suffixWidget: CustomStepper(
                       key: stepperKey2,
@@ -115,7 +115,7 @@ class _SettingsViewState extends State<SettingsView> {
                   // Standard mode
                   CustomFormRow(
                     prefixText: loc.standard_mode,
-                    prefixIcon: IconService.mode,
+                    prefixIcon: AppIcons.mode,
                     suffixWidget: Text(
                       defaultModeString,
                       style: const TextStyle(color: CustomTheme.primaryColor),
@@ -141,7 +141,7 @@ class _SettingsViewState extends State<SettingsView> {
                   // Rotate dealer
                   CustomFormRow(
                     prefixText: loc.rotate_dealer,
-                    prefixIcon: IconService.shuffle_cards,
+                    prefixIcon: AppIcons.shuffle_cards,
                     onPressed: () => toggleShuffler(!rotateShuffler),
                     suffixWidget: AdaptiveSwitch(
                       value: rotateShuffler,
@@ -158,7 +158,7 @@ class _SettingsViewState extends State<SettingsView> {
                 rows: [
                   CustomFormRow(
                     prefixText: loc.reset_to_default,
-                    prefixIcon: IconService.reset,
+                    prefixIcon: AppIcons.reset,
                     onPressed: () => showResetConfirmPopup(),
                   ),
                 ],
@@ -171,7 +171,7 @@ class _SettingsViewState extends State<SettingsView> {
                   // Export data
                   CustomFormRow(
                     prefixText: loc.export_data,
-                    prefixIcon: IconService.export,
+                    prefixIcon: AppIcons.export,
                     onPressed: () =>
                         DataTransferService.exportGameData(context),
                   ),
@@ -179,7 +179,7 @@ class _SettingsViewState extends State<SettingsView> {
                   // Import data
                   CustomFormRow(
                     prefixText: loc.import_data,
-                    prefixIcon: IconService.import,
+                    prefixIcon: AppIcons.import,
                     onPressed: () async {
                       final status = await DataTransferService.importJsonFile(
                         context,
@@ -192,7 +192,7 @@ class _SettingsViewState extends State<SettingsView> {
                   // Delete data
                   CustomFormRow(
                     prefixText: loc.delete_data,
-                    prefixIcon: IconService.delete,
+                    prefixIcon: AppIcons.delete,
                     showChevron: false,
                     onPressed: () => showDeleteAllGamesPopup(),
                   ),
@@ -206,7 +206,7 @@ class _SettingsViewState extends State<SettingsView> {
                   // Mail developer
                   CustomFormRow(
                     prefixText: loc.haptic_feedback,
-                    prefixIcon: IconService.vibration,
+                    prefixIcon: AppIcons.vibration,
                     showChevron: false,
                     onPressed: () => toggleVibrations(!enableVibrations),
                     suffixWidget: AdaptiveSwitch(
@@ -218,7 +218,7 @@ class _SettingsViewState extends State<SettingsView> {
                   // Mail developer
                   CustomFormRow(
                     prefixText: loc.mail_developer,
-                    prefixIcon: IconService.e_mail,
+                    prefixIcon: AppIcons.e_mail,
                     onPressed: () => launchUrl(
                       Uri.parse('mailto:${Constants.CONTACT_EMAIL}'),
                     ),
@@ -227,7 +227,7 @@ class _SettingsViewState extends State<SettingsView> {
                   // Report error
                   CustomFormRow(
                     prefixText: loc.report_error,
-                    prefixIcon: IconService.brand_github,
+                    prefixIcon: AppIcons.brand_github,
                     onPressed: () =>
                         launchUrl(Uri.parse(Constants.GITHUB_ISSUE_LINK)),
                   ),
@@ -235,7 +235,7 @@ class _SettingsViewState extends State<SettingsView> {
                   // Version
                   CustomFormRow(
                     prefixText: loc.version,
-                    prefixIcon: IconService.version,
+                    prefixIcon: AppIcons.version,
                     suffixWidget: Text(
                       VersionService.getVersion(),
                       style: const TextStyle(color: CustomTheme.primaryColor),
@@ -247,7 +247,7 @@ class _SettingsViewState extends State<SettingsView> {
                   // Build number
                   CustomFormRow(
                     prefixText: loc.build,
-                    prefixIcon: IconService.number,
+                    prefixIcon: AppIcons.number,
                     onPressed: null,
                     suffixWidget: Text(
                       VersionService.getBuildNumber(),
