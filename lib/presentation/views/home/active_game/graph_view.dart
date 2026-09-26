@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'dart:ui' show ImageByteFormat;
 
 import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
