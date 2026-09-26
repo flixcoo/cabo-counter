@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
-import 'package:flutter/material.dart';
 import 'package:flutter_sficon/flutter_sficon.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Wrapper for Icons / SFIcons
 class AppIcon extends StatelessWidget {
