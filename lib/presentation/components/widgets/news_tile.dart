@@ -1,7 +1,7 @@
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/data/dto/news_item.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class NewsTile extends StatelessWidget {
   const NewsTile({required this.newsItem, super.key});

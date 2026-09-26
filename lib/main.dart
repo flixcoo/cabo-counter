@@ -4,9 +4,9 @@ import 'package:cabo_counter/l10n/generated/app_localizations.dart';
 import 'package:cabo_counter/presentation/components/custom_navigation_bar.dart';
 import 'package:cabo_counter/services/config_service.dart';
 import 'package:cabo_counter/services/version_service.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter/services.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
@@ -56,8 +56,11 @@ class _CaboCounterAppState extends State<CaboCounterApp>
       onGenerateTitle: (context) => AppLocalizations.of(context).app_name,
       debugShowCheckedModeBanner: false,
 
-      // Localizations
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        ...GlobalMaterialLocalizations.delegates,
+        ...GlobalCupertinoLocalizations.delegates,
+      ],
       supportedLocales: AppLocalizations.supportedLocales,
       localeResolutionCallback: (locale, supportedLocales) {
         for (final loc in supportedLocales) {

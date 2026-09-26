@@ -1,5 +1,5 @@
 name: cabo_counter
-version: 1.1.4+1326
+version: 1.1.4+1329
 publish_to: none
 
 environment:
@@ -34,6 +34,8 @@ dependencies:
   syncfusion_flutter_charts: ^34.2.6
   url_launcher: any
   uuid: ^4.5.1
+  material_ui: ^1.4.0
+  cupertino_ui: ^1.1.1
 
 dev_dependencies:
   arb_utils: ^0.11.0

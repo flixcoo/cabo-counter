@@ -1,7 +1,7 @@
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/opacity_button.dart';
 import 'package:cabo_counter/services/icon_service.dart';
-import 'package:flutter/cupertino.dart'; // Für iOS-Style
+import 'package:cupertino_ui/cupertino_ui.dart'; // Für iOS-Style
 
 /// A custom stepper widget for incrementing and decrementing a value.
 ///
