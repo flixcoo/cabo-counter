@@ -44,7 +44,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   bool isLoading = true;
 
-  List<GameSession> sessions = List.filled(
+  List<GameSession> skeletonSessions = List.filled(
     10,
     GameSession(
       createdAt: DateTime.now(),
@@ -59,22 +59,11 @@ class _HomeViewState extends State<HomeView> {
     ),
   );
 
+  late List<GameSession> sessions = skeletonSessions;
+
   /// The sessions filtered and sorted for display based on the current sorting
   /// options and filters.
-  List<GameSession> displaySessions = List.filled(
-    10,
-    GameSession(
-      createdAt: DateTime.now(),
-      title: 'Skeleton session',
-      players: [
-        Player(name: 'Player 1', gameSessionId: '', position: 0),
-        Player(name: 'Player 2', gameSessionId: '', position: 1),
-        Player(name: 'Player 3', gameSessionId: '', position: 2),
-      ],
-      pointLimit: 100,
-      caboPenalty: 5,
-    ),
-  );
+  late List<GameSession> displaySessions = skeletonSessions;
 
   // Sorting & fiilter
   SortOption currentSortOption = ConfigService.getSortingOption();
@@ -127,129 +116,137 @@ class _HomeViewState extends State<HomeView> {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            sessions.isEmpty
-                ? const EmptyGamesPlaceholder()
-                : displaySessions.isEmpty
-                ? EmptyFilterPlaceholder(
-                    toggleShowOnlyActiveGames: toggleShowOnlyActiveGames,
-                  )
-                : Skeletonizer(
-                    enabled: isLoading,
-                    child: ListView.builder(
-                      padding: EdgeInsets.only(
-                        bottom: MediaQuery.paddingOf(context).bottom + 80,
-                      ),
-                      itemCount:
-                          displaySessions.length +
-                          (showOnlyActiveGames ? 1 : 0),
-                      itemBuilder: (context, index) {
-                        // Show info about active games filter at the end of the list
-                        if (showOnlyActiveGames &&
-                            index == displaySessions.length) {
-                          return Padding(
-                            padding: const EdgeInsets.only(top: 4, bottom: 30),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  AppIcon(
-                                    IconService.visibility_off,
-                                    color: CustomTheme.white.withAlpha(150),
-                                    size: 16.0,
-                                  ),
-                                  const SizedBox(width: 6.0),
-                                  Text(
-                                    loc.only_active_games,
-                                    style: TextStyle(
-                                      color: CustomTheme.white.withAlpha(150),
-                                      fontSize: 12.0,
-                                    ),
-                                  ),
-                                ],
+            Skeletonizer(
+              enabled: isLoading,
+              effect: PulseEffect(
+                from: Colors.grey[800]!,
+                to: Colors.grey[600]!,
+                duration: const Duration(milliseconds: 800),
+              ),
+              enableSwitchAnimation: true,
+              switchAnimationConfig: const SwitchAnimationConfig(
+                duration: Duration(milliseconds: 200),
+                switchInCurve: Curves.linear,
+                switchOutCurve: Curves.linear,
+                transitionBuilder: AnimatedSwitcher.defaultTransitionBuilder,
+                layoutBuilder: AnimatedSwitcher.defaultLayoutBuilder,
+              ),
+              child: ListView.builder(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.paddingOf(context).bottom + 80,
+                ),
+                itemCount:
+                    displaySessions.length + (showOnlyActiveGames ? 1 : 0),
+                itemBuilder: (context, index) {
+                  // Show info about active games filter at the end of the list
+                  if (showOnlyActiveGames && index == displaySessions.length) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 4, bottom: 30),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AppIcon(
+                              IconService.visibility_off,
+                              color: CustomTheme.white.withAlpha(150),
+                              size: 16.0,
+                            ),
+                            const SizedBox(width: 6.0),
+                            Text(
+                              loc.only_active_games,
+                              style: TextStyle(
+                                color: CustomTheme.white.withAlpha(150),
+                                fontSize: 12.0,
                               ),
                             ),
-                          );
-                        } else {
-                          final session = displaySessions[index];
-                          return Padding(
-                            padding: const EdgeInsets.all(6),
-                            child: Stack(
-                              children: [
-                                Positioned.fill(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.red,
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                        right: 20.0,
-                                      ),
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: AppIcon(
-                                          IconService.delete,
-                                          color: CustomTheme.white,
-                                        ),
-                                      ),
-                                    ),
+                          ],
+                        ),
+                      ),
+                    );
+                  } else {
+                    final session = displaySessions[index];
+                    return Padding(
+                      padding: const EdgeInsets.all(6),
+                      child: Stack(
+                        children: [
+                          Positioned.fill(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 20.0),
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: AppIcon(
+                                    IconService.delete,
+                                    color: CustomTheme.white,
                                   ),
                                 ),
-                                Dismissible(
-                                  key: Key(session.id),
-                                  direction: DismissDirection.endToStart,
-                                  confirmDismiss: (direction) async {
-                                    return await showDeleteGamePopup(
-                                      context,
-                                      session.title,
-                                    );
-                                  },
-                                  onDismissed: (direction) {
-                                    setState(() {
-                                      deleteSession(
-                                        session.id,
-                                        Provider.of<AppDatabase>(
-                                          context,
-                                          listen: false,
-                                        ),
-                                      );
-                                    });
-                                  },
-                                  dismissThresholds: const {
-                                    DismissDirection.endToStart: 0.6,
-                                  },
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: GameTile(
-                                      session: session,
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 12,
-                                        horizontal: 16,
-                                      ),
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          adaptivePageRoute(
-                                            builder: (context) =>
-                                                ActiveGameView(
-                                                  gameSession: session,
-                                                  onSessionsUpdated:
-                                                      loadSessions,
-                                                ),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
-                          );
-                        }
-                      },
-                    ),
-                  ),
+                          ),
+                          Dismissible(
+                            key: Key(session.id),
+                            direction: DismissDirection.endToStart,
+                            confirmDismiss: (direction) async {
+                              return await showDeleteGamePopup(
+                                context,
+                                session.title,
+                              );
+                            },
+                            onDismissed: (direction) {
+                              setState(() {
+                                deleteSession(
+                                  session.id,
+                                  Provider.of<AppDatabase>(
+                                    context,
+                                    listen: false,
+                                  ),
+                                );
+                              });
+                            },
+                            dismissThresholds: const {
+                              DismissDirection.endToStart: 0.6,
+                            },
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: GameTile(
+                                session: session,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 12,
+                                  horizontal: 16,
+                                ),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    adaptivePageRoute(
+                                      builder: (context) => ActiveGameView(
+                                        gameSession: session,
+                                        onSessionsUpdated: loadSessions,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                },
+              ),
+            ),
+            if (sessions.isEmpty)
+              const EmptyGamesPlaceholder()
+            else if (displaySessions.isEmpty)
+              EmptyFilterPlaceholder(
+                toggleShowOnlyActiveGames: toggleShowOnlyActiveGames,
+              ),
+
             Positioned(
               bottom: MediaQuery.paddingOf(context).bottom + 10,
               child: AnimtedTextButton(
@@ -272,7 +269,10 @@ class _HomeViewState extends State<HomeView> {
   }
 
   void loadSessions() {
-    setState(() => isLoading = true);
+    setState(() {
+      isLoading = true;
+      sessions = skeletonSessions;
+    });
 
     final db = Provider.of<AppDatabase>(context, listen: false);
 
