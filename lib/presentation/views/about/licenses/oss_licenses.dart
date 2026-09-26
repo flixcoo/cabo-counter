@@ -156,7 +156,6 @@ const allDependencies = <Package>[
   _shelf_packages_handler,
   _shelf_static,
   _shelf_web_socket,
-  _shimmer,
   _simple_sparse_list,
   _skeletonizer,
   _sky_engine,
@@ -232,11 +231,12 @@ const dependencies = <Package>[
   _rate_my_app,
   _share_plus,
   _shared_preferences,
-  _shimmer,
   _skeletonizer,
   _syncfusion_flutter_charts,
   _url_launcher,
-  _uuid
+  _uuid,
+  _material_ui,
+  _cupertino_ui
 ];
 
 /// Direct `dev_dependencies`.
@@ -1492,13 +1492,13 @@ const _clock = Package(
    limitations under the License.''',
   );
 
-/// code_assets 2.0.0
+/// code_assets 2.1.0
 const _code_assets = Package(
     name: 'code_assets',
     description: 'This library contains the hook protocol specification for bundling native code with Dart packages.',
     repository: 'https://github.com/dart-lang/native/tree/main/pkgs/code_assets',
     authors: [],
-    version: '2.0.0',
+    version: '2.1.0',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -1884,13 +1884,13 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.''',
   );
 
-/// cupertino_ui 1.0.2
+/// cupertino_ui 1.1.1
 const _cupertino_ui = Package(
     name: 'cupertino_ui',
     description: 'The official Flutter Cupertino Design Library, implementing the iOS design system.',
     repository: 'https://github.com/flutter/packages/tree/main/packages/cupertino_ui',
     authors: [],
-    version: '1.0.2',
+    version: '1.1.1',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -3199,13 +3199,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// flutter 3.47.4
+/// flutter 3.47.5
 const _flutter = Package(
     name: 'flutter',
     description: 'A framework for writing Flutter applications',
     homepage: 'https://flutter.dev',
     authors: [],
-    version: '3.47.4',
+    version: '3.47.5',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: true,
@@ -5134,13 +5134,13 @@ const _material_color_utilities = Package(
    limitations under the License.''',
   );
 
-/// material_ui 1.2.0
+/// material_ui 1.4.0
 const _material_ui = Package(
     name: 'material_ui',
     description: "The official Flutter Material UI Library, implementing Google's Material Design design system.",
     repository: 'https://github.com/flutter/packages/tree/main/packages/material_ui',
     authors: [],
-    version: '1.2.0',
+    version: '1.4.0',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -5296,17 +5296,17 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// native_toolchain_c 0.19.4
+/// native_toolchain_c 0.19.5
 const _native_toolchain_c = Package(
     name: 'native_toolchain_c',
     description: 'A library to invoke the native C compiler installed on the host machine.',
     repository: 'https://github.com/dart-lang/native/tree/main/pkgs/native_toolchain_c',
     authors: [],
-    version: '0.19.4',
+    version: '0.19.5',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
-    dependencies: [PackageRef('code_assets'), PackageRef('glob'), PackageRef('hooks'), PackageRef('logging'), PackageRef('meta'), PackageRef('process'), PackageRef('pub_semver')],
+    dependencies: [PackageRef('code_assets'), PackageRef('file'), PackageRef('glob'), PackageRef('hooks'), PackageRef('logging'), PackageRef('meta'), PackageRef('process'), PackageRef('pub_semver')],
     devDependencies: [PackageRef('collection'), PackageRef('test')],
     license: '''Copyright 2023, the Dart project authors.
 
@@ -6585,13 +6585,13 @@ const _quiver = Package(
    limitations under the License.''',
   );
 
-/// rate_my_app 2.4.1
+/// rate_my_app 2.4.2
 const _rate_my_app = Package(
     name: 'rate_my_app',
     description: 'Allows to kindly ask users to rate your app if custom conditions are met (eg. install time, number of launches, etc...).',
     homepage: 'https://github.com/Skyost/RateMyApp',
     authors: [],
-    version: '2.4.1',
+    version: '2.4.2',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -7765,47 +7765,6 @@ met:
       disclaimer in the documentation and/or other materials provided
       with the distribution.
     * Neither the name of Google LLC nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
-  );
-
-/// shimmer 4.0.0
-const _shimmer = Package(
-    name: 'shimmer',
-    description: 'A lightweight Flutter widget that paints a moving highlight over skeleton placeholders and call-to-action text.',
-    homepage: 'https://github.com/hnvn/flutter_shimmer',
-    repository: 'https://github.com/hnvn/flutter_shimmer',
-    authors: [],
-    version: '4.0.0',
-    spdxIdentifiers: ['BSD-3-Clause'],
-    isMarkdown: false,
-    isSdk: false,
-    dependencies: [PackageRef('flutter'), PackageRef('material_ui')],
-    devDependencies: [PackageRef('flutter_test')],
-    license: '''Copyright 2013, the Dart project authors. All rights reserved.
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google Inc. nor the names of its
       contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
 
@@ -38567,13 +38526,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// syncfusion_flutter_charts 34.2.8
+/// syncfusion_flutter_charts 34.2.9
 const _syncfusion_flutter_charts = Package(
     name: 'syncfusion_flutter_charts',
     description: 'A Flutter Charts library which includes data visualization widgets such as cartesian and circular charts, to create real-time, interactive, high-performance, animated charts.',
     homepage: 'https://github.com/syncfusion/flutter-widgets/tree/master/packages/syncfusion_flutter_charts',
     authors: [],
-    version: '34.2.8',
+    version: '34.2.9',
     spdxIdentifiers: [],
     isMarkdown: false,
     isSdk: false,
@@ -38593,13 +38552,13 @@ The Syncfusion<sup>&reg;</sup> license that contains the terms and conditions ca
 https://www.syncfusion.com/content/downloads/syncfusion_license.pdf''',
   );
 
-/// syncfusion_flutter_core 34.2.8
+/// syncfusion_flutter_core 34.2.9
 const _syncfusion_flutter_core = Package(
     name: 'syncfusion_flutter_core',
     description: 'Syncfusion Flutter Core is a dependent package for all the Syncfusion Flutter widgets.',
     homepage: 'https://github.com/syncfusion/flutter-widgets/tree/master/packages/syncfusion_flutter_core',
     authors: [],
-    version: '34.2.8',
+    version: '34.2.9',
     spdxIdentifiers: [],
     isMarkdown: false,
     isSdk: false,
@@ -39315,13 +39274,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// vector_math 2.4.2
+/// vector_math 2.4.3
 const _vector_math = Package(
     name: 'vector_math',
     description: 'A vector math library for 2D and 3D applications, supporting 2D, 3D, and 4D matrices.',
     repository: 'https://github.com/flutter/core-packages/tree/main/packages/vector_math',
     authors: [],
-    version: '2.4.2',
+    version: '2.4.3',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -39794,16 +39753,16 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// cabo_counter 1.1.5+1327
+/// cabo_counter 1.1.5+1330
 const _cabo_counter = Package(
     name: 'cabo_counter',
     description: 'Mobile app for the card game Cabo',
     authors: [],
-    version: '1.1.5+1327',
+    version: '1.1.5+1330',
     spdxIdentifiers: ['LGPL-3.0'],
     isMarkdown: false,
     isSdk: false,
-    dependencies: [PackageRef('collection'), PackageRef('confetti'), PackageRef('cupertino_icons'), PackageRef('drift'), PackageRef('drift_flutter'), PackageRef('file_picker'), PackageRef('file_saver'), PackageRef('flutter'), PackageRef('flutter_localizations'), PackageRef('flutter_sficon'), PackageRef('font_awesome_flutter'), PackageRef('google_fonts'), PackageRef('intl'), PackageRef('json_schema'), PackageRef('once'), PackageRef('package_info_plus'), PackageRef('path_provider'), PackageRef('provider'), PackageRef('rate_my_app'), PackageRef('share_plus'), PackageRef('shared_preferences'), PackageRef('shimmer'), PackageRef('skeletonizer'), PackageRef('syncfusion_flutter_charts'), PackageRef('url_launcher'), PackageRef('uuid')],
+    dependencies: [PackageRef('collection'), PackageRef('confetti'), PackageRef('cupertino_icons'), PackageRef('drift'), PackageRef('drift_flutter'), PackageRef('file_picker'), PackageRef('file_saver'), PackageRef('flutter'), PackageRef('flutter_localizations'), PackageRef('flutter_sficon'), PackageRef('font_awesome_flutter'), PackageRef('google_fonts'), PackageRef('intl'), PackageRef('json_schema'), PackageRef('once'), PackageRef('package_info_plus'), PackageRef('path_provider'), PackageRef('provider'), PackageRef('rate_my_app'), PackageRef('share_plus'), PackageRef('shared_preferences'), PackageRef('skeletonizer'), PackageRef('syncfusion_flutter_charts'), PackageRef('url_launcher'), PackageRef('uuid'), PackageRef('material_ui'), PackageRef('cupertino_ui')],
     devDependencies: [PackageRef('arb_utils'), PackageRef('build_runner'), PackageRef('dart_pubspec_licenses'), PackageRef('drift_dev'), PackageRef('flutter_lints'), PackageRef('flutter_test'), PackageRef('remove_unused_localizations'), PackageRef('sort_pubspec_dependencies'), PackageRef('test')],
     license: '''GNU LESSER GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
