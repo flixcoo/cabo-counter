@@ -1,4 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
 import 'package:flutter_sficon/flutter_sficon.dart';
 import 'package:material_ui/material_ui.dart';
 

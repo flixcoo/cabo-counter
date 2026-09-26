@@ -1,5 +1,5 @@
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
-import 'package:cupertino_ui/cupertino_ui.dart';
+import 'package:flutter/widgets.dart';
 
 class NewsItem {
   final Map<String, String> localizedTitle;
