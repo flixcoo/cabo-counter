@@ -91,7 +91,7 @@ class _SortingSheetState extends State<SortingSheet> {
                 width: 40,
                 height: 5,
                 decoration: BoxDecoration(
-                  color: CustomTheme.subtitleColor.withAlpha(120),
+                  color: CustomTheme.subtitleColor,
                   borderRadius: BorderRadius.circular(3),
                 ),
               ),
