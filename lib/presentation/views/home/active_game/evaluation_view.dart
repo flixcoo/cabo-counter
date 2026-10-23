@@ -167,7 +167,5 @@ class _EvaluationViewState extends State<EvaluationView> {
   }
 
   /// Whether the player at index [i] won the given [round].
-  bool hasWonRound(Round round, int i) =>
-      round.scores[i] == 0 ||
-      round.scores[i] == round.scores.reduce((a, b) => a > b ? a : b);
+  bool hasWonRound(Round round, int i) => round.scoreUpdates[i] == 0;
 }
