@@ -8,7 +8,7 @@ import 'package:material_ui/material_ui.dart';
 class AddPlayerButton extends StatefulWidget {
   final VoidCallback onPressed;
 
-  const AddPlayerButton({required this.onPressed});
+  const AddPlayerButton({super.key, required this.onPressed});
 
   @override
   State<AddPlayerButton> createState() => _AddPlayerButtonState();

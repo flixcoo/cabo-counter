@@ -1961,10 +1961,11 @@ class $$GameSessionTableTableTableManager
                   getPrefetchedDataCallback: (items) async {
                     return [
                       if (playerTableRefs)
-                        await $_getPrefetchedData<
+                        await $_getPrefetchedDataByColumns<
                           GameSessionTableData,
                           $GameSessionTableTable,
-                          PlayerTableData
+                          PlayerTableData,
+                          $PlayerTableTable
                         >(
                           currentTable: table,
                           referencedTable: $$GameSessionTableTableReferences
@@ -1975,17 +1976,16 @@ class $$GameSessionTableTableTableManager
                                 table,
                                 p0,
                               ).playerTableRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.gameSessionId == item.id,
-                              ),
+                          currentColumn: 'id',
+                          referencedColumn: 'game_session_id',
                           typedResults: items,
                         ),
                       if (roundTableRefs)
-                        await $_getPrefetchedData<
+                        await $_getPrefetchedDataByColumns<
                           GameSessionTableData,
                           $GameSessionTableTable,
-                          RoundTableData
+                          RoundTableData,
+                          $RoundTableTable
                         >(
                           currentTable: table,
                           referencedTable: $$GameSessionTableTableReferences
@@ -1996,10 +1996,8 @@ class $$GameSessionTableTableTableManager
                                 table,
                                 p0,
                               ).roundTableRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.gameSessionId == item.id,
-                              ),
+                          currentColumn: 'id',
+                          referencedColumn: 'game_session_id',
                           typedResults: items,
                         ),
                     ];
@@ -2395,10 +2393,11 @@ class $$PlayerTableTableTableManager
                   getPrefetchedDataCallback: (items) async {
                     return [
                       if (roundScoreTableRefs)
-                        await $_getPrefetchedData<
+                        await $_getPrefetchedDataByColumns<
                           PlayerTableData,
                           $PlayerTableTable,
-                          RoundScoreTableData
+                          RoundScoreTableData,
+                          $RoundScoreTableTable
                         >(
                           currentTable: table,
                           referencedTable: $$PlayerTableTableReferences
@@ -2409,10 +2408,8 @@ class $$PlayerTableTableTableManager
                                 table,
                                 p0,
                               ).roundScoreTableRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.playerId == item.id,
-                              ),
+                          currentColumn: 'id',
+                          referencedColumn: 'player_id',
                           typedResults: items,
                         ),
                     ];
@@ -2810,10 +2807,11 @@ class $$RoundTableTableTableManager
                   getPrefetchedDataCallback: (items) async {
                     return [
                       if (roundScoreTableRefs)
-                        await $_getPrefetchedData<
+                        await $_getPrefetchedDataByColumns<
                           RoundTableData,
                           $RoundTableTable,
-                          RoundScoreTableData
+                          RoundScoreTableData,
+                          $RoundScoreTableTable
                         >(
                           currentTable: table,
                           referencedTable: $$RoundTableTableReferences
@@ -2824,10 +2822,8 @@ class $$RoundTableTableTableManager
                                 table,
                                 p0,
                               ).roundScoreTableRefs,
-                          referencedItemsForCurrentItem:
-                              (item, referencedItems) => referencedItems.where(
-                                (e) => e.roundId == item.id,
-                              ),
+                          currentColumn: 'id',
+                          referencedColumn: 'round_id',
                           typedResults: items,
                         ),
                     ];

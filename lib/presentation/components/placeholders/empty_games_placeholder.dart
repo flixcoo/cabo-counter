@@ -26,7 +26,7 @@ class EmptyGamesPlaceholder extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 70),
           child: Text(
-            '${loc.no_games_created_yet}',
+            loc.no_games_created_yet,
             textAlign: TextAlign.center,
             style: const TextStyle(fontSize: 14),
           ),

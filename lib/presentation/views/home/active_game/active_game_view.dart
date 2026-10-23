@@ -42,7 +42,7 @@ class ActiveGameView extends StatefulWidget {
   final VoidCallback onSessionsUpdated;
 
   @override
-  _ActiveGameViewState createState() => _ActiveGameViewState();
+  State<ActiveGameView> createState() => _ActiveGameViewState();
 }
 
 class _ActiveGameViewState extends State<ActiveGameView> {

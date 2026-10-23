@@ -30,18 +30,17 @@ class CustomStepper extends StatefulWidget {
   });
 
   @override
-  // ignore: library_private_types_in_public_api
-  _CustomStepperState createState() => _CustomStepperState();
+  State<CustomStepper> createState() => _CustomStepperState();
 }
 
 class _CustomStepperState extends State<CustomStepper> {
-  late int _value;
+  late int value;
 
   @override
   void initState() {
     super.initState();
     final start = widget.initialValue ?? widget.minValue;
-    _value = start.clamp(widget.minValue, widget.maxValue);
+    value = start.clamp(widget.minValue, widget.maxValue);
   }
 
   @override
@@ -58,7 +57,7 @@ class _CustomStepperState extends State<CustomStepper> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Text(
-            '$_value',
+            '$value',
             style: const TextStyle(fontSize: 18, color: CustomTheme.white),
           ),
         ),
@@ -72,19 +71,19 @@ class _CustomStepperState extends State<CustomStepper> {
   }
 
   void _increment() {
-    if (_value + widget.step <= widget.maxValue) {
+    if (value + widget.step <= widget.maxValue) {
       setState(() {
-        _value += widget.step;
-        widget.onChanged.call(_value);
+        value += widget.step;
+        widget.onChanged.call(value);
       });
     }
   }
 
   void _decrement() {
-    if (_value - widget.step >= widget.minValue) {
+    if (value - widget.step >= widget.minValue) {
       setState(() {
-        _value -= widget.step;
-        widget.onChanged.call(_value);
+        value -= widget.step;
+        widget.onChanged.call(value);
       });
     }
   }

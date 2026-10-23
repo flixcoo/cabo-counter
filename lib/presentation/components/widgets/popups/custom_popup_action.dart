@@ -7,6 +7,7 @@ import 'package:material_ui/material_ui.dart';
 /// A pressable, animated action button used inside [CustomPopup].
 class CustomPopupAction<T> extends StatefulWidget {
   const CustomPopupAction({
+    super.key,
     required this.label,
     this.icon,
     this.style = CustomPopupActionStyle.primary,
@@ -74,10 +75,11 @@ class _CustomPopupActionState<T> extends State<CustomPopupAction<T>>
     switch (widget.style) {
       case CustomPopupActionStyle.secondary:
         if (widget.isDestructive) return CustomTheme.red;
-        if (widget.isEmphasized)
+        if (widget.isEmphasized) {
           return CustomTheme.primaryColor;
-        else
+        } else {
           return CustomTheme.white;
+        }
       case CustomPopupActionStyle.primary:
         return backgroundColor;
     }
