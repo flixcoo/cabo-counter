@@ -17,7 +17,7 @@ class NewsView extends StatelessWidget {
       backgroundColor: CustomTheme.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: SingleChildScrollView(
+        child: Expanded(
           child: Column(
             spacing: 40,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,13 +55,15 @@ class NewsView extends StatelessWidget {
               ),
 
               // Items
-              Column(
-                spacing: 20,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // News Items
-                  for (final item in localizedNews) NewsTile(newsItem: item),
-                ],
+              Expanded(
+                child: Column(
+                  spacing: 20,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // News Items
+                    for (final item in localizedNews) NewsTile(newsItem: item),
+                  ],
+                ),
               ),
 
               // Continue button
