@@ -44,7 +44,7 @@ class CreateGameView extends StatefulWidget {
 
   @override
   // ignore: library_private_types_in_public_api
-  _CreateGameViewState createState() => _CreateGameViewState();
+  State<CreateGameView> createState() => _CreateGameViewState();
 }
 
 class _CreateGameViewState extends State<CreateGameView> {

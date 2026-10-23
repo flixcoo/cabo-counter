@@ -39,7 +39,7 @@ class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
   @override
-  _HomeViewState createState() => _HomeViewState();
+  State<HomeView> createState() => _HomeViewState();
 }
 
 class _HomeViewState extends State<HomeView> {
@@ -412,10 +412,10 @@ class _HomeViewState extends State<HomeView> {
                 Constants.POP_UP_DELAY,
           ),
           () {
-            if (mounted)
-              Navigator.of(context).push(
-                adaptiveSheetRoute(builder: (context) => const NewsView()),
-              );
+            if (!context.mounted) return;
+            Navigator.of(
+              context,
+            ).push(adaptiveSheetRoute(builder: (context) => const NewsView()));
           },
         );
       },

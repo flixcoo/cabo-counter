@@ -31,7 +31,7 @@ class CustomStepper extends StatefulWidget {
 
   @override
   // ignore: library_private_types_in_public_api
-  _CustomStepperState createState() => _CustomStepperState();
+  State<CustomStepper> createState() => _CustomStepperState();
 }
 
 class _CustomStepperState extends State<CustomStepper> {

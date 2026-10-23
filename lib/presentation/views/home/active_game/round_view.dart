@@ -33,7 +33,7 @@ class RoundView extends StatefulWidget {
   final void Function()? onRoundSubmitted;
 
   @override
-  _RoundViewState createState() => _RoundViewState();
+  State<RoundView> createState() => _RoundViewState();
 }
 
 class _RoundViewState extends State<RoundView> {
@@ -244,42 +244,40 @@ class _RoundViewState extends State<RoundView> {
               ),
             ),
           ),
-          Container(
+          Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewPadding.bottom,
+            ),
             child: Padding(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewPadding.bottom,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  spacing: 10,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                spacing: 10,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: AnimtedTextButton(
+                      onPressed: canSubmitRound
+                          ? () => endOfRoundNavigation(
+                              context: context,
+                              navigateToNextRound: false,
+                            )
+                          : null,
+                      text: loc.done,
+                    ),
+                  ),
+                  if (!isGameFinished)
                     Expanded(
                       child: AnimtedTextButton(
                         onPressed: canSubmitRound
                             ? () => endOfRoundNavigation(
                                 context: context,
-                                navigateToNextRound: false,
+                                navigateToNextRound: true,
                               )
                             : null,
-                        text: loc.done,
+                        text: loc.next_round,
                       ),
                     ),
-                    if (!isGameFinished)
-                      Expanded(
-                        child: AnimtedTextButton(
-                          onPressed: canSubmitRound
-                              ? () => endOfRoundNavigation(
-                                  context: context,
-                                  navigateToNextRound: true,
-                                )
-                              : null,
-                          text: loc.next_round,
-                        ),
-                      ),
-                  ],
-                ),
+                ],
               ),
             ),
           ),

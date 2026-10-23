@@ -34,10 +34,13 @@ class RatingService {
         if (context.mounted) Constants.rateMyApp.showStarRateDialog(context);
         break;
       case PreRatingDialogDecision.no:
-        if (context.mounted)
-          badRatingDecision = await PopupService.showBadRatingDialog(context);
-        if (badRatingDecision == BadRatingDialogDecision.email)
+        if (!context.mounted) return;
+        badRatingDecision = await PopupService.showBadRatingDialog(context);
+        if (badRatingDecision == BadRatingDialogDecision.email) {
+          if (!context.mounted) return;
           _openFeedbackEmail(context);
+        }
+
         break;
       case PreRatingDialogDecision.cancel:
     }
