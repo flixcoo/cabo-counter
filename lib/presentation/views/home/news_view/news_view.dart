@@ -17,63 +17,71 @@ class NewsView extends StatelessWidget {
       backgroundColor: CustomTheme.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: SingleChildScrollView(
-          child: Column(
-            spacing: 40,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Invisible element to have some spacing on top
-              const SizedBox.shrink(),
-
-              // Texts
-              Center(
-                child: Column(
-                  children: [
-                    // title
-                    Text(
-                      loc.whats_new,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: CustomTheme.textColor,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        height: 1.3,
-                      ),
-                    ),
-
-                    // Version
-                    Text(
-                      '${loc.version} ${VersionService.getVersionNumber()}',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: CustomTheme.textColor,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              // Items
-              Column(
-                spacing: 20,
+        child: CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Column(
+                spacing: 40,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // News Items
-                  for (final item in localizedNews) NewsTile(newsItem: item),
+                  // Invisible element to have some spacing on top
+                  const SizedBox.shrink(),
+
+                  // Texts
+                  Center(
+                    child: Column(
+                      children: [
+                        // title
+                        Text(
+                          loc.whats_new,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: CustomTheme.textColor,
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            height: 1.3,
+                          ),
+                        ),
+
+                        // Version
+                        Text(
+                          '${loc.version} ${VersionService.getVersionNumber()}',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: CustomTheme.textColor,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  // Items
+                  Expanded(
+                    child: Column(
+                      spacing: 20,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // News Items
+                        for (final item in localizedNews)
+                          NewsTile(newsItem: item),
+                      ],
+                    ),
+                  ),
+
+                  // Continue button
+                  AnimtedTextButton(
+                    onPressed: () => Navigator.pop(context),
+                    text: loc.continu,
+                  ),
+
+                  // Invisible element to have some spacing on the bottom
+                  const SizedBox.shrink(),
                 ],
               ),
-
-              // Continue button
-              AnimtedTextButton(
-                onPressed: () => Navigator.pop(context),
-                text: loc.continu,
-              ),
-
-              // Invisible element to have some spacing on the bottom
-              const SizedBox.shrink(),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

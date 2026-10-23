@@ -17,8 +17,8 @@ import 'package:cabo_counter/presentation/views/home/active_game/active_game_vie
 import 'package:cabo_counter/presentation/views/home/create_game/mode_selection_view.dart';
 import 'package:cabo_counter/services/config_service.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
-import 'package:material_ui/material_ui.dart';
 import 'package:intl/intl.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -176,7 +176,8 @@ class _CreateGameViewState extends State<CreateGameView> {
                       ActiveGameListSet(
                         title: loc.players,
                         content: const [],
-                        subtitle: '${playerNameControllers.length} / 5',
+                        subtitle:
+                            '${playerNameControllers.length} / $maxPlayers',
                       ),
 
                       // Players
