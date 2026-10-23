@@ -21,7 +21,7 @@ class _EvaluationViewState extends State<EvaluationView> {
   List<(String, double)> averagePoints = [];
   List<(String, int)> roundsWon = [];
   List<(String, int)> caboPenalties = [];
-  List<(String, int)> longestWinStreak = [];
+  List<(String, int)> rowWins = [];
 
   List<Player> get players => widget.gameSession.players;
 
@@ -33,7 +33,7 @@ class _EvaluationViewState extends State<EvaluationView> {
     averagePoints = calculateAveragePoints();
     roundsWon = calculateRoundsWon();
     caboPenalties = calculateCaboPenalties();
-    longestWinStreak = calculateRowWins();
+    rowWins = calculateRowWins();
   }
 
   @override
@@ -51,7 +51,7 @@ class _EvaluationViewState extends State<EvaluationView> {
                 title: loc.rounds_won,
                 description: loc.rounds_won_description,
                 content: [
-                  for (final value in calculateRoundsWon())
+                  for (final value in roundsWon)
                     ActiveGameListTile(
                       title: Text(value.$1),
                       trailing: Text(
@@ -70,7 +70,10 @@ class _EvaluationViewState extends State<EvaluationView> {
                     ActiveGameListTile(
                       title: Text(value.$1),
                       trailing: Text(
-                        ('${value.$2.toStringAsFixed(1)} ${loc.points}'),
+                        // If only kamikaze rounds, show "-"
+                        roundList.every((r) => r.kamikazePlayerIndex != null)
+                            ? '-'
+                            : '${value.$2.toStringAsFixed(1)} ${loc.points}',
                       ),
                     ),
                 ],
@@ -81,7 +84,7 @@ class _EvaluationViewState extends State<EvaluationView> {
                 title: loc.received_cabo_penalties,
                 description: loc.received_cabo_penalties_description,
                 content: [
-                  for (final value in calculateCaboPenalties())
+                  for (final value in caboPenalties)
                     ActiveGameListTile(
                       title: Text(value.$1),
                       trailing: Text(
@@ -96,7 +99,7 @@ class _EvaluationViewState extends State<EvaluationView> {
                 title: loc.longest_win_streak,
                 description: loc.longest_win_streak_description,
                 content: [
-                  for (final value in calculateRowWins())
+                  for (final value in rowWins)
                     ActiveGameListTile(
                       title: Text(value.$1),
                       trailing: Text(
@@ -128,7 +131,6 @@ class _EvaluationViewState extends State<EvaluationView> {
   /// Calulates the amount of rounds won for each player.
   List<(String, int)> calculateRoundsWon() {
     var values = <(String, int)>[];
-    final roundList = widget.gameSession.roundList;
 
     for (int i = 0; i < widget.gameSession.players.length; i++) {
       var roundsWon = roundList.where((round) => hasWonRound(round, i)).length;
@@ -140,12 +142,14 @@ class _EvaluationViewState extends State<EvaluationView> {
   /// Calculates the amount of times a player got a cabo penalty
   List<(String, int)> calculateCaboPenalties() {
     var values = <(String, int)>[];
-    final caboPenalty = widget.gameSession.caboPenalty;
 
     for (int i = 0; i < widget.gameSession.players.length; i++) {
       var caboPenalties = roundList
           .where(
-            (round) => round.scores[i] == round.scoreUpdates[i] - caboPenalty,
+            (round) =>
+                round.kamikazePlayerIndex == null &&
+                round.caboPlayerIndex == i &&
+                !hasWonRound(round, i),
           )
           .length;
       values.add((players[i].name, caboPenalties));
