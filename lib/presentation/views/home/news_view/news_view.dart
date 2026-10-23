@@ -17,65 +17,71 @@ class NewsView extends StatelessWidget {
       backgroundColor: CustomTheme.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Expanded(
-          child: Column(
-            spacing: 40,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Invisible element to have some spacing on top
-              const SizedBox.shrink(),
+        child: CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Column(
+                spacing: 40,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Invisible element to have some spacing on top
+                  const SizedBox.shrink(),
 
-              // Texts
-              Center(
-                child: Column(
-                  children: [
-                    // title
-                    Text(
-                      loc.whats_new,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: CustomTheme.textColor,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        height: 1.3,
-                      ),
+                  // Texts
+                  Center(
+                    child: Column(
+                      children: [
+                        // title
+                        Text(
+                          loc.whats_new,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: CustomTheme.textColor,
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            height: 1.3,
+                          ),
+                        ),
+
+                        // Version
+                        Text(
+                          '${loc.version} ${VersionService.getVersionNumber()}',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: CustomTheme.textColor,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
                     ),
+                  ),
 
-                    // Version
-                    Text(
-                      '${loc.version} ${VersionService.getVersionNumber()}',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: CustomTheme.textColor,
-                        fontSize: 16,
-                      ),
+                  // Items
+                  Expanded(
+                    child: Column(
+                      spacing: 20,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // News Items
+                        for (final item in localizedNews)
+                          NewsTile(newsItem: item),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  ),
 
-              // Items
-              Expanded(
-                child: Column(
-                  spacing: 20,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // News Items
-                    for (final item in localizedNews) NewsTile(newsItem: item),
-                  ],
-                ),
-              ),
+                  // Continue button
+                  AnimtedTextButton(
+                    onPressed: () => Navigator.pop(context),
+                    text: loc.continu,
+                  ),
 
-              // Continue button
-              AnimtedTextButton(
-                onPressed: () => Navigator.pop(context),
-                text: loc.continu,
+                  // Invisible element to have some spacing on the bottom
+                  const SizedBox.shrink(),
+                ],
               ),
-
-              // Invisible element to have some spacing on the bottom
-              const SizedBox.shrink(),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
