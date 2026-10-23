@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:cabo_counter/core/common.dart';
 import 'package:cabo_counter/core/enums.dart';
@@ -63,17 +62,17 @@ class DataTransferService {
   /// Opens the file picker to import a JSON file and loads the game data from it.
   static Future<ImportStatus> importJsonFile(BuildContext context) async {
     final db = Provider.of<AppDatabase>(context, listen: false);
-    final path = await FilePicker.pickFiles(
+    final file = await FilePicker.pickFile(
       type: FileType.custom,
       allowedExtensions: ['json'],
     );
 
-    if (path == null) {
+    if (file == null) {
       return ImportStatus.canceled;
     }
 
     try {
-      final jsonString = await _readFileContent(path.files.single);
+      final jsonString = utf8.decode(await file.readAsBytes());
 
       // Checks if the JSON String is in the gameList format
       if (await validateJsonSchema(jsonString, true)) {
@@ -106,14 +105,6 @@ class DataTransferService {
       print(stack);
       return ImportStatus.genericError;
     }
-  }
-
-  /// Helper method to read file content from either bytes or path
-  static Future<String> _readFileContent(PlatformFile file) async {
-    if (file.bytes != null) return utf8.decode(file.bytes!);
-    if (file.path != null) return await File(file.path!).readAsString();
-
-    throw Exception('Die Datei hat keinen lesbaren Inhalt');
   }
 
   /// Validates the JSON data against the schema.
