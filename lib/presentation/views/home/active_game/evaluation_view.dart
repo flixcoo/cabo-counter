@@ -44,6 +44,7 @@ class _EvaluationViewState extends State<EvaluationView> {
               // Rounds won
               ActiveGameListSet(
                 title: loc.rounds_won,
+                description: loc.rounds_won_description,
                 content: [
                   for (final value in calculateRoundsWon())
                     ActiveGameListTile(
@@ -58,6 +59,7 @@ class _EvaluationViewState extends State<EvaluationView> {
               // Average points
               ActiveGameListSet(
                 title: '\u{00D8} ${loc.points_per_round}',
+                description: loc.points_per_round_description,
                 content: [
                   for (final value in averagePoints)
                     ActiveGameListTile(
@@ -72,6 +74,7 @@ class _EvaluationViewState extends State<EvaluationView> {
               // Received cabo penalties
               ActiveGameListSet(
                 title: loc.received_cabo_penalties,
+                description: loc.received_cabo_penalties_description,
                 content: [
                   for (final value in calculateCaboPenalties())
                     ActiveGameListTile(
@@ -86,6 +89,7 @@ class _EvaluationViewState extends State<EvaluationView> {
               // Longest win streak
               ActiveGameListSet(
                 title: loc.longest_win_streak,
+                description: loc.longest_win_streak_description,
                 content: [
                   for (final value in calculateRowWins())
                     ActiveGameListTile(
