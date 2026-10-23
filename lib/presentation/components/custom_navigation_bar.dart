@@ -19,7 +19,6 @@ class CustomNavigationBar extends StatefulWidget {
   const CustomNavigationBar({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   State<CustomNavigationBar> createState() => _CustomNavigationBarState();
 }
 

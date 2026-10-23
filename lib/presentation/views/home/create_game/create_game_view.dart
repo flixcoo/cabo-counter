@@ -43,7 +43,6 @@ class CreateGameView extends StatefulWidget {
   final VoidCallback onSessionsUpdated;
 
   @override
-  // ignore: library_private_types_in_public_api
   State<CreateGameView> createState() => _CreateGameViewState();
 }
 
