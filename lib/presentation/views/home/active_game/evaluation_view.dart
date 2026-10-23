@@ -128,11 +128,11 @@ class _EvaluationViewState extends State<EvaluationView> {
     return values..sort((a, b) => a.$2.compareTo(b.$2));
   }
 
-  /// Calulates the amount of rounds won for each player.
+  /// Calculates the amount of rounds won for each player.
   List<(String, int)> calculateRoundsWon() {
     var values = <(String, int)>[];
 
-    for (int i = 0; i < widget.gameSession.players.length; i++) {
+    for (int i = 0; i < players.length; i++) {
       var roundsWon = roundList.where((round) => hasWonRound(round, i)).length;
       values.add((players[i].name, roundsWon));
     }
@@ -143,7 +143,7 @@ class _EvaluationViewState extends State<EvaluationView> {
   List<(String, int)> calculateCaboPenalties() {
     var values = <(String, int)>[];
 
-    for (int i = 0; i < widget.gameSession.players.length; i++) {
+    for (int i = 0; i < players.length; i++) {
       var caboPenalties = roundList
           .where(
             (round) =>
