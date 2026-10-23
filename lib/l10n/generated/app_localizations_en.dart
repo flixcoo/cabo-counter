@@ -339,7 +339,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get received_cabo_penalties_description =>
-      'Cabo penalties received throughout the game’';
+      'Cabo penalties received throughout the game';
 
   @override
   String get report_error => 'Report a bug';
