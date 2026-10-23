@@ -1,9 +1,12 @@
+include: package:flutter_lints/flutter.yaml
+
 analyzer:
   exclude:
     - lib/presentation/views/about/licenses/oss_licenses.dart
     - build/**
     - android/**
     - ios/**
+    - "**/*.g.dart"
 
 linter:
   rules:

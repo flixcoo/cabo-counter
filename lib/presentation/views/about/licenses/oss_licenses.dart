@@ -14,6 +14,7 @@ const thisPackage = _cabo_counter;
 const allDependencies = <Package>[
   __fe_analyzer_shared,
   _analyzer,
+  _android_file_picker,
   _arb_utils,
   _archive,
   _args,
@@ -42,7 +43,6 @@ const allDependencies = <Package>[
   _crypto,
   _csslib,
   _csv,
-  _cupertino_icons,
   _cupertino_ui,
   _dart_console,
   _dart_pubspec_licenses,
@@ -52,22 +52,24 @@ const allDependencies = <Package>[
   _dcli_common,
   _dcli_core,
   _dcli_terminal,
-  _dio,
-  _dio_web_adapter,
   _drift,
   _drift_dev,
   _drift_flutter,
   _equatable,
   _fake_async,
   _ffi,
+  _ffi_leak_tracker,
   _file,
   _file_picker,
+  _file_picker_darwin,
+  _file_picker_linux,
+  _file_picker_platform_interface,
+  _file_picker_web,
   _file_saver,
   _fixnum,
   _flutter,
   _flutter_lints,
   _flutter_localizations,
-  _flutter_plugin_android_lifecycle,
   _flutter_rating_bar,
   _flutter_sficon,
   _flutter_test,
@@ -77,7 +79,6 @@ const allDependencies = <Package>[
   _functional_data,
   _glob,
   _globbing,
-  _google_fonts,
   _graphs,
   _hooks,
   _html,
@@ -156,7 +157,6 @@ const allDependencies = <Package>[
   _shelf_packages_handler,
   _shelf_static,
   _shelf_web_socket,
-  _shimmer,
   _simple_sparse_list,
   _skeletonizer,
   _sky_engine,
@@ -203,6 +203,7 @@ const allDependencies = <Package>[
   _web_socket_channel,
   _webkit_inspection_protocol,
   _win32,
+  _windows_file_picker,
   _xdg_directories,
   _xml,
   _yaml,
@@ -213,7 +214,7 @@ const allDependencies = <Package>[
 const dependencies = <Package>[
   _collection,
   _confetti,
-  _cupertino_icons,
+  _cupertino_ui,
   _drift,
   _drift_flutter,
   _file_picker,
@@ -222,9 +223,9 @@ const dependencies = <Package>[
   _flutter_localizations,
   _flutter_sficon,
   _font_awesome_flutter,
-  _google_fonts,
   _intl,
   _json_schema,
+  _material_ui,
   _once,
   _package_info_plus,
   _path_provider,
@@ -232,7 +233,6 @@ const dependencies = <Package>[
   _rate_my_app,
   _share_plus,
   _shared_preferences,
-  _shimmer,
   _skeletonizer,
   _syncfusion_flutter_charts,
   _url_launcher,
@@ -385,6 +385,42 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
+/// android_file_picker 2.1.1
+const _android_file_picker = Package(
+    name: 'android_file_picker',
+    description: 'Android implementation of the file_picker plugin, supporting file picking, saving, and Storage Access Framework (SAF) URI grants.',
+    homepage: 'https://github.com/vicajilau/flutter_file_picker/tree/main/packages/file_picker_android',
+    repository: 'https://github.com/vicajilau/flutter_file_picker/tree/main/packages/file_picker_android',
+    authors: [],
+    version: '2.1.1',
+    spdxIdentifiers: ['MIT'],
+    isMarkdown: false,
+    isSdk: false,
+    dependencies: [PackageRef('flutter'), PackageRef('file_picker_platform_interface'), PackageRef('cross_file'), PackageRef('path')],
+    devDependencies: [PackageRef('flutter_test'), PackageRef('flutter_lints')],
+    license: '''MIT License
+
+Copyright (c) 2018 Miguel Ruivo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.''',
+  );
+
 /// arb_utils 0.11.1
 const _arb_utils = Package(
     name: 'arb_utils',
@@ -411,13 +447,13 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// archive 4.3.0
+/// archive 4.5.2
 const _archive = Package(
     name: 'archive',
-    description: 'Provides encoders and decoders for various archive and compression formats such as zip, tar, bzip2, gzip, and zlib.',
+    description: 'Provides encoders and decoders for various archive and compression formats such as zip, tar, bzip2, gzip, zlib, xz and zstd.',
     repository: 'https://github.com/brendan-duncan/archive',
     authors: [],
-    version: '4.3.0',
+    version: '4.5.2',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -652,13 +688,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// build_daemon 4.1.6
+/// build_daemon 4.1.7
 const _build_daemon = Package(
     name: 'build_daemon',
     description: 'A daemon for running Dart builds.',
     repository: 'https://github.com/dart-lang/build/tree/master/build_daemon',
     authors: [],
-    version: '4.1.6',
+    version: '4.1.7',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -734,14 +770,14 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// built_collection 5.1.1
+/// built_collection 5.1.2
 const _built_collection = Package(
     name: 'built_collection',
     description: '''Immutable collections based on the SDK collections. Each SDK collection class is split into a new immutable collection class and a corresponding mutable builder class.
 ''',
-    homepage: 'https://github.com/google/built_collection.dart',
+    repository: 'https://github.com/dart-lang/build/tree/master/built_types/built_collection',
     authors: [],
-    version: '5.1.1',
+    version: '5.1.2',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -1159,14 +1195,14 @@ often given as a stream of byte chunks with type `Stream<List<int>>`.
    limitations under the License.''',
   );
 
-/// circular_buffer 0.12.0
+/// circular_buffer 0.13.0
 const _circular_buffer = Package(
     name: 'circular_buffer',
     description: '''A Dart Circular Buffer container based on List with a fixed capacity.
 ''',
     homepage: 'https://www.github.com/kranfix/dart-circularbuffer',
     authors: [],
-    version: '0.12.0',
+    version: '0.13.0',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -1492,13 +1528,13 @@ const _clock = Package(
    limitations under the License.''',
   );
 
-/// code_assets 2.0.0
+/// code_assets 2.1.0
 const _code_assets = Package(
     name: 'code_assets',
     description: 'This library contains the hook protocol specification for bundling native code with Dart packages.',
     repository: 'https://github.com/dart-lang/native/tree/main/pkgs/code_assets',
     authors: [],
-    version: '2.0.0',
+    version: '2.1.0',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -1813,20 +1849,21 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// csv 6.0.0
+/// csv 8.0.0
 const _csv = Package(
     name: 'csv',
-    description: '''A codec to transform between a string and a list of values.
+    description: '''A high-quality CSV library. Encode and decode CSV strings, with
+stream support (one row per event), auto-detection, and Excel compatibility.
 
 The string must be comma (configurable) separated values.''',
     homepage: 'https://github.com/close2/csv',
     authors: [],
-    version: '6.0.0',
+    version: '8.0.0',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
     dependencies: [],
-    devDependencies: [PackageRef('test')],
+    devDependencies: [PackageRef('lints'), PackageRef('test')],
     license: '''The MIT License (MIT)
 
 Copyright (c) 2014 Christian Loitsch
@@ -1850,47 +1887,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// cupertino_icons 1.0.9
-const _cupertino_icons = Package(
-    name: 'cupertino_icons',
-    description: 'Default icons asset for Cupertino widgets based on Apple styled icons',
-    repository: 'https://github.com/flutter/packages/tree/main/third_party/packages/cupertino_icons',
-    authors: [],
-    version: '1.0.9',
-    spdxIdentifiers: ['MIT'],
-    isMarkdown: false,
-    isSdk: false,
-    dependencies: [],
-    devDependencies: [PackageRef('collection'), PackageRef('flutter'), PackageRef('flutter_test'), PackageRef('path')],
-    license: '''The MIT License (MIT)
-
-Copyright (c) 2016 Vladimir Kharlampidi
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.''',
-  );
-
-/// cupertino_ui 1.0.2
+/// cupertino_ui 1.1.4
 const _cupertino_ui = Package(
     name: 'cupertino_ui',
     description: 'The official Flutter Cupertino Design Library, implementing the iOS design system.',
     repository: 'https://github.com/flutter/packages/tree/main/packages/cupertino_ui',
     authors: [],
-    version: '1.0.2',
+    version: '1.1.4',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -1923,13 +1926,13 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// dart_console 4.1.4
+/// dart_console 5.1.0
 const _dart_console = Package(
     name: 'dart_console',
     description: 'A helper library for command-line applications that need more control over input/output than the standard library provides.',
     homepage: 'https://github.com/onepub-dev/dart_console',
     authors: [],
-    version: '4.1.4',
+    version: '5.1.0',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -1999,13 +2002,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// dart_style 3.1.13
+/// dart_style 3.1.14
 const _dart_style = Package(
     name: 'dart_style',
     description: 'Opinionated, automatic Dart source code formatter. Provides an API and a CLI tool.',
     repository: 'https://github.com/dart-lang/dart_style',
     authors: [],
-    version: '3.1.13',
+    version: '3.1.14',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -2040,13 +2043,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// dbus 0.7.15
+/// dbus 0.8.0
 const _dbus = Package(
     name: 'dbus',
     description: 'A native Dart implementation of the D-Bus message bus client. This package allows Dart applications to directly access services on the Linux desktop.',
     homepage: 'https://github.com/canonical/dbus.dart',
     authors: [],
-    version: '0.7.15',
+    version: '0.8.0',
     spdxIdentifiers: ['MPL-2.0'],
     isMarkdown: false,
     isSdk: false,
@@ -2427,14 +2430,14 @@ Exhibit B - "Incompatible With Secondary Licenses" Notice
   defined by the Mozilla Public License, v. 2.0.''',
   );
 
-/// dcli 8.4.2
+/// dcli 10.0.0
 const _dcli = Package(
     name: 'dcli',
     description: 'Dart console SDK - write console (cli) apps/scripts using dart.',
     homepage: 'https://dcli.onepub.dev',
     repository: 'https://github.com/onepub-dev/dcli',
     authors: [],
-    version: '8.4.2',
+    version: '10.0.0',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -2458,13 +2461,13 @@ ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.''',
   );
 
-/// dcli_common 8.4.2
+/// dcli_common 10.4.0
 const _dcli_common = Package(
     name: 'dcli_common',
     description: 'Common code used by multiple dcli packages.',
     repository: 'https://github.com/onepub-dev/dcli',
     authors: [],
-    version: '8.4.2',
+    version: '10.4.0',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -2493,14 +2496,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// dcli_core 8.4.2
+/// dcli_core 10.4.0
 const _dcli_core = Package(
     name: 'dcli_core',
     description: 'A collection of functions that allow you to interact with the file system and OS environment from any platform that supports dart:io.  Copy, move, delete files and directory trees, search for files, create temp files and directories.',
     homepage: 'https://dcli.onepub.dev',
     repository: 'https://github.com/onepub-dev/dcli',
     authors: [],
-    version: '8.4.2',
+    version: '10.4.0',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -2529,14 +2532,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// dcli_terminal 8.4.2
+/// dcli_terminal 10.4.0
 const _dcli_terminal = Package(
     name: 'dcli_terminal',
     description: 'Provides Terminal/Ansi functions used by DCli the Dart Console SDK but is also intended to be used directly.',
     homepage: 'https://dcli.onepub.dev',
     repository: 'https://github.com/onepub-dev/dcli',
     authors: [],
-    version: '8.4.2',
+    version: '10.4.0',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -2560,92 +2563,14 @@ ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.''',
   );
 
-/// dio 5.11.1
-const _dio = Package(
-    name: 'dio',
-    description: '''A powerful HTTP networking package,
-supports Interceptors,
-Aborting and canceling a request,
-Custom adapters, Transformers, etc.
-''',
-    homepage: 'https://github.com/cfug/dio',
-    repository: 'https://github.com/cfug/dio/blob/main/dio',
-    authors: [],
-    version: '5.11.1',
-    spdxIdentifiers: ['MIT'],
-    isMarkdown: false,
-    isSdk: false,
-    dependencies: [PackageRef('async'), PackageRef('collection'), PackageRef('http_parser'), PackageRef('meta'), PackageRef('mime'), PackageRef('path'), PackageRef('dio_web_adapter')],
-    devDependencies: [PackageRef('lints'), PackageRef('test'), PackageRef('build_runner'), PackageRef('coverage'), PackageRef('crypto')],
-    license: '''MIT License
-
-Copyright (c) 2018 Wen Du (wendux)
-Copyright (c) 2022 The CFUG Team
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.''',
-  );
-
-/// dio_web_adapter 2.2.2
-const _dio_web_adapter = Package(
-    name: 'dio_web_adapter',
-    description: 'An adapter that supports Dio on Web.',
-    homepage: 'https://github.com/cfug/dio',
-    repository: 'https://github.com/cfug/dio/blob/main/plugins/web_adapter',
-    authors: [],
-    version: '2.2.2',
-    spdxIdentifiers: ['MIT'],
-    isMarkdown: false,
-    isSdk: false,
-    dependencies: [PackageRef('dio'), PackageRef('http_parser'), PackageRef('meta'), PackageRef('web')],
-    devDependencies: [PackageRef('lints'), PackageRef('test')],
-    license: '''MIT License
-
-Copyright (c) 2018 Wen Du (wendux)
-Copyright (c) 2022 The CFUG Team
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.''',
-  );
-
-/// drift 2.35.0
+/// drift 2.35.3
 const _drift = Package(
     name: 'drift',
     description: 'Drift is a reactive library to store relational data in Dart and Flutter applications.',
     homepage: 'https://drift.simonbinder.eu/',
     repository: 'https://github.com/simolus3/drift',
     authors: [],
-    version: '2.35.0',
+    version: '2.35.3',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -2674,14 +2599,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// drift_dev 2.35.0
+/// drift_dev 2.35.2
 const _drift_dev = Package(
     name: 'drift_dev',
     description: 'Dev-dependency for users of drift. Contains the generator and development tools.',
     homepage: 'https://drift.simonbinder.eu/',
     repository: 'https://github.com/simolus3/drift',
     authors: [],
-    version: '2.35.0',
+    version: '2.35.2',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -3038,6 +2963,48 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
+/// ffi_leak_tracker 0.1.2
+const _ffi_leak_tracker = Package(
+    name: 'ffi_leak_tracker',
+    description: 'Allocation tracking and leak detection for Dart FFI code.',
+    repository: 'https://github.com/halildurmus/win32/tree/main/packages/ffi_leak_tracker',
+    authors: [],
+    version: '0.1.2',
+    spdxIdentifiers: ['BSD-3-Clause'],
+    isMarkdown: false,
+    isSdk: false,
+    dependencies: [PackageRef('ffi')],
+    devDependencies: [PackageRef('test')],
+    license: '''BSD 3-Clause License
+
+Copyright (c) 2026, Halil Durmus
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
+  );
+
 /// file 7.0.1
 const _file = Package(
     name: 'file',
@@ -3078,19 +3045,19 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// file_picker 11.0.3
+/// file_picker 13.1.0
 const _file_picker = Package(
     name: 'file_picker',
     description: 'A package that allows you to use a native file explorer to pick single or multiple absolute file paths, with extension filtering support.',
-    homepage: 'https://github.com/miguelpruivo/plugins_flutter_file_picker',
-    repository: 'https://github.com/miguelpruivo/flutter_file_picker',
+    homepage: 'https://github.com/vicajilau/flutter_file_picker',
+    repository: 'https://github.com/vicajilau/flutter_file_picker/tree/main/packages/file_picker',
     authors: [],
-    version: '11.0.3',
+    version: '13.1.0',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
-    dependencies: [PackageRef('flutter'), PackageRef('flutter_web_plugins'), PackageRef('flutter_plugin_android_lifecycle'), PackageRef('plugin_platform_interface'), PackageRef('ffi'), PackageRef('path'), PackageRef('win32'), PackageRef('cross_file'), PackageRef('web'), PackageRef('dbus')],
-    devDependencies: [PackageRef('flutter_lints'), PackageRef('flutter_test')],
+    dependencies: [PackageRef('flutter'), PackageRef('file_picker_platform_interface'), PackageRef('android_file_picker'), PackageRef('file_picker_darwin'), PackageRef('file_picker_linux'), PackageRef('windows_file_picker'), PackageRef('file_picker_web'), PackageRef('cross_file')],
+    devDependencies: [PackageRef('flutter_test'), PackageRef('flutter_lints'), PackageRef('plugin_platform_interface')],
     license: '''MIT License
 
 Copyright (c) 2018 Miguel Ruivo
@@ -3114,19 +3081,163 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// file_saver 0.4.0
+/// file_picker_darwin 2.3.3
+const _file_picker_darwin = Package(
+    name: 'file_picker_darwin',
+    description: 'Darwin (iOS and macOS) implementation of the file_picker plugin, supporting native file picking, saving, and directory selection.',
+    homepage: 'https://github.com/vicajilau/flutter_file_picker/tree/main/packages/file_picker_darwin',
+    repository: 'https://github.com/vicajilau/flutter_file_picker/tree/main/packages/file_picker_darwin',
+    authors: [],
+    version: '2.3.3',
+    spdxIdentifiers: ['MIT'],
+    isMarkdown: false,
+    isSdk: false,
+    dependencies: [PackageRef('flutter'), PackageRef('file_picker_platform_interface'), PackageRef('cross_file'), PackageRef('path')],
+    devDependencies: [PackageRef('flutter_test'), PackageRef('flutter_lints')],
+    license: '''MIT License
+
+Copyright (c) 2018 Miguel Ruivo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.''',
+  );
+
+/// file_picker_linux 2.0.2
+const _file_picker_linux = Package(
+    name: 'file_picker_linux',
+    description: 'Linux implementation of the file_picker plugin using GTK3 and XDG Desktop Portals for native file and directory picking.',
+    homepage: 'https://github.com/vicajilau/flutter_file_picker/tree/main/packages/file_picker_linux',
+    repository: 'https://github.com/vicajilau/flutter_file_picker/tree/main/packages/file_picker_linux',
+    authors: [],
+    version: '2.0.2',
+    spdxIdentifiers: ['MIT'],
+    isMarkdown: false,
+    isSdk: false,
+    dependencies: [PackageRef('flutter'), PackageRef('file_picker_platform_interface'), PackageRef('cross_file'), PackageRef('dbus'), PackageRef('path')],
+    devDependencies: [PackageRef('flutter_test'), PackageRef('flutter_lints')],
+    license: '''MIT License
+
+Copyright (c) 2018 Miguel Ruivo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.''',
+  );
+
+/// file_picker_platform_interface 4.2.0
+const _file_picker_platform_interface = Package(
+    name: 'file_picker_platform_interface',
+    description: 'A common platform interface for the file_picker plugin, defining the shared API surface and data contracts across platforms.',
+    homepage: 'https://github.com/vicajilau/flutter_file_picker/tree/main/packages/file_picker_platform_interface',
+    repository: 'https://github.com/vicajilau/flutter_file_picker/tree/main/packages/file_picker_platform_interface',
+    authors: [],
+    version: '4.2.0',
+    spdxIdentifiers: ['MIT'],
+    isMarkdown: false,
+    isSdk: false,
+    dependencies: [PackageRef('flutter'), PackageRef('plugin_platform_interface'), PackageRef('cross_file'), PackageRef('path')],
+    devDependencies: [PackageRef('flutter_test'), PackageRef('flutter_lints')],
+    license: '''MIT License
+
+Copyright (c) 2018 Miguel Ruivo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.''',
+  );
+
+/// file_picker_web 4.2.0
+const _file_picker_web = Package(
+    name: 'file_picker_web',
+    description: 'Web platform implementation of the file_picker plugin, providing browser file selection, file streaming, and file loading.',
+    homepage: 'https://github.com/vicajilau/flutter_file_picker/tree/main/packages/file_picker_web',
+    repository: 'https://github.com/vicajilau/flutter_file_picker/tree/main/packages/file_picker_web',
+    authors: [],
+    version: '4.2.0',
+    spdxIdentifiers: ['MIT'],
+    isMarkdown: false,
+    isSdk: false,
+    dependencies: [PackageRef('flutter'), PackageRef('flutter_web_plugins'), PackageRef('file_picker_platform_interface'), PackageRef('cross_file'), PackageRef('meta'), PackageRef('path'), PackageRef('web')],
+    devDependencies: [PackageRef('flutter_test'), PackageRef('flutter_lints')],
+    license: '''MIT License
+
+Copyright (c) 2018 Miguel Ruivo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.''',
+  );
+
+/// file_saver 0.7.0
 const _file_saver = Package(
     name: 'file_saver',
     description: 'Save files from bytes, paths, streams, and URLs across Android, iOS, Web, Windows, macOS, and Linux.',
     homepage: 'https://hassanansari.dev',
     repository: 'https://github.com/incrediblezayed/file_saver',
     authors: [],
-    version: '0.4.0',
+    version: '0.7.0',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
-    dependencies: [PackageRef('collection'), PackageRef('dio'), PackageRef('flutter'), PackageRef('flutter_web_plugins'), PackageRef('path_provider'), PackageRef('web')],
-    devDependencies: [PackageRef('flutter_lints'), PackageRef('flutter_test')],
+    dependencies: [PackageRef('collection'), PackageRef('flutter'), PackageRef('flutter_web_plugins'), PackageRef('http'), PackageRef('meta'), PackageRef('path_provider'), PackageRef('web')],
+    devDependencies: [PackageRef('flutter_lints'), PackageRef('flutter_test'), PackageRef('path_provider_platform_interface'), PackageRef('plugin_platform_interface')],
     license: '''BSD 3-Clause License
 
 Copyright (c) 2021, Hassan Ansari
@@ -3199,13 +3310,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// flutter 3.47.4
+/// flutter 3.47.7
 const _flutter = Package(
     name: 'flutter',
     description: 'A framework for writing Flutter applications',
     homepage: 'https://flutter.dev',
     authors: [],
-    version: '3.47.4',
+    version: '3.47.7',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: true,
@@ -3287,45 +3398,6 @@ const _flutter_localizations = Package(
     isSdk: true,
     dependencies: [PackageRef('flutter'), PackageRef('intl'), PackageRef('path')],
     devDependencies: [PackageRef('flutter_test')],
-  );
-
-/// flutter_plugin_android_lifecycle 2.0.35
-const _flutter_plugin_android_lifecycle = Package(
-    name: 'flutter_plugin_android_lifecycle',
-    description: 'Flutter plugin for accessing an Android Lifecycle within other plugins.',
-    repository: 'https://github.com/flutter/packages/tree/main/packages/flutter_plugin_android_lifecycle',
-    authors: [],
-    version: '2.0.35',
-    spdxIdentifiers: ['BSD-3-Clause'],
-    isMarkdown: false,
-    isSdk: false,
-    dependencies: [PackageRef('flutter')],
-    devDependencies: [PackageRef('flutter_test')],
-    license: '''Copyright 2013 The Flutter Authors
-
-Redistribution and use in source and binary forms, with or without modification,
-are permitted provided that the following conditions are met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google Inc. nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
-ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
 /// flutter_rating_bar 4.0.1
@@ -3642,24 +3714,23 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// frontend_server_client 4.0.0
+/// frontend_server_client 4.2.0
 const _frontend_server_client = Package(
     name: 'frontend_server_client',
     description: 'Client code to start and interact with the frontend_server compiler from the Dart SDK.',
-    repository: 'https://github.com/dart-lang/webdev/tree/master/frontend_server_client',
+    repository: 'https://github.com/dart-lang/sdk/tree/main/pkg/frontend_server_client',
     authors: [],
-    version: '4.0.0',
+    version: '4.2.0',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
-    dependencies: [PackageRef('async'), PackageRef('path')],
-    devDependencies: [PackageRef('package_config'), PackageRef('shelf'), PackageRef('shelf_packages_handler'), PackageRef('shelf_static'), PackageRef('test'), PackageRef('vm_service')],
-    license: '''Copyright 2020, the Dart project authors.
+    dependencies: [PackageRef('async'), PackageRef('package_config'), PackageRef('path')],
+    devDependencies: [PackageRef('shelf'), PackageRef('shelf_packages_handler'), PackageRef('shelf_static'), PackageRef('test'), PackageRef('vm_service')],
+    license: '''Copyright 2012, the Dart project authors.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
-
     * Redistributions of source code must retain the above copyright
       notice, this list of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above
@@ -3798,45 +3869,6 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
-  );
-
-/// google_fonts 8.2.1
-const _google_fonts = Package(
-    name: 'google_fonts',
-    description: 'A Flutter package to use fonts from fonts.google.com. Supports HTTP fetching, caching, and asset bundling.',
-    repository: 'https://github.com/flutter/packages/tree/main/packages/google_fonts',
-    authors: [],
-    version: '8.2.1',
-    spdxIdentifiers: ['BSD-3-Clause'],
-    isMarkdown: false,
-    isSdk: false,
-    dependencies: [PackageRef('crypto'), PackageRef('flutter'), PackageRef('http'), PackageRef('path_provider')],
-    devDependencies: [PackageRef('flutter_test'), PackageRef('path_provider_platform_interface'), PackageRef('plugin_platform_interface'), PackageRef('test')],
-    license: '''Copyright 2013 The Flutter Authors
-
-Redistribution and use in source and binary forms, with or without modification,
-are permitted provided that the following conditions are met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google Inc. nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
-ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
 /// graphs 2.3.2
@@ -3999,13 +4031,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// http_multi_server 3.2.2
+/// http_multi_server 3.2.3
 const _http_multi_server = Package(
     name: 'http_multi_server',
     description: 'A dart:io HttpServer wrapper that handles requests from multiple servers.',
     repository: 'https://github.com/dart-lang/http/tree/master/pkgs/http_multi_server',
     authors: [],
-    version: '3.2.2',
+    version: '3.2.3',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -4301,13 +4333,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// intl_utils 2.8.16
+/// intl_utils 2.8.17
 const _intl_utils = Package(
     name: 'intl_utils',
     description: 'intl_utils is a dart library that generates Dart localization code from ARB file. Generated code relies on Intl library.',
     homepage: 'https://github.com/localizely/intl_utils',
     authors: [],
-    version: '2.8.16',
+    version: '2.8.17',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -4381,13 +4413,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// jni 1.0.3
+/// jni 1.1.0
 const _jni = Package(
     name: 'jni',
     description: 'A library to access JNI from Dart and Flutter that acts as a support library for package:jnigen.',
     repository: 'https://github.com/dart-lang/native/tree/main/pkgs/jni',
     authors: [],
-    version: '1.0.3',
+    version: '1.1.0',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -4422,13 +4454,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// jni_flutter 1.0.3
+/// jni_flutter 1.0.4+1
 const _jni_flutter = Package(
     name: 'jni_flutter',
     description: 'A library to access Flutter Android specific APIs from Dart.',
     repository: 'https://github.com/dart-lang/native/tree/main/pkgs/jni_flutter',
     authors: [],
-    version: '1.0.3',
+    version: '1.0.4+1',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -5134,13 +5166,13 @@ const _material_color_utilities = Package(
    limitations under the License.''',
   );
 
-/// material_ui 1.2.0
+/// material_ui 1.8.0
 const _material_ui = Package(
     name: 'material_ui',
     description: "The official Flutter Material UI Library, implementing Google's Material Design design system.",
     repository: 'https://github.com/flutter/packages/tree/main/packages/material_ui',
     authors: [],
-    version: '1.2.0',
+    version: '1.8.0',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -5296,17 +5328,17 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// native_toolchain_c 0.19.4
+/// native_toolchain_c 0.19.5
 const _native_toolchain_c = Package(
     name: 'native_toolchain_c',
     description: 'A library to invoke the native C compiler installed on the host machine.',
     repository: 'https://github.com/dart-lang/native/tree/main/pkgs/native_toolchain_c',
     authors: [],
-    version: '0.19.4',
+    version: '0.19.5',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
-    dependencies: [PackageRef('code_assets'), PackageRef('glob'), PackageRef('hooks'), PackageRef('logging'), PackageRef('meta'), PackageRef('process'), PackageRef('pub_semver')],
+    dependencies: [PackageRef('code_assets'), PackageRef('file'), PackageRef('glob'), PackageRef('hooks'), PackageRef('logging'), PackageRef('meta'), PackageRef('process'), PackageRef('pub_semver')],
     devDependencies: [PackageRef('collection'), PackageRef('test')],
     license: '''Copyright 2023, the Dart project authors.
 
@@ -5434,13 +5466,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// objective_c 9.6.0
+/// objective_c 9.6.2
 const _objective_c = Package(
     name: 'objective_c',
     description: 'A library to access Objective C from Flutter that acts as a support library for package:ffigen.',
     repository: 'https://github.com/dart-lang/native/tree/main/pkgs/objective_c',
     authors: [],
-    version: '9.6.0',
+    version: '9.6.2',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -5475,13 +5507,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// once 1.8.0
+/// once 1.8.1
 const _once = Package(
     name: 'once',
     description: 'Want to run a piece of code once periodically (Once - Daily - Weekly - Monthly - On new build - On new version - Any period)? We cover your back.',
     repository: 'https://github.com/MostafaSolimanMO/once',
     authors: [],
-    version: '1.8.0',
+    version: '1.8.1',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -5550,19 +5582,19 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// package_info_plus 9.0.1
+/// package_info_plus 10.2.2
 const _package_info_plus = Package(
     name: 'package_info_plus',
     description: 'Flutter plugin for querying information about the application package, such as CFBundleVersion on iOS or versionCode on Android.',
     homepage: 'https://github.com/fluttercommunity/plus_plugins',
     repository: 'https://github.com/fluttercommunity/plus_plugins/tree/main/packages/package_info_plus/package_info_plus',
     authors: [],
-    version: '9.0.1',
+    version: '10.2.2',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
-    dependencies: [PackageRef('ffi'), PackageRef('flutter'), PackageRef('flutter_web_plugins'), PackageRef('http'), PackageRef('meta'), PackageRef('path'), PackageRef('package_info_plus_platform_interface'), PackageRef('web'), PackageRef('win32'), PackageRef('clock')],
-    devDependencies: [PackageRef('flutter_lints'), PackageRef('flutter_test'), PackageRef('test')],
+    dependencies: [PackageRef('clock'), PackageRef('ffi'), PackageRef('flutter'), PackageRef('flutter_web_plugins'), PackageRef('http'), PackageRef('meta'), PackageRef('package_info_plus_platform_interface'), PackageRef('path'), PackageRef('web'), PackageRef('win32')],
+    devDependencies: [PackageRef('flutter_lints'), PackageRef('flutter_test')],
     license: '''Copyright 2017 The Chromium Authors. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -5592,14 +5624,14 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// package_info_plus_platform_interface 3.2.1
+/// package_info_plus_platform_interface 4.1.0
 const _package_info_plus_platform_interface = Package(
     name: 'package_info_plus_platform_interface',
     description: 'A common platform interface for the package_info_plus plugin.',
     homepage: 'https://github.com/fluttercommunity/plus_plugins',
     repository: 'https://github.com/fluttercommunity/plus_plugins/tree/main/packages/',
     authors: [],
-    version: '3.2.1',
+    version: '4.1.0',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -5950,14 +5982,14 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// petitparser 7.0.2
+/// petitparser 7.1.0
 const _petitparser = Package(
     name: 'petitparser',
-    description: 'A dynamic parser framework to build efficient grammars and parsers quickly.',
+    description: 'Build fast, composable, and type-safe grammars and parsers in Dart.',
     homepage: 'https://petitparser.github.io',
     repository: 'https://github.com/petitparser/dart-petitparser',
     authors: [],
-    version: '7.0.2',
+    version: '7.1.0',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -5965,7 +5997,7 @@ const _petitparser = Package(
     devDependencies: [PackageRef('lints'), PackageRef('test')],
     license: '''The MIT License
 
-Copyright (c) 2006-2024 Lukas Renggli.
+Copyright (c) 2006-2026 Lukas Renggli.
 All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -6329,13 +6361,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// pubspec_parse 1.6.0
+/// pubspec_parse 1.7.0
 const _pubspec_parse = Package(
     name: 'pubspec_parse',
     description: 'Simple package for parsing pubspec.yaml files with a type-safe API and rich error reporting.',
     repository: 'https://github.com/dart-lang/tools/tree/main/pkgs/pubspec_parse',
     authors: [],
-    version: '1.6.0',
+    version: '1.7.0',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -6585,13 +6617,13 @@ const _quiver = Package(
    limitations under the License.''',
   );
 
-/// rate_my_app 2.4.1
+/// rate_my_app 2.4.2
 const _rate_my_app = Package(
     name: 'rate_my_app',
     description: 'Allows to kindly ask users to rate your app if custom conditions are met (eg. install time, number of launches, etc...).',
     homepage: 'https://github.com/Skyost/RateMyApp',
     authors: [],
-    version: '2.4.1',
+    version: '2.4.2',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -7259,14 +7291,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// share_plus 12.0.2
+/// share_plus 13.3.1
 const _share_plus = Package(
     name: 'share_plus',
     description: 'Flutter plugin for sharing content via the platform share UI, using the ACTION_SEND intent on Android and UIActivityViewController on iOS.',
     homepage: 'https://github.com/fluttercommunity/plus_plugins',
     repository: 'https://github.com/fluttercommunity/plus_plugins/tree/main/packages/share_plus/share_plus',
     authors: [],
-    version: '12.0.2',
+    version: '13.3.1',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -7301,19 +7333,19 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// share_plus_platform_interface 6.1.0
+/// share_plus_platform_interface 7.2.0
 const _share_plus_platform_interface = Package(
     name: 'share_plus_platform_interface',
     description: 'A common platform interface for the share_plus plugin.',
     homepage: 'https://github.com/fluttercommunity/plus_plugins',
     repository: 'https://github.com/fluttercommunity/plus_plugins/tree/main/packages/',
     authors: [],
-    version: '6.1.0',
+    version: '7.2.0',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
     dependencies: [PackageRef('cross_file'), PackageRef('flutter'), PackageRef('meta'), PackageRef('mime'), PackageRef('plugin_platform_interface'), PackageRef('path_provider'), PackageRef('uuid')],
-    devDependencies: [PackageRef('flutter_test'), PackageRef('flutter_lints'), PackageRef('test')],
+    devDependencies: [PackageRef('flutter_test'), PackageRef('flutter_lints')],
     license: '''Copyright 2017 The Chromium Authors. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -7343,13 +7375,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// shared_preferences 2.5.5
+/// shared_preferences 2.5.6
 const _shared_preferences = Package(
     name: 'shared_preferences',
     description: 'Flutter plugin for reading and writing simple key-value pairs. Wraps NSUserDefaults on iOS and SharedPreferences on Android.',
     repository: 'https://github.com/flutter/packages/tree/main/packages/shared_preferences/shared_preferences',
     authors: [],
-    version: '2.5.5',
+    version: '2.5.6',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -7382,18 +7414,18 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// shared_preferences_android 2.4.28
+/// shared_preferences_android 2.5.3
 const _shared_preferences_android = Package(
     name: 'shared_preferences_android',
     description: 'Android implementation of the shared_preferences plugin',
     repository: 'https://github.com/flutter/packages/tree/main/packages/shared_preferences/shared_preferences_android',
     authors: [],
-    version: '2.4.28',
+    version: '2.5.3',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
-    dependencies: [PackageRef('flutter'), PackageRef('meta'), PackageRef('shared_preferences_platform_interface')],
-    devDependencies: [PackageRef('flutter_test')],
+    dependencies: [PackageRef('flutter'), PackageRef('jni'), PackageRef('meta'), PackageRef('shared_preferences_platform_interface')],
+    devDependencies: [PackageRef('flutter_test'), PackageRef('logging'), PackageRef('path')],
     license: '''Copyright 2013 The Flutter Authors
 
 Redistribution and use in source and binary forms, with or without modification,
@@ -7421,18 +7453,18 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// shared_preferences_foundation 2.5.7
+/// shared_preferences_foundation 2.6.0
 const _shared_preferences_foundation = Package(
     name: 'shared_preferences_foundation',
     description: 'iOS and macOS implementation of the shared_preferences plugin.',
     repository: 'https://github.com/flutter/packages/tree/main/packages/shared_preferences/shared_preferences_foundation',
     authors: [],
-    version: '2.5.7',
+    version: '2.6.0',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
-    dependencies: [PackageRef('flutter'), PackageRef('meta'), PackageRef('shared_preferences_platform_interface')],
-    devDependencies: [PackageRef('flutter_test')],
+    dependencies: [PackageRef('ffi'), PackageRef('flutter'), PackageRef('meta'), PackageRef('objective_c'), PackageRef('shared_preferences_platform_interface')],
+    devDependencies: [PackageRef('flutter_test'), PackageRef('path'), PackageRef('pub_semver')],
     license: '''Copyright 2013 The Flutter Authors
 
 Redistribution and use in source and binary forms, with or without modification,
@@ -7616,14 +7648,14 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// shelf 1.4.2
+/// shelf 1.4.3
 const _shelf = Package(
     name: 'shelf',
     description: '''A model for web server middleware that encourages composition and easy reuse.
 ''',
     repository: 'https://github.com/dart-lang/shelf/tree/master/pkgs/shelf',
     authors: [],
-    version: '1.4.2',
+    version: '1.4.3',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -7699,13 +7731,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// shelf_static 1.1.3
+/// shelf_static 1.2.0
 const _shelf_static = Package(
     name: 'shelf_static',
     description: 'Static file server support for the shelf package and ecosystem.',
     repository: 'https://github.com/dart-lang/shelf/tree/master/pkgs/shelf_static',
     authors: [],
-    version: '1.1.3',
+    version: '1.2.0',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -7781,47 +7813,6 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// shimmer 4.0.0
-const _shimmer = Package(
-    name: 'shimmer',
-    description: 'A lightweight Flutter widget that paints a moving highlight over skeleton placeholders and call-to-action text.',
-    homepage: 'https://github.com/hnvn/flutter_shimmer',
-    repository: 'https://github.com/hnvn/flutter_shimmer',
-    authors: [],
-    version: '4.0.0',
-    spdxIdentifiers: ['BSD-3-Clause'],
-    isMarkdown: false,
-    isSdk: false,
-    dependencies: [PackageRef('flutter'), PackageRef('material_ui')],
-    devDependencies: [PackageRef('flutter_test')],
-    license: '''Copyright 2013, the Dart project authors. All rights reserved.
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following
-      disclaimer in the documentation and/or other materials provided
-      with the distribution.
-    * Neither the name of Google Inc. nor the names of its
-      contributors may be used to endorse or promote products derived
-      from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
-  );
-
 /// simple_sparse_list 0.1.4
 const _simple_sparse_list = Package(
     name: 'simple_sparse_list',
@@ -7863,18 +7854,18 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// skeletonizer 2.1.3
+/// skeletonizer 3.0.0
 const _skeletonizer = Package(
     name: 'skeletonizer',
     description: 'Converts already built widgets into skeleton loaders with no extra effort.',
     homepage: 'https://github.com/Milad-Akarie/skeletonizer',
     authors: [],
-    version: '2.1.3',
+    version: '3.0.0',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
     dependencies: [PackageRef('flutter')],
-    devDependencies: [PackageRef('flutter_test'), PackageRef('flutter_lints'), PackageRef('coverage')],
+    devDependencies: [PackageRef('flutter_test'), PackageRef('flutter_lints'), PackageRef('coverage'), PackageRef('material_ui')],
     license: '''MIT License
 
 Copyright (c) 2023 Milad Akarie
@@ -38197,13 +38188,13 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// sqlite3 3.6.0
+/// sqlite3 3.8.0
 const _sqlite3 = Package(
     name: 'sqlite3',
     description: 'Provides lightweight yet convenient bindings to SQLite by using dart:ffi',
     homepage: 'https://github.com/simolus3/sqlite3.dart/tree/main/sqlite3',
     authors: [],
-    version: '3.6.0',
+    version: '3.8.0',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -38267,14 +38258,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// sqlparser 0.45.0
+/// sqlparser 0.45.1
 const _sqlparser = Package(
     name: 'sqlparser',
     description: 'Parses sqlite statements and performs static analysis on them',
     homepage: 'https://github.com/simolus3/drift/tree/develop/sqlparser',
     repository: 'https://github.com/simolus3/drift',
     authors: [],
-    version: '0.45.0',
+    version: '0.45.1',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -38567,13 +38558,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// syncfusion_flutter_charts 34.2.8
+/// syncfusion_flutter_charts 35.1.41
 const _syncfusion_flutter_charts = Package(
     name: 'syncfusion_flutter_charts',
     description: 'A Flutter Charts library which includes data visualization widgets such as cartesian and circular charts, to create real-time, interactive, high-performance, animated charts.',
     homepage: 'https://github.com/syncfusion/flutter-widgets/tree/master/packages/syncfusion_flutter_charts',
     authors: [],
-    version: '34.2.8',
+    version: '35.1.41',
     spdxIdentifiers: [],
     isMarkdown: false,
     isSdk: false,
@@ -38593,13 +38584,13 @@ The Syncfusion<sup>&reg;</sup> license that contains the terms and conditions ca
 https://www.syncfusion.com/content/downloads/syncfusion_license.pdf''',
   );
 
-/// syncfusion_flutter_core 34.2.8
+/// syncfusion_flutter_core 35.1.41
 const _syncfusion_flutter_core = Package(
     name: 'syncfusion_flutter_core',
     description: 'Syncfusion Flutter Core is a dependent package for all the Syncfusion Flutter widgets.',
     homepage: 'https://github.com/syncfusion/flutter-widgets/tree/master/packages/syncfusion_flutter_core',
     authors: [],
-    version: '34.2.8',
+    version: '35.1.41',
     spdxIdentifiers: [],
     isMarkdown: false,
     isSdk: false,
@@ -38945,19 +38936,19 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// url_launcher 6.3.2
+/// url_launcher 6.3.3
 const _url_launcher = Package(
     name: 'url_launcher',
     description: 'Flutter plugin for launching a URL. Supports web, phone, SMS, and email schemes.',
     repository: 'https://github.com/flutter/packages/tree/main/packages/url_launcher/url_launcher',
     authors: [],
-    version: '6.3.2',
+    version: '6.3.3',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
     dependencies: [PackageRef('flutter'), PackageRef('url_launcher_android'), PackageRef('url_launcher_ios'), PackageRef('url_launcher_linux'), PackageRef('url_launcher_macos'), PackageRef('url_launcher_platform_interface'), PackageRef('url_launcher_web'), PackageRef('url_launcher_windows')],
     devDependencies: [PackageRef('flutter_test'), PackageRef('plugin_platform_interface'), PackageRef('test')],
-    license: '''Copyright 2013 The Flutter Authors. All rights reserved.
+    license: '''Copyright 2013 The Flutter Authors
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -39315,13 +39306,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// vector_math 2.4.2
+/// vector_math 2.4.3
 const _vector_math = Package(
     name: 'vector_math',
     description: 'A vector math library for 2D and 3D applications, supporting 2D, 3D, and 4D matrices.',
     repository: 'https://github.com/flutter/core-packages/tree/main/packages/vector_math',
     authors: [],
-    version: '2.4.2',
+    version: '2.4.3',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -39354,13 +39345,13 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// vm_service 15.3.0
+/// vm_service 15.4.0
 const _vm_service = Package(
     name: 'vm_service',
     description: 'A library to communicate with a service implementing the Dart VM service protocol.',
     repository: 'https://github.com/dart-lang/sdk/tree/main/pkg/vm_service',
     authors: [],
-    version: '15.3.0',
+    version: '15.4.0',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -39436,13 +39427,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// web 1.1.1
+/// web 1.1.2
 const _web = Package(
     name: 'web',
     description: 'Lightweight browser API bindings built around JS interop.',
     repository: 'https://github.com/dart-lang/web',
     authors: [],
-    version: '1.1.1',
+    version: '1.1.2',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -39601,20 +39592,19 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// win32 5.15.0
+/// win32 6.4.0
 const _win32 = Package(
     name: 'win32',
-    description: '''Access common Win32 APIs directly from Dart using FFI — no C required!
-''',
+    description: 'Call common Windows APIs directly from Dart using FFI.',
     homepage: 'https://win32.pub',
     repository: 'https://github.com/halildurmus/win32',
     authors: [],
-    version: '5.15.0',
+    version: '6.4.0',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
-    dependencies: [PackageRef('ffi')],
-    devDependencies: [PackageRef('args'), PackageRef('hooks'), PackageRef('path'), PackageRef('test')],
+    dependencies: [PackageRef('ffi'), PackageRef('ffi_leak_tracker'), PackageRef('meta')],
+    devDependencies: [PackageRef('args'), PackageRef('path'), PackageRef('test')],
     license: '''BSD 3-Clause License
 
 Copyright (c) 2024, Halil Durmus
@@ -39643,6 +39633,42 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
+  );
+
+/// windows_file_picker 2.0.1
+const _windows_file_picker = Package(
+    name: 'windows_file_picker',
+    description: 'Windows implementation of the file_picker plugin using Win32 COM APIs for native file and directory picking.',
+    homepage: 'https://github.com/vicajilau/flutter_file_picker/tree/main/packages/file_picker_windows',
+    repository: 'https://github.com/vicajilau/flutter_file_picker/tree/main/packages/file_picker_windows',
+    authors: [],
+    version: '2.0.1',
+    spdxIdentifiers: ['MIT'],
+    isMarkdown: false,
+    isSdk: false,
+    dependencies: [PackageRef('flutter'), PackageRef('file_picker_platform_interface'), PackageRef('cross_file'), PackageRef('ffi'), PackageRef('meta'), PackageRef('path'), PackageRef('win32')],
+    devDependencies: [PackageRef('flutter_test'), PackageRef('flutter_lints')],
+    license: '''MIT License
+
+Copyright (c) 2018 Miguel Ruivo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.''',
   );
 
 /// xdg_directories 1.1.0
@@ -39684,18 +39710,18 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// xml 7.0.1
+/// xml 7.1.0
 const _xml = Package(
     name: 'xml',
     description: 'Full-featured XML for Dart — DOM parsing, SAX streaming, XPath 3 querying, and a fluent builder API.',
     repository: 'https://github.com/renggli/dart-xml',
     authors: [],
-    version: '7.0.1',
+    version: '7.1.0',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
-    dependencies: [PackageRef('collection'), PackageRef('meta'), PackageRef('petitparser')],
-    devDependencies: [PackageRef('args'), PackageRef('lints'), PackageRef('test')],
+    dependencies: [PackageRef('args'), PackageRef('collection'), PackageRef('meta'), PackageRef('petitparser')],
+    devDependencies: [PackageRef('lints'), PackageRef('test')],
     license: '''The MIT License
 
 Copyright (c) 2006-2026 Lukas Renggli.
@@ -39794,16 +39820,16 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// cabo_counter 1.1.4+1326
+/// cabo_counter 1.1.8+1343
 const _cabo_counter = Package(
     name: 'cabo_counter',
     description: 'Mobile app for the card game Cabo',
     authors: [],
-    version: '1.1.4+1326',
+    version: '1.1.8+1343',
     spdxIdentifiers: ['LGPL-3.0'],
     isMarkdown: false,
     isSdk: false,
-    dependencies: [PackageRef('collection'), PackageRef('confetti'), PackageRef('cupertino_icons'), PackageRef('drift'), PackageRef('drift_flutter'), PackageRef('file_picker'), PackageRef('file_saver'), PackageRef('flutter'), PackageRef('flutter_localizations'), PackageRef('flutter_sficon'), PackageRef('font_awesome_flutter'), PackageRef('google_fonts'), PackageRef('intl'), PackageRef('json_schema'), PackageRef('once'), PackageRef('package_info_plus'), PackageRef('path_provider'), PackageRef('provider'), PackageRef('rate_my_app'), PackageRef('share_plus'), PackageRef('shared_preferences'), PackageRef('shimmer'), PackageRef('skeletonizer'), PackageRef('syncfusion_flutter_charts'), PackageRef('url_launcher'), PackageRef('uuid')],
+    dependencies: [PackageRef('collection'), PackageRef('confetti'), PackageRef('cupertino_ui'), PackageRef('drift'), PackageRef('drift_flutter'), PackageRef('file_picker'), PackageRef('file_saver'), PackageRef('flutter'), PackageRef('flutter_localizations'), PackageRef('flutter_sficon'), PackageRef('font_awesome_flutter'), PackageRef('intl'), PackageRef('json_schema'), PackageRef('material_ui'), PackageRef('once'), PackageRef('package_info_plus'), PackageRef('path_provider'), PackageRef('provider'), PackageRef('rate_my_app'), PackageRef('share_plus'), PackageRef('shared_preferences'), PackageRef('skeletonizer'), PackageRef('syncfusion_flutter_charts'), PackageRef('url_launcher'), PackageRef('uuid')],
     devDependencies: [PackageRef('arb_utils'), PackageRef('build_runner'), PackageRef('dart_pubspec_licenses'), PackageRef('drift_dev'), PackageRef('flutter_lints'), PackageRef('flutter_test'), PackageRef('remove_unused_localizations'), PackageRef('sort_pubspec_dependencies'), PackageRef('test')],
     license: '''GNU LESSER GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007

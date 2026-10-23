@@ -1,7 +1,8 @@
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
-import 'package:cabo_counter/services/icon_service.dart';
+import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 
 class CustomFormRow extends StatefulWidget {
   const CustomFormRow({
@@ -66,7 +67,7 @@ class _CustomFormRowState extends State<CustomFormRow> {
                   if (widget.showChevron) ...[
                     const SizedBox(width: 10),
                     AppIcon(
-                      IconService.chevron,
+                      AppIcons.chevron,
                       color: CustomTheme.hintTextColor,
                       size: 17,
                     ),

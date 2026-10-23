@@ -505,6 +505,12 @@ abstract class AppLocalizations {
   /// **'Längste Siegesserie'**
   String get longest_win_streak;
 
+  /// No description provided for @longest_win_streak_description.
+  ///
+  /// In de, this message translates to:
+  /// **'Längste ununterbrochene Reihe gewonnener Runden'**
+  String get longest_win_streak_description;
+
   /// No description provided for @mail_developer.
   ///
   /// In de, this message translates to:
@@ -643,6 +649,12 @@ abstract class AppLocalizations {
   /// **'Punkte pro Runde'**
   String get points_per_round;
 
+  /// No description provided for @points_per_round_description.
+  ///
+  /// In de, this message translates to:
+  /// **'Durchschnittliche Kartenpunkte pro Runde, ohne Strafen und Boni'**
+  String get points_per_round_description;
+
   /// No description provided for @pre_rating_message.
   ///
   /// In de, this message translates to:
@@ -666,6 +678,12 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Erhaltene Cabo-Strafen'**
   String get received_cabo_penalties;
+
+  /// No description provided for @received_cabo_penalties_description.
+  ///
+  /// In de, this message translates to:
+  /// **'Über das ganze Spiel erhaltene Cabo-Strafen'**
+  String get received_cabo_penalties_description;
 
   /// No description provided for @report_error.
   ///
@@ -732,6 +750,12 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Gewonnene Runden'**
   String get rounds_won;
+
+  /// No description provided for @rounds_won_description.
+  ///
+  /// In de, this message translates to:
+  /// **'Anzahl an Runden, die mit 0 Punkten gewertet wurden'**
+  String get rounds_won_description;
 
   /// No description provided for @score_table.
   ///

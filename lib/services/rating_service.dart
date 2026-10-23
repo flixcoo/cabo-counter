@@ -2,7 +2,7 @@ import 'package:cabo_counter/core/constants.dart';
 import 'package:cabo_counter/core/enums.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
 import 'package:cabo_counter/services/popup_service.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Handles the in-app rating and feedback flow.
@@ -34,10 +34,13 @@ class RatingService {
         if (context.mounted) Constants.rateMyApp.showStarRateDialog(context);
         break;
       case PreRatingDialogDecision.no:
-        if (context.mounted)
-          badRatingDecision = await PopupService.showBadRatingDialog(context);
-        if (badRatingDecision == BadRatingDialogDecision.email)
+        if (!context.mounted) return;
+        badRatingDecision = await PopupService.showBadRatingDialog(context);
+        if (badRatingDecision == BadRatingDialogDecision.email) {
+          if (!context.mounted) return;
           _openFeedbackEmail(context);
+        }
+
         break;
       case PreRatingDialogDecision.cancel:
     }

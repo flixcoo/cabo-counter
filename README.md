@@ -23,7 +23,7 @@ An open-source app to track your Cabo games, manage rounds and get detailed stat
 -->
 </p>
 
-![Version](https://img.shields.io/badge/App--Version-1.1.4-orange)
+![Version](https://img.shields.io/badge/App--Version-1.1.8-orange)
 ![Flutter](https://img.shields.io/badge/Flutter-3.47.2-027DFD?logo=flutter)
 ![iOS26](https://img.shields.io/badge/iOS-26-white?logo=apple)
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/flixcoo/Cabo-Counter?logo=github)

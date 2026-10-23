@@ -1,19 +1,19 @@
 import 'dart:math';
 
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/common.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_icon_button.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_text_button.dart';
 import 'package:cabo_counter/presentation/components/widgets/custom_segmented_control.dart';
-import 'package:cabo_counter/presentation/components/widgets/kamikaze_sheet.dart';
+import 'package:cabo_counter/presentation/components/widgets/sheets/kamikaze_sheet.dart';
 import 'package:cabo_counter/presentation/components/widgets/tiles/score_enter_tile.dart';
 import 'package:cabo_counter/presentation/controllers/game_session_controller.dart';
 import 'package:cabo_counter/services/config_service.dart';
-import 'package:cabo_counter/services/icon_service.dart';
 import 'package:cabo_counter/services/popup_service.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class RoundView extends StatefulWidget {
   /// A view for displaying and managing a single round
@@ -33,7 +33,7 @@ class RoundView extends StatefulWidget {
   final void Function()? onRoundSubmitted;
 
   @override
-  _RoundViewState createState() => _RoundViewState();
+  State<RoundView> createState() => _RoundViewState();
 }
 
 class _RoundViewState extends State<RoundView> {
@@ -96,12 +96,12 @@ class _RoundViewState extends State<RoundView> {
       appBar: AppBar(
         leading: AnimatedIconButton(
           onPressed: () => Navigator.of(context).pop(-1),
-          icon: IconService.close,
+          icon: AppIcons.close,
         ),
         title: Text(loc.results),
         actions: [
           AnimatedIconButton(
-            icon: IconService.kamikaze,
+            icon: AppIcons.kamikaze,
             color: CustomTheme.kamikazeColor,
             onPressed: () async {
               if (await showKamikazeSheet(context)) {
@@ -244,42 +244,40 @@ class _RoundViewState extends State<RoundView> {
               ),
             ),
           ),
-          Container(
+          Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewPadding.bottom,
+            ),
             child: Padding(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewPadding.bottom,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  spacing: 10,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                spacing: 10,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: AnimtedTextButton(
+                      onPressed: canSubmitRound
+                          ? () => endOfRoundNavigation(
+                              context: context,
+                              navigateToNextRound: false,
+                            )
+                          : null,
+                      text: loc.done,
+                    ),
+                  ),
+                  if (!isGameFinished)
                     Expanded(
                       child: AnimtedTextButton(
                         onPressed: canSubmitRound
                             ? () => endOfRoundNavigation(
                                 context: context,
-                                navigateToNextRound: false,
+                                navigateToNextRound: true,
                               )
                             : null,
-                        text: loc.done,
+                        text: loc.next_round,
                       ),
                     ),
-                    if (!isGameFinished)
-                      Expanded(
-                        child: AnimtedTextButton(
-                          onPressed: canSubmitRound
-                              ? () => endOfRoundNavigation(
-                                  context: context,
-                                  navigateToNextRound: true,
-                                )
-                              : null,
-                          text: loc.next_round,
-                        ),
-                      ),
-                  ],
-                ),
+                ],
               ),
             ),
           ),

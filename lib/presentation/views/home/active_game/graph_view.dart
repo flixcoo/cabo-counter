@@ -1,11 +1,12 @@
-import 'dart:ui' as dart_ui;
+import 'dart:ui' show ImageByteFormat;
 
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
+import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_icon_button.dart';
 import 'package:cabo_counter/presentation/controllers/game_session_controller.dart';
-import 'package:cabo_counter/services/icon_service.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -31,8 +32,8 @@ class _GraphViewState extends State<GraphView> {
     CustomTheme.graphColor4,
     CustomTheme.graphColor5,
   ];
-  final GlobalKey<SfCartesianChartState> _key = GlobalKey();
-  bool hasZoomed = false;
+  final GlobalKey<SfCartesianChartState> key = GlobalKey();
+  //bool hasZoomed = false;
 
   /*late final ZoomPanBehavior zoomPanBehavior = ZoomPanBehavior(
     enablePinching: true,
@@ -43,11 +44,12 @@ class _GraphViewState extends State<GraphView> {
     maximumZoomLevel: 0.05,
   );*/
 
+  bool get isGraphAvailable =>
+      widget.gameSession.roundNumber > 1 || widget.gameSession.isGameFinished;
+
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context);
-    final isGraphAvailable =
-        widget.gameSession.roundNumber > 1 || widget.gameSession.isGameFinished;
 
     return Scaffold(
       appBar: AppBar(
@@ -57,11 +59,11 @@ class _GraphViewState extends State<GraphView> {
             onPressed: isGraphAvailable && hasZoomed
                 ? () => zoomPanBehavior.reset()
                 : null,
-            icon: IconService.reset,
+            icon: AppIcons.reset,
           ),*/
           AnimatedIconButton(
             onPressed: isGraphAvailable ? () => shareImage() : null,
-            icon: IconService.share,
+            icon: AppIcons.share,
           ),
         ],
       ),
@@ -73,7 +75,7 @@ class _GraphViewState extends State<GraphView> {
             crossAxisAlignment: CrossAxisAlignment.center,
             spacing: 10,
             children: [
-              Center(child: AppIcon(IconService.chart, size: 60)),
+              Center(child: AppIcon(AppIcons.chart, size: 60)),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Text(
@@ -85,7 +87,7 @@ class _GraphViewState extends State<GraphView> {
             ],
           ),
           child: SfCartesianChart(
-            key: _key,
+            key: key,
             backgroundColor: CustomTheme.backgroundColor,
             enableAxisAnimation: false,
             /*zoomPanBehavior: zoomPanBehavior,
@@ -183,7 +185,7 @@ class _GraphViewState extends State<GraphView> {
         xValueMapper: (record, _) => '${record.$1}',
         yValueMapper: (record, _) => record.$2,
         markerSettings: const MarkerSettings(isVisible: true),
-        color: lineColors[i],
+        color: lineColors[i % lineColors.length],
       );
     });
   }
@@ -196,10 +198,8 @@ class _GraphViewState extends State<GraphView> {
     final RenderBox? renderBox = context.findRenderObject() as RenderBox?;
 
     // Capture the chart as an image with a pixel ratio of 5.0 for high quality.
-    final image = await _key.currentState?.toImage(pixelRatio: 5.0);
-    final byteData = await image?.toByteData(
-      format: dart_ui.ImageByteFormat.png,
-    );
+    final image = await key.currentState?.toImage(pixelRatio: 5.0);
+    final byteData = await image?.toByteData(format: ImageByteFormat.png);
 
     // Exit if image capture failed.
     if (byteData == null) return;

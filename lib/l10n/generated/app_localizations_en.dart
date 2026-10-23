@@ -246,6 +246,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get longest_win_streak => 'Longest Win Streak';
 
   @override
+  String get longest_win_streak_description =>
+      'Longest uninterrupted streak of won rounds';
+
+  @override
   String get mail_developer => 'E-Mail the Developer';
 
   @override
@@ -317,6 +321,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get points_per_round => 'Points per Round';
 
   @override
+  String get points_per_round_description =>
+      'Average card points per round, excluding penalties and bonuses';
+
+  @override
   String get pre_rating_message =>
       'Feedback helps me to continuously improve the app. Thank you!';
 
@@ -328,6 +336,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get received_cabo_penalties => 'Received Cabo Penalties';
+
+  @override
+  String get received_cabo_penalties_description =>
+      'Cabo penalties received throughout the game';
 
   @override
   String get report_error => 'Report a bug';
@@ -362,6 +374,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get rounds_won => 'Rounds Won';
+
+  @override
+  String get rounds_won_description => 'Number of rounds scored with 0 points';
 
   @override
   String get score_table => 'Score Table';

@@ -1,6 +1,6 @@
 import 'package:cabo_counter/presentation/components/widgets/buttons/haptic_back_button.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/haptic_close_button.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class CustomTheme {
   /* ===== Basic Colors ===== */

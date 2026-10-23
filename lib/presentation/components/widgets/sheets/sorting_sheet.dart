@@ -1,10 +1,10 @@
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/core/enums.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/animated_text_button.dart';
-import 'package:cabo_counter/presentation/components/widgets/selectable_tile.dart';
-import 'package:cabo_counter/services/icon_service.dart';
-import 'package:flutter/material.dart';
+import 'package:cabo_counter/presentation/components/widgets/tiles/selectable_tile.dart';
+import 'package:material_ui/material_ui.dart';
 
 class SortingSheet extends StatefulWidget {
   /// A bottom sheet for sorting and filtering the game list.
@@ -91,7 +91,7 @@ class _SortingSheetState extends State<SortingSheet> {
                 width: 40,
                 height: 5,
                 decoration: BoxDecoration(
-                  color: CustomTheme.subtitleColor.withAlpha(120),
+                  color: CustomTheme.subtitleColor,
                   borderRadius: BorderRadius.circular(3),
                 ),
               ),
@@ -113,7 +113,7 @@ class _SortingSheetState extends State<SortingSheet> {
                               // Sort by date
                               Expanded(
                                 child: SelectableTile(
-                                  icon: IconService.sort_by_date,
+                                  icon: AppIcons.sort_by_date,
                                   title: loc.date,
                                   selectionColor: CustomTheme.primaryColor,
                                   selected: sortOption == SortOption.date,
@@ -126,7 +126,7 @@ class _SortingSheetState extends State<SortingSheet> {
                               // Sort by name
                               Expanded(
                                 child: SelectableTile(
-                                  icon: IconService.sort_by_name,
+                                  icon: AppIcons.sort_by_name,
                                   title: loc.game_name,
                                   selectionColor: CustomTheme.primaryColor,
                                   selected: sortOption == SortOption.title,
@@ -150,7 +150,7 @@ class _SortingSheetState extends State<SortingSheet> {
                               // Sort descending
                               Expanded(
                                 child: SelectableTile(
-                                  icon: IconService.sort_desc,
+                                  icon: AppIcons.sort_desc,
                                   title: loc.descending,
                                   selectionColor: CustomTheme.primaryColor,
                                   selected:
@@ -165,7 +165,7 @@ class _SortingSheetState extends State<SortingSheet> {
                               // Sort ascending
                               Expanded(
                                 child: SelectableTile(
-                                  icon: IconService.sort_asc,
+                                  icon: AppIcons.sort_asc,
                                   title: loc.ascending,
                                   selectionColor: CustomTheme.primaryColor,
                                   selected:
@@ -187,7 +187,7 @@ class _SortingSheetState extends State<SortingSheet> {
                         children: [
                           buildLabel(loc.filter),
                           SelectableTile(
-                            icon: IconService.visibility_off,
+                            icon: AppIcons.visibility_off,
                             title: loc.only_active_game_title,
                             selectionColor: CustomTheme.primaryColor,
                             selected: showOnlyActiveGames,

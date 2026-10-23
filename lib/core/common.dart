@@ -44,8 +44,8 @@ String concatenateNames(List<String> names) {
     case 1:
       return names.first;
     case 2:
-      return names[0] + ' & ' + names[1];
+      return '${names[0]} & ${names[1]}';
     default:
-      return names.sublist(0, names.length - 1).join(', ') + ' & ' + names.last;
+      return '${names.sublist(0, names.length - 1).join(', ')} & ${names.last}';
   }
 }

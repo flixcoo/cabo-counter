@@ -1,7 +1,8 @@
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/data/dto/news_item.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
-import 'package:flutter/material.dart';
+import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
+import 'package:material_ui/material_ui.dart';
 
 class NewsTile extends StatelessWidget {
   const NewsTile({required this.newsItem, super.key});
@@ -22,7 +23,12 @@ class NewsTile extends StatelessWidget {
       spacing: 18,
       children: [
         // Icon
-        SizedBox(width: 50, child: Center(child: newsItem.icon)),
+        SizedBox(
+          width: 50,
+          child: Center(
+            child: AppIcon(newsItem.icon, color: CustomTheme.primaryColor),
+          ),
+        ),
 
         // Text
         Expanded(

@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Returns a platform-adaptive page route based on the current platform.
 /// - On iOS, it returns a [CupertinoPageRoute].

@@ -7,8 +7,8 @@ import 'package:cabo_counter/core/enums.dart';
 import 'package:cabo_counter/data/db/database.dart';
 import 'package:cabo_counter/data/models/game_session.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
-import 'package:cabo_counter/presentation/components/widgets/active_game/active_game_list_set.dart';
-import 'package:cabo_counter/presentation/components/widgets/active_game/active_game_list_tile.dart';
+import 'package:cabo_counter/presentation/components/widgets/grouped_lists/active_game_list_set.dart';
+import 'package:cabo_counter/presentation/components/widgets/grouped_lists/active_game_list_tile.dart';
 import 'package:cabo_counter/presentation/components/widgets/popups/custom_popup_action.dart';
 import 'package:cabo_counter/presentation/controllers/game_session_controller.dart';
 import 'package:cabo_counter/presentation/views/home/active_game/evaluation_view.dart';
@@ -22,7 +22,7 @@ import 'package:cabo_counter/services/rating_service.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
 import 'package:collection/collection.dart';
 import 'package:confetti/confetti.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
 /// Displays the active game view, showing game details, player rankings, rounds, and statistics.
@@ -42,7 +42,7 @@ class ActiveGameView extends StatefulWidget {
   final VoidCallback onSessionsUpdated;
 
   @override
-  _ActiveGameViewState createState() => _ActiveGameViewState();
+  State<ActiveGameView> createState() => _ActiveGameViewState();
 }
 
 class _ActiveGameViewState extends State<ActiveGameView> {

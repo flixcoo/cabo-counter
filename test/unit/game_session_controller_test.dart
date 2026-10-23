@@ -49,8 +49,8 @@ void main() {
       createdAt: testDate,
       title: testTitle,
       players: testPlayers,
-      pointLimit: 100,
-      caboPenalty: 5,
+      pointLimit: 50,
+      caboPenalty: 10,
       isGameFinished: false,
     );
     controller = GameSessionController(session: session, db: database);
@@ -133,7 +133,8 @@ void main() {
   group('Game Functions', () {
     test('applyKamikaze', () {
       controller.applyKamikaze(1, 0); // Alice has kamikaze
-      expect(session.roundList[0].scoreUpdates, [0, 50, 50]);
+      // Every other player gets half of the point limit
+      expect(session.roundList[0].scoreUpdates, [0, 25, 25]);
       expect(session.roundList[0].scores, [0, 0, 0]);
       expect(session.roundList[0].kamikazePlayerIndex, 0);
       expect(session.roundList[0].caboPlayerIndex, 0);
@@ -146,7 +147,8 @@ void main() {
 
     test('calculateScoredPoints - CABO player not lowest', () {
       controller.calculateScoredPoints(1, [5, 3, 8], 0); // Bob has lowest
-      expect(session.roundList[0].scoreUpdates, [10, 0, 8]);
+      // Alice gets the cabo penalty of 10
+      expect(session.roundList[0].scoreUpdates, [15, 0, 8]);
     });
 
     test('addRoundScoresToList', () {
@@ -165,7 +167,7 @@ void main() {
     });
 
     test('updatePoints - game finished', () {
-      controller.addRoundScoresToList(1, [101, 20, 30], [101, 20, 30], 0);
+      controller.addRoundScoresToList(1, [51, 20, 30], [51, 20, 30], 0);
       controller.updatePoints();
       expect(session.isGameFinished, isTrue);
     });
@@ -177,11 +179,11 @@ void main() {
 
       // Alice said Cabo and has not the lowest score
       controller.testingAssignPoints(1, [5, 10, 15], 0, [1], 0);
-      expect(session.roundList[0].scoreUpdates, [10, 0, 15]);
+      expect(session.roundList[0].scoreUpdates, [15, 0, 15]);
 
       // Bob and Charlie have the lowest score, Alice said Cabo
       controller.testingAssignPoints(1, [15, 5, 5], 0, [1, 2], 0);
-      expect(session.roundList[0].scoreUpdates, [20, 0, 0]);
+      expect(session.roundList[0].scoreUpdates, [25, 0, 0]);
     });
 
     test('_sumPoints', () async {
@@ -192,18 +194,78 @@ void main() {
     });
 
     test('_checkHundredPointsReached via updatePoints', () {
-      controller.addRoundScoresToList(1, [50, 5, 15], [50, 0, 15], 1);
-      controller.addRoundScoresToList(2, [50, 5, 15], [50, 0, 15], 1);
-      controller.updatePoints();
-      expect(session.getScoresList, equals([50, 0, 30]));
+      controller.addRoundScoresToList(1, [25, 5, 15], [25, 0, 15], 1);
+      controller.addRoundScoresToList(2, [25, 5, 15], [25, 0, 15], 1);
+      final bonusPlayers = controller.updatePoints();
+
+      // Alice reached the point limit of 50 and gets half of it subtracted
+      expect(bonusPlayers, [0]);
+      expect(session.getScoresList, equals([25, 0, 30]));
+      expect(session.isGameFinished, isFalse);
+    });
+
+    test('_checkHundredPointsReached via cabo penalty', () {
+      // Alice said Cabo with 40 points but Bob has fewer: 40 + 10 = 50
+      controller.calculateScoredPoints(1, [40, 3, 8], 0);
+      final bonusPlayers = controller.updatePoints();
+
+      expect(bonusPlayers, [0]);
+      expect(session.getScoresList, [25, 0, 8]);
     });
 
     test('_setWinner via updatePoints', () {
-      controller.addRoundScoresToList(1, [101, 20, 30], [101, 0, 30], 1);
+      controller.addRoundScoresToList(1, [51, 20, 30], [51, 0, 30], 1);
       controller.updatePoints();
 
       expect(session.winner.length, 1);
       expect(session.winner.first, 'Bobby'); // Bobby has lowest score (20)
+    });
+  });
+
+  group('Unlimited mode', () {
+    late GameSession unlimitedSession;
+    late GameSessionController unlimitedController;
+
+    setUp(() async {
+      unlimitedSession = GameSession(
+        id: '2',
+        createdAt: testDate,
+        title: testTitle,
+        players: [
+          for (int i = 0; i < testPlayers.length; i++)
+            Player(
+              name: testPlayers[i].name,
+              totalScore: 0,
+              id: 'unlimited$i',
+              gameSessionId: '2',
+              position: i,
+            ),
+        ],
+        pointLimit: null,
+        caboPenalty: 10,
+      );
+      unlimitedController = GameSessionController(
+        session: unlimitedSession,
+        db: database,
+      );
+      await database.gameSessionDao.addGameSession(unlimitedSession);
+    });
+
+    // Runs before the outer tearDown closes the database.
+    tearDown(() async => unlimitedController.pendingWrites);
+
+    test('applyKamikaze adds 50 points', () {
+      unlimitedController.applyKamikaze(1, 0);
+      expect(unlimitedSession.roundList[0].scoreUpdates, [0, 50, 50]);
+    });
+
+    test('updatePoints never finishes the game', () {
+      unlimitedController.calculateScoredPoints(1, [120, 2, 10], 1);
+      final bonusPlayers = unlimitedController.updatePoints();
+
+      expect(bonusPlayers, isEmpty);
+      expect(unlimitedSession.getScoresList, [120, 0, 10]);
+      expect(unlimitedSession.isGameFinished, isFalse);
     });
   });
 }

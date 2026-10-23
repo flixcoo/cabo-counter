@@ -1,7 +1,7 @@
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/presentation/components/widgets/buttons/opacity_button.dart';
-import 'package:cabo_counter/services/icon_service.dart';
-import 'package:flutter/cupertino.dart'; // Für iOS-Style
+import 'package:cupertino_ui/cupertino_ui.dart';
 
 /// A custom stepper widget for incrementing and decrementing a value.
 ///
@@ -30,18 +30,17 @@ class CustomStepper extends StatefulWidget {
   });
 
   @override
-  // ignore: library_private_types_in_public_api
-  _CustomStepperState createState() => _CustomStepperState();
+  State<CustomStepper> createState() => _CustomStepperState();
 }
 
 class _CustomStepperState extends State<CustomStepper> {
-  late int _value;
+  late int value;
 
   @override
   void initState() {
     super.initState();
     final start = widget.initialValue ?? widget.minValue;
-    _value = start.clamp(widget.minValue, widget.maxValue);
+    value = start.clamp(widget.minValue, widget.maxValue);
   }
 
   @override
@@ -53,38 +52,38 @@ class _CustomStepperState extends State<CustomStepper> {
         OpacityButton.icon(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           onPressed: _decrement,
-          icon: IconService.minus,
+          icon: AppIcons.minus,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Text(
-            '$_value',
+            '$value',
             style: const TextStyle(fontSize: 18, color: CustomTheme.white),
           ),
         ),
         OpacityButton.icon(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           onPressed: _increment,
-          icon: IconService.add,
+          icon: AppIcons.add,
         ),
       ],
     );
   }
 
   void _increment() {
-    if (_value + widget.step <= widget.maxValue) {
+    if (value + widget.step <= widget.maxValue) {
       setState(() {
-        _value += widget.step;
-        widget.onChanged.call(_value);
+        value += widget.step;
+        widget.onChanged.call(value);
       });
     }
   }
 
   void _decrement() {
-    if (_value - widget.step >= widget.minValue) {
+    if (value - widget.step >= widget.minValue) {
       setState(() {
-        _value -= widget.step;
-        widget.onChanged.call(_value);
+        value -= widget.step;
+        widget.onChanged.call(value);
       });
     }
   }

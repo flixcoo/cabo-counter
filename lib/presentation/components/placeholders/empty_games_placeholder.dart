@@ -1,8 +1,9 @@
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
+import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
 import 'package:cabo_counter/presentation/views/home/home_view.dart';
-import 'package:cabo_counter/services/icon_service.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 
 /// A placeholder for the [HomeView] when the app contains no games
 class EmptyGamesPlaceholder extends StatelessWidget {
@@ -17,7 +18,7 @@ class EmptyGamesPlaceholder extends StatelessWidget {
       children: [
         Center(
           child: AppIcon(
-            IconService.no_games,
+            AppIcons.no_games,
             size: 60,
             color: CustomTheme.primaryColor,
           ),
@@ -25,7 +26,7 @@ class EmptyGamesPlaceholder extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 70),
           child: Text(
-            '${loc.no_games_created_yet}',
+            loc.no_games_created_yet,
             textAlign: TextAlign.center,
             style: const TextStyle(fontSize: 14),
           ),

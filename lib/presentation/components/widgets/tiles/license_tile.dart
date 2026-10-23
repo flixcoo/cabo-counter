@@ -1,8 +1,9 @@
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
+import 'package:cabo_counter/presentation/components/widgets/app_icon.dart';
 import 'package:cabo_counter/presentation/views/about/licenses/oss_licenses.dart';
-import 'package:cabo_counter/services/icon_service.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class LicenseTile extends StatefulWidget {
   const LicenseTile({super.key, required this.package, required this.onTap});
@@ -37,7 +38,7 @@ class _LicenseTileState extends State<LicenseTile> {
               child: Row(
                 children: [
                   AppIcon(
-                    IconService.license,
+                    AppIcons.license,
                     size: 28,
                     color: CustomTheme.primaryColor,
                   ),
@@ -105,7 +106,7 @@ class _LicenseTileState extends State<LicenseTile> {
               ),
             ),
             AppIcon(
-              IconService.chevron,
+              AppIcons.chevron,
               size: 17,
               color: CustomTheme.hintTextColor,
             ),
