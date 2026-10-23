@@ -9,7 +9,6 @@ description: Mobile app for the card game Cabo
 dependencies:
   collection: ^1.18.0
   confetti: ^0.8.0
-  cupertino_icons: ^2.0.0
   cupertino_ui: ^1.1.1
   drift: ^2.27.0
   drift_flutter: ^0.3.0
