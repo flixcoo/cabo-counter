@@ -47,11 +47,14 @@ class _ActiveGamelistSetState extends State<ActiveGameListSet> {
                   ],
                 ),
                 if (widget.description != null)
-                  Text(
-                    widget.description!,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: CustomTheme.subtitleColor,
+                  Padding(
+                    padding: const EdgeInsetsGeometry.only(left: 1),
+                    child: Text(
+                      widget.description!,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: CustomTheme.subtitleColor,
+                      ),
                     ),
                   ),
               ],
