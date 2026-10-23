@@ -170,7 +170,7 @@ class GameSessionController extends ChangeNotifier {
       scoreUpdates[i] = 0;
     }
     if (loserIndex != null) {
-      scoreUpdates[loserIndex] += 5;
+      scoreUpdates[loserIndex] += session.caboPenalty;
     }
     addRoundScoresToList(roundNum, roundScores, scoreUpdates, caboPlayerIndex);
   }
