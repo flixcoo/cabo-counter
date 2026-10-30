@@ -385,14 +385,14 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// android_file_picker 2.1.1
+/// android_file_picker 2.1.2
 const _android_file_picker = Package(
     name: 'android_file_picker',
     description: 'Android implementation of the file_picker plugin, supporting file picking, saving, and Storage Access Framework (SAF) URI grants.',
     homepage: 'https://github.com/vicajilau/flutter_file_picker/tree/main/packages/file_picker_android',
     repository: 'https://github.com/vicajilau/flutter_file_picker/tree/main/packages/file_picker_android',
     authors: [],
-    version: '2.1.1',
+    version: '2.1.2',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -1767,17 +1767,17 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// crypto 3.0.7
+/// crypto 3.0.8
 const _crypto = Package(
     name: 'crypto',
     description: 'Implementations of SHA, MD5, and HMAC cryptographic functions.',
     repository: 'https://github.com/dart-lang/core/tree/main/pkgs/crypto',
     authors: [],
-    version: '3.0.7',
+    version: '3.0.8',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
-    dependencies: [PackageRef('typed_data')],
+    dependencies: [],
     devDependencies: [PackageRef('convert'), PackageRef('test')],
     license: '''Copyright 2015, the Dart project authors.
 
@@ -1887,13 +1887,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// cupertino_ui 1.1.4
+/// cupertino_ui 1.1.5
 const _cupertino_ui = Package(
     name: 'cupertino_ui',
     description: 'The official Flutter Cupertino Design Library, implementing the iOS design system.',
     repository: 'https://github.com/flutter/packages/tree/main/packages/cupertino_ui',
     authors: [],
-    version: '1.1.4',
+    version: '1.1.5',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -1926,13 +1926,13 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// dart_console 5.1.0
+/// dart_console 5.1.2
 const _dart_console = Package(
     name: 'dart_console',
     description: 'A helper library for command-line applications that need more control over input/output than the standard library provides.',
     homepage: 'https://github.com/onepub-dev/dart_console',
     authors: [],
-    version: '5.1.0',
+    version: '5.1.2',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -3045,14 +3045,14 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// file_picker 13.1.0
+/// file_picker 13.3.0
 const _file_picker = Package(
     name: 'file_picker',
     description: 'A package that allows you to use a native file explorer to pick single or multiple absolute file paths, with extension filtering support.',
     homepage: 'https://github.com/vicajilau/flutter_file_picker',
     repository: 'https://github.com/vicajilau/flutter_file_picker/tree/main/packages/file_picker',
     authors: [],
-    version: '13.1.0',
+    version: '13.3.0',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -3081,14 +3081,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// file_picker_darwin 2.3.3
+/// file_picker_darwin 2.4.0
 const _file_picker_darwin = Package(
     name: 'file_picker_darwin',
     description: 'Darwin (iOS and macOS) implementation of the file_picker plugin, supporting native file picking, saving, and directory selection.',
     homepage: 'https://github.com/vicajilau/flutter_file_picker/tree/main/packages/file_picker_darwin',
     repository: 'https://github.com/vicajilau/flutter_file_picker/tree/main/packages/file_picker_darwin',
     authors: [],
-    version: '2.3.3',
+    version: '2.4.0',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -3310,13 +3310,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// flutter 3.47.7
+/// flutter 3.47.9
 const _flutter = Package(
     name: 'flutter',
     description: 'A framework for writing Flutter applications',
     homepage: 'https://flutter.dev',
     authors: [],
-    version: '3.47.7',
+    version: '3.47.9',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: true,
@@ -3436,13 +3436,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// flutter_sficon 1.3.0
+/// flutter_sficon 2.0.0
 const _flutter_sficon = Package(
     name: 'flutter_sficon',
-    description: 'Cross-platform Flutter plugin for rendering tree shakable SF Symbols version 7.1. inside custom widget, based on Text widget.',
+    description: "SF Symbols 27 as tree-shakable vector icons on every platform, with all weights. No bundled font, so iOS builds pass Apple's font check.",
     repository: 'https://github.com/gle6as/flutter_sficon',
     authors: [],
-    version: '1.3.0',
+    version: '2.0.0',
     spdxIdentifiers: ['Apache-2.0'],
     isMarkdown: false,
     isSdk: false,
@@ -4413,13 +4413,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// jni 1.1.0
+/// jni 1.1.1
 const _jni = Package(
     name: 'jni',
     description: 'A library to access JNI from Dart and Flutter that acts as a support library for package:jnigen.',
     repository: 'https://github.com/dart-lang/native/tree/main/pkgs/jni',
     authors: [],
-    version: '1.1.0',
+    version: '1.1.1',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -5166,13 +5166,13 @@ const _material_color_utilities = Package(
    limitations under the License.''',
   );
 
-/// material_ui 1.8.0
+/// material_ui 1.9.0
 const _material_ui = Package(
     name: 'material_ui',
     description: "The official Flutter Material UI Library, implementing Google's Material Design design system.",
     repository: 'https://github.com/flutter/packages/tree/main/packages/material_ui',
     authors: [],
-    version: '1.8.0',
+    version: '1.9.0',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -5287,13 +5287,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// native_synchronization_temp 0.8.0
+/// native_synchronization_temp 0.8.1
 const _native_synchronization_temp = Package(
     name: 'native_synchronization_temp',
     description: 'Low level synchronization primitives built on dart:ffi.',
-    repository: 'https://github.com/dart-lang/native_synchronization',
+    repository: 'https://github.com/onepub-dev/native_synchronization',
     authors: [],
-    version: '0.8.0',
+    version: '0.8.1',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -6139,13 +6139,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// posix 6.5.2
+/// posix 6.5.4
 const _posix = Package(
     name: 'posix',
-    description: 'Exposes the POSIX api on OSx and Linux',
+    description: 'Exposes the POSIX api on OSx and Linux via an idomatic Dart API.',
     homepage: 'https://github.com/onepub-dev/dart_posix',
     authors: [],
-    version: '6.5.2',
+    version: '6.5.4',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -7256,17 +7256,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// settings_yaml 8.3.1
+/// settings_yaml 8.3.2
 const _settings_yaml = Package(
     name: 'settings_yaml',
     description: 'Provides a simple means of saving/loading settings from a yaml file without the yaml fuss.',
-    homepage: 'https://github.com/bsutton/settings_yaml',
+    repository: 'https://github.com/onepub-dev/settings_yaml',
     authors: [],
-    version: '8.3.1',
+    version: '8.3.2',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
-    dependencies: [PackageRef('collection'), PackageRef('meta'), PackageRef('path'), PackageRef('uuid'), PackageRef('yaml')],
+    dependencies: [PackageRef('collection'), PackageRef('ffi'), PackageRef('meta'), PackageRef('path'), PackageRef('uuid'), PackageRef('yaml')],
     devDependencies: [PackageRef('test')],
     license: '''MIT License
 
@@ -7414,13 +7414,13 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// shared_preferences_android 2.5.3
+/// shared_preferences_android 2.5.4
 const _shared_preferences_android = Package(
     name: 'shared_preferences_android',
     description: 'Android implementation of the shared_preferences plugin',
     repository: 'https://github.com/flutter/packages/tree/main/packages/shared_preferences/shared_preferences_android',
     authors: [],
-    version: '2.5.3',
+    version: '2.5.4',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -7453,13 +7453,13 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// shared_preferences_foundation 2.6.0
+/// shared_preferences_foundation 2.6.1
 const _shared_preferences_foundation = Package(
     name: 'shared_preferences_foundation',
     description: 'iOS and macOS implementation of the shared_preferences plugin.',
     repository: 'https://github.com/flutter/packages/tree/main/packages/shared_preferences/shared_preferences_foundation',
     authors: [],
-    version: '2.6.0',
+    version: '2.6.1',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -38458,13 +38458,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// strings 4.0.1
+/// strings 4.2.0
 const _strings = Package(
     name: 'strings',
     description: 'Large collection of String functions aimed at extending the String class whilst providing safer methods for working with nullable Strings.',
     repository: 'https://github.com/onepub-dev/strings',
     authors: [],
-    version: '4.0.1',
+    version: '4.2.0',
     spdxIdentifiers: ['BSD-3-Clause', 'MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -38558,13 +38558,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// syncfusion_flutter_charts 35.1.41
+/// syncfusion_flutter_charts 35.1.42
 const _syncfusion_flutter_charts = Package(
     name: 'syncfusion_flutter_charts',
     description: 'A Flutter Charts library which includes data visualization widgets such as cartesian and circular charts, to create real-time, interactive, high-performance, animated charts.',
     homepage: 'https://github.com/syncfusion/flutter-widgets/tree/master/packages/syncfusion_flutter_charts',
     authors: [],
-    version: '35.1.41',
+    version: '35.1.42',
     spdxIdentifiers: [],
     isMarkdown: false,
     isSdk: false,
@@ -38584,13 +38584,13 @@ The Syncfusion<sup>&reg;</sup> license that contains the terms and conditions ca
 https://www.syncfusion.com/content/downloads/syncfusion_license.pdf''',
   );
 
-/// syncfusion_flutter_core 35.1.41
+/// syncfusion_flutter_core 35.1.42
 const _syncfusion_flutter_core = Package(
     name: 'syncfusion_flutter_core',
     description: 'Syncfusion Flutter Core is a dependent package for all the Syncfusion Flutter widgets.',
     homepage: 'https://github.com/syncfusion/flutter-widgets/tree/master/packages/syncfusion_flutter_core',
     authors: [],
-    version: '35.1.41',
+    version: '35.1.42',
     spdxIdentifiers: [],
     isMarkdown: false,
     isSdk: false,
@@ -38610,19 +38610,19 @@ The Syncfusion<sup>&reg;</sup> license that contains the terms and conditions ca
 https://www.syncfusion.com/content/downloads/syncfusion_license.pdf''',
   );
 
-/// system_info2 4.1.0
+/// system_info2 4.2.0
 const _system_info2 = Package(
     name: 'system_info2',
     description: 'Provides easy access to useful information about the system (architecture, bitness, kernel, memory, operating system, CPU, user).',
     homepage: 'https://sysinfo.onepub.dev',
     repository: 'https://github.com/onepub-dev/system_info',
     authors: [],
-    version: '4.1.0',
+    version: '4.2.0',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
     dependencies: [PackageRef('globbing'), PackageRef('path')],
-    devDependencies: [],
+    devDependencies: [PackageRef('test')],
     license: '''Copyright (c) 2014, Andrew Mezoni, S. Brett Sutton
 All rights reserved.
 
@@ -39270,14 +39270,14 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.''',
   );
 
-/// validators2 5.1.0
+/// validators2 5.1.1
 const _validators2 = Package(
     name: 'validators2',
     description: 'String validation and sanitization for Dart.',
     homepage: 'https://github.com/onepub-dev/validators2',
     repository: 'https://github.com/onepub-dev/validators2',
     authors: [],
-    version: '5.1.0',
+    version: '5.1.1',
     spdxIdentifiers: ['MIT'],
     isMarkdown: false,
     isSdk: false,
@@ -39306,13 +39306,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.''',
   );
 
-/// vector_math 2.4.3
+/// vector_math 2.4.4
 const _vector_math = Package(
     name: 'vector_math',
     description: 'A vector math library for 2D and 3D applications, supporting 2D, 3D, and 4D matrices.',
     repository: 'https://github.com/flutter/core-packages/tree/main/packages/vector_math',
     authors: [],
-    version: '2.4.3',
+    version: '2.4.4',
     spdxIdentifiers: ['BSD-3-Clause'],
     isMarkdown: false,
     isSdk: false,
@@ -39820,12 +39820,12 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.''',
   );
 
-/// cabo_counter 1.1.9+1344
+/// cabo_counter 1.1.9+1352
 const _cabo_counter = Package(
     name: 'cabo_counter',
     description: 'Mobile app for the card game Cabo',
     authors: [],
-    version: '1.1.9+1344',
+    version: '1.1.9+1352',
     spdxIdentifiers: ['LGPL-3.0'],
     isMarkdown: false,
     isSdk: false,

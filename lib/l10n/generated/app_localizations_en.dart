@@ -471,6 +471,12 @@ class AppLocalizationsEn extends AppLocalizations {
       'The game continues until you decide to stop playing. The game can be ended manually at any time.';
 
   @override
+  String get unnamed_player => 'Unnamed Player';
+
+  @override
+  String get untitled_game => 'Untitled Game';
+
+  @override
   String get version => 'Version';
 
   @override

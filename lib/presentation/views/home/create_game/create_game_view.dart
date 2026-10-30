@@ -17,6 +17,7 @@ import 'package:cabo_counter/presentation/views/home/active_game/active_game_vie
 import 'package:cabo_counter/presentation/views/home/create_game/mode_selection_view.dart';
 import 'package:cabo_counter/services/config_service.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
@@ -47,21 +48,29 @@ class CreateGameView extends StatefulWidget {
 }
 
 class _CreateGameViewState extends State<CreateGameView> {
-  final TextEditingController titleController = TextEditingController();
+  late final TextEditingController titleController;
+  late GameMode selectedGameMode;
+  List<FocusNode> playerNameFocusNodes = [];
+  List<TextEditingController> playerNameControllers = [];
 
   final int minPlayers = 2;
   final int maxPlayers = 5;
 
-  List<FocusNode> playerNameFocusNodes = [];
-  List<TextEditingController> playerNameControllers = [];
-
-  /// Variable to hold the selected game mode.
-  late GameMode selectedGameMode;
-
   bool get hasReachedMaxPlayers => playerNameControllers.length >= maxPlayers;
+
   bool get hasReachedMinPlayers => playerNameControllers.length <= minPlayers;
+
+  // Empty title or title with text excluding only whitespaces
+  bool get isValidTitle =>
+      titleController.text.isEmpty || titleController.text.trim().isNotEmpty;
+
+  bool get everyPlayerHasAName => playerNameControllers.every(
+    (controller) => controller.text.trim().isNotEmpty,
+  );
+
   bool get isValidGame =>
       selectedGameMode != GameMode.none &&
+      isValidTitle &&
       playerNameControllers.length >= 2 &&
       everyPlayerHasAName;
 
@@ -69,8 +78,6 @@ class _CreateGameViewState extends State<CreateGameView> {
   void initState() {
     super.initState();
     selectedGameMode = widget.gameMode;
-    titleController.text = widget.gameTitle ?? '';
-
     initializeController();
   }
 
@@ -131,6 +138,12 @@ class _CreateGameViewState extends State<CreateGameView> {
                                 maxLength: 24,
                                 textAlign: TextAlign.right,
                                 controller: titleController,
+                                // Prevents whitespace-only titles
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.deny(
+                                    RegExp(r'^\s+'),
+                                  ),
+                                ],
                                 decoration: InputDecoration(
                                   counterText: '',
                                   hint: Text(
@@ -373,22 +386,22 @@ class _CreateGameViewState extends State<CreateGameView> {
   }
 
   void initializeController() {
+    titleController = TextEditingController();
+    titleController.text = widget.gameTitle ?? '';
+    titleController.addListener(() => setState(() {}));
+
     // Prefill player
-    if (widget.players != null) {
-      for (var player in widget.players!) {
-        final controller = TextEditingController(text: player);
-        controller.addListener(() => setState(() {}));
-        playerNameControllers.add(controller);
-        playerNameFocusNodes.add(FocusNode());
-      }
-    } else {
-      playerNameControllers = List.generate(
-        minPlayers,
-        (index) => TextEditingController()..addListener(() => setState(() {})),
-      );
-      playerNameFocusNodes = List.generate(minPlayers, (index) => FocusNode());
-    }
+    final names = widget.players ?? List.filled(minPlayers, '');
+    playerNameControllers = [
+      for (final name in names) createPlayerController(name),
+    ];
+    playerNameFocusNodes = [for (final _ in names) FocusNode()];
   }
+
+  /// Creates a player controller with an optional prefilled [playerName]
+  TextEditingController createPlayerController([String playerName = '']) =>
+      TextEditingController(text: playerName)
+        ..addListener(() => setState(() {}));
 
   void addPlayerTextfield() {
     setState(() {
@@ -431,11 +444,6 @@ class _CreateGameViewState extends State<CreateGameView> {
     }
   }
 
-  /// Checks if every player has a name.
-  /// Returns true if all players have a name, false otherwise.
-  bool get everyPlayerHasAName =>
-      playerNameControllers.every((controller) => controller.text != '');
-
   /// Creates a new gameSession and navigates to the active game view.
   /// This method creates a new gameSession object with the provided attributes in the text fields.
   /// It then adds the game session to the game manager and navigates to the active game view.
@@ -446,7 +454,7 @@ class _CreateGameViewState extends State<CreateGameView> {
     // Collect player names from the text controllers.
     List<String> playerNames = [];
     for (var controller in playerNameControllers) {
-      playerNames.add(controller.text);
+      playerNames.add(controller.text.trim());
     }
 
     // Create a list of Player objects with unique IDs and the corresponding attributes
@@ -463,9 +471,10 @@ class _CreateGameViewState extends State<CreateGameView> {
       );
     }
 
-    final String title = titleController.text == ''
+    final String trimmedTitle = titleController.text.trim();
+    final String title = trimmedTitle.isEmpty
         ? getFallbackGameTitle()
-        : titleController.text;
+        : trimmedTitle;
 
     final bool isPointsLimitEnabled = selectedGameMode == GameMode.pointLimit;
 

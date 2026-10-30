@@ -130,7 +130,11 @@ class LicenseDetailView extends StatelessWidget {
                   children: [
                     // Description
                     if (package.description.isNotEmpty) ...[
-                      Text(package.description, textAlign: TextAlign.center),
+                      Text(
+                        package.description,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(fontSize: 14),
+                      ),
 
                       const Divider(
                         radius: BorderRadius.all(Radius.circular(10)),
@@ -138,7 +142,10 @@ class LicenseDetailView extends StatelessWidget {
                     ],
 
                     // License text
-                    Text(package.license ?? loc.no_license_text),
+                    Text(
+                      package.license ?? loc.no_license_text,
+                      style: const TextStyle(fontSize: 14),
+                    ),
                   ],
                 ),
               ),

@@ -65,7 +65,7 @@ abstract class AppIcons {
       Platform.isIOS ? SFIcons.sf_square_stack_3d_up : Icons.mode;
 
   static IconData get number =>
-      Platform.isIOS ? SFIcons.sf_number : Icons.numbers;
+      Platform.isIOS ? SFIcons.sf_number_sign : Icons.numbers;
 
   static IconData get no_games =>
       Platform.isIOS ? SFIcons.sf_tray : Icons.extension;
@@ -134,7 +134,7 @@ abstract class AppIcons {
       Platform.isIOS ? SFIcons.sf_lock_shield : Icons.shield_rounded;
 
   static IconData get legal =>
-      Platform.isIOS ? SFIcons.sf_building_columns : Icons.directions;
+      Platform.isIOS ? SFIcons.sf_building_classical_columns : Icons.directions;
 
   static IconData get brush =>
       Platform.isIOS ? SFIcons.sf_paintbrush_fill : Icons.brush;
