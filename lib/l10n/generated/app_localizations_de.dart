@@ -205,6 +205,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get import_data => 'Spieldaten importieren';
 
   @override
+  String get import_duplicates_title => 'Spiele bereits vorhanden';
+
+  @override
   String get import_format_error_message =>
       'Die Datei ist kein gültiges JSON-Format oder enthält ungültige Daten.';
 
@@ -216,6 +219,41 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get import_generic_error_title => 'Import fehlgeschlagen';
+
+  @override
+  String import_more_games(int count) {
+    return '+ $count weitere';
+  }
+
+  @override
+  String import_new_games_message(
+    int allGamesAmount,
+    int importedGamesAmount,
+    int duplicateGamesAmount,
+  ) {
+    String _temp0 = intl.Intl.pluralLogic(
+      duplicateGamesAmount,
+      locale: localeName,
+      other:
+          '$duplicateGamesAmount Spiele sind bereits vorhanden und konnten nicht importiert werden',
+      one: 'Ein Spiel ist bereits vorhanden und konnte nicht importiert werden',
+    );
+    String _temp1 = intl.Intl.pluralLogic(
+      duplicateGamesAmount,
+      locale: localeName,
+      other:
+          'Alle $duplicateGamesAmount Spiele sind bereits vorhanden und konnten nicht importiert werden',
+      one: 'Dieses Spiel ist bereits vorhanden und konnte nicht importiert werden',
+    );
+    String _temp2 = intl.Intl.pluralLogic(
+      importedGamesAmount,
+      locale: localeName,
+      other:
+          '$importedGamesAmount von $allGamesAmount Spielen wurden erfolgreich importiert. $_temp0',
+      zero: '$_temp1',
+    );
+    return '$_temp2';
+  }
 
   @override
   String get import_success_message =>
@@ -298,6 +336,20 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get overview => 'Übersicht';
+
+  @override
+  String get overwrite => 'Überschreiben';
+
+  @override
+  String overwrite_games_message(int duplicateGamesAmount) {
+    String _temp0 = intl.Intl.pluralLogic(
+      duplicateGamesAmount,
+      locale: localeName,
+      other: 'Möchtest du deine lokalen Spiele mit den importierten überschreiben?',
+      one: 'Möchtest du das lokale Spiel mit dem importierten überschreiben?',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get player => 'Spieler:in';
@@ -387,6 +439,9 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settings => 'Einstellungen';
+
+  @override
+  String get skip => 'Überspringen';
 
   @override
   String get sort_by => 'Sortieren nach';

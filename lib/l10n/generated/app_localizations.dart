@@ -427,6 +427,12 @@ abstract class AppLocalizations {
   /// **'Spieldaten importieren'**
   String get import_data;
 
+  /// No description provided for @import_duplicates_title.
+  ///
+  /// In de, this message translates to:
+  /// **'Spiele bereits vorhanden'**
+  String get import_duplicates_title;
+
   /// No description provided for @import_format_error_message.
   ///
   /// In de, this message translates to:
@@ -450,6 +456,22 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Import fehlgeschlagen'**
   String get import_generic_error_title;
+
+  /// No description provided for @import_more_games.
+  ///
+  /// In de, this message translates to:
+  /// **'+ {count} weitere'**
+  String import_more_games(int count);
+
+  /// No description provided for @import_new_games_message.
+  ///
+  /// In de, this message translates to:
+  /// **'{importedGamesAmount, plural, =0{{duplicateGamesAmount, plural, =1{Dieses Spiel ist bereits vorhanden und konnte nicht importiert werden} other{Alle {duplicateGamesAmount} Spiele sind bereits vorhanden und konnten nicht importiert werden}}} other{{importedGamesAmount} von {allGamesAmount} Spielen wurden erfolgreich importiert. {duplicateGamesAmount, plural, =1{Ein Spiel ist bereits vorhanden und konnte nicht importiert werden} other{{duplicateGamesAmount} Spiele sind bereits vorhanden und konnten nicht importiert werden}}}}'**
+  String import_new_games_message(
+    int allGamesAmount,
+    int importedGamesAmount,
+    int duplicateGamesAmount,
+  );
 
   /// No description provided for @import_success_message.
   ///
@@ -606,6 +628,18 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Übersicht'**
   String get overview;
+
+  /// No description provided for @overwrite.
+  ///
+  /// In de, this message translates to:
+  /// **'Überschreiben'**
+  String get overwrite;
+
+  /// No description provided for @overwrite_games_message.
+  ///
+  /// In de, this message translates to:
+  /// **'{duplicateGamesAmount, plural, =1{Möchtest du das lokale Spiel mit dem importierten überschreiben?} other{Möchtest du deine lokalen Spiele mit den importierten überschreiben?}}'**
+  String overwrite_games_message(int duplicateGamesAmount);
 
   /// No description provided for @player.
   ///
@@ -768,6 +802,12 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Einstellungen'**
   String get settings;
+
+  /// No description provided for @skip.
+  ///
+  /// In de, this message translates to:
+  /// **'Überspringen'**
+  String get skip;
 
   /// No description provided for @sort_by.
   ///

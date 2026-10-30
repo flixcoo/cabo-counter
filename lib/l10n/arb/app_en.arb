@@ -90,10 +90,33 @@
   "id_error_message": "The game has not yet been assigned an ID. If you want to delete the game, please do so via the main menu. All newly created games have an ID.",
   "id_error_title": "ID Error",
   "import_data": "Import Data",
+  "import_duplicates_title": "Games already exist",
   "import_format_error_message": "The file is not a valid JSON format or contains invalid data.",
   "import_format_error_title": "Wrong format",
   "import_generic_error_message": "The import has failed.",
   "import_generic_error_title": "Import failed",
+  "import_more_games": "+ {count} more",
+  "@import_more_games": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "import_new_games_message": "{importedGamesAmount, plural, =0{{duplicateGamesAmount, plural, =1{This game already exists and could not be imported} other{All {duplicateGamesAmount} games already exist and could not be imported}}} other{{importedGamesAmount} of {allGamesAmount} games were imported successfully. {duplicateGamesAmount, plural, =1{One game already exists and could not be imported} other{{duplicateGamesAmount} games already exist and could not be imported}}}}",
+  "@import_new_games_message": {
+    "placeholders": {
+      "allGamesAmount": {
+        "type": "int"
+      },
+      "importedGamesAmount": {
+        "type": "int"
+      },
+      "duplicateGamesAmount": {
+        "type": "int"
+      }
+    }
+  },
   "import_success_message": "The game data has been successfully imported.",
   "import_success_title": "Import successful",
   "import_validation_error_message": "No Cabo-Counter game data was found. Please make sure that this is a valid Cabo-Counter export file.",
@@ -120,6 +143,15 @@
   "only_active_game_title": "Only active games",
   "only_active_games": "Only active games are shown",
   "overview": "Overview",
+  "overwrite": "Overwrite",
+  "overwrite_games_message": "{duplicateGamesAmount, plural, =1{Do you want to overwrite the local game with the imported one?} other{Do you want to overwrite your local games with the imported ones?}}",
+  "@overwrite_games_message": {
+    "placeholders": {
+      "duplicateGamesAmount": {
+        "type": "int"
+      }
+    }
+  },
   "player": "Player",
   "players": "Players",
   "point": "Point",
@@ -154,6 +186,7 @@
   "rounds_won_description": "Number of rounds scored with 0 points",
   "score_table": "Score Table",
   "settings": "Settings",
+  "skip": "Skip",
   "sort_by": "Sort by",
   "sort_order": "Order",
   "standard_game_title": "Game on {date}",

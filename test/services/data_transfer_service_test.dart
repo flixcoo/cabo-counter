@@ -1,9 +1,13 @@
 import 'dart:convert';
 
+import 'package:cabo_counter/core/enums.dart';
+import 'package:cabo_counter/data/db/database.dart';
 import 'package:cabo_counter/data/models/game_session.dart';
 import 'package:cabo_counter/data/models/player.dart';
 import 'package:cabo_counter/data/models/round.dart';
 import 'package:cabo_counter/services/data_transfer_service.dart';
+import 'package:drift/drift.dart' hide isNotNull, isNull;
+import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -12,8 +16,16 @@ void main() {
   late GameSession gameSession1;
   late GameSession gameSession2;
   late GameSession gameSession3;
+  late AppDatabase database;
 
   setUp(() {
+    database = AppDatabase(
+      DatabaseConnection(
+        NativeDatabase.memory(),
+        // Recommended for widget tests to avoid test errors.
+        closeStreamsSynchronously: true,
+      ),
+    );
     gameSession1 = GameSession(
       id: 'test-game-id-1',
       createdAt: DateTime.now(),
@@ -101,6 +113,10 @@ void main() {
       isGameFinished: true,
     );
   });
+  tearDown(() async {
+    await database.close();
+  });
+
   group('DataTransferService Tests', () {
     test('Validate single GameSession', () async {
       var jsonString = json.encode(gameSession1.toJson());
@@ -153,6 +169,65 @@ void main() {
         false,
       );
       expect(result, isFalse);
+    });
+
+    test('Imports all games if no duplicates exist', () async {
+      final result = await DataTransferService.importGameSessionsToDb(
+        database,
+        [gameSession1, gameSession2],
+      );
+
+      expect(result.status, ImportStatus.success);
+      expect(result.importedAmount, 2);
+      expect(result.duplicates, isEmpty);
+      expect(await database.gameSessionDao.getAllGameSessionIds(), {
+        gameSession1.id,
+        gameSession2.id,
+      });
+    });
+
+    test('Skips games whose ID already exists locally', () async {
+      await database.gameSessionDao.addGameSession(gameSession2);
+
+      final result = await DataTransferService.importGameSessionsToDb(
+        database,
+        [gameSession1, gameSession3],
+      );
+
+      expect(result.status, ImportStatus.duplicatesFound);
+      expect(result.importedAmount, 1);
+      expect(result.duplicates.map((s) => s.id), [gameSession3.id]);
+
+      // The local game is left untouched.
+      final localGame = await database.gameSessionDao.getGameSessionById(
+        gameSessionId: gameSession2.id,
+      );
+      expect(localGame!.players.length, gameSession2.players.length);
+      expect(await database.gameSessionDao.getAllGameSessionIds(), {
+        gameSession1.id,
+        gameSession2.id,
+      });
+    });
+
+    test('Overwrites local games with duplicates', () async {
+      await database.gameSessionDao.addGameSession(gameSession2);
+
+      final result = await DataTransferService.importGameSessionsToDb(
+        database,
+        [gameSession3],
+      );
+      expect(result.importedAmount, 0);
+
+      await database.gameSessionDao.replaceGameSessions(result.duplicates);
+
+      final localGame = await database.gameSessionDao.getGameSessionById(
+        gameSessionId: gameSession2.id,
+      );
+      expect(localGame!.players.length, gameSession3.players.length);
+      expect(localGame.roundList.length, gameSession3.roundList.length);
+      expect(await database.gameSessionDao.getAllGameSessionIds(), {
+        gameSession2.id,
+      });
     });
   });
 }

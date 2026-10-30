@@ -41,6 +41,14 @@ class GameSessionDao extends DatabaseAccessor<AppDatabase>
 
   /* Read */
 
+  /// Retrieves the IDs of all game sessions in the database.
+  Future<Set<String>> getAllGameSessionIds() async {
+    final query = selectOnly(gameSessionTable)
+      ..addColumns([gameSessionTable.id]);
+    final rows = await query.get();
+    return rows.map((row) => row.read(gameSessionTable.id)!).toSet();
+  }
+
   /// Retrieves all game sessions from the database.
   Future<List<GameSession>> getAllGameSessions() async {
     final query = select(gameSessionTable);
@@ -118,6 +126,18 @@ class GameSessionDao extends DatabaseAccessor<AppDatabase>
           GameSessionTableCompanion(isGameFinished: Value(isFinished)),
         );
     return rowsAffected > 0;
+  }
+
+  /// Replaces the stored game sessions with the given [gameSessions].
+  /// Existing sessions with the same ID are deleted including their players
+  /// and rounds before the new data is inserted.
+  Future<void> replaceGameSessions(List<GameSession> gameSessions) async {
+    await transaction(() async {
+      for (final gameSession in gameSessions) {
+        await deleteGameSession(gameSessionId: gameSession.id);
+        await addGameSession(gameSession);
+      }
+    });
   }
 
   /* Delete */
