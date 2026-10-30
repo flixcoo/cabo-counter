@@ -823,6 +823,18 @@ abstract class AppLocalizations {
   /// **'Es wird so lange gespielt, bis ihr keine Lust mehr habt. Das Spiel kann jederzeit manuell beendet werden.'**
   String get unlimited_description;
 
+  /// No description provided for @unnamed_player.
+  ///
+  /// In de, this message translates to:
+  /// **'Unbenannte:r Spieler:in'**
+  String get unnamed_player;
+
+  /// No description provided for @untitled_game.
+  ///
+  /// In de, this message translates to:
+  /// **'Unbenanntes Spiel'**
+  String get untitled_game;
+
   /// No description provided for @version.
   ///
   /// In de, this message translates to:

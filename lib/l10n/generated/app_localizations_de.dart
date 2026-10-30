@@ -419,6 +419,12 @@ class AppLocalizationsDe extends AppLocalizations {
       'Es wird so lange gespielt, bis ihr keine Lust mehr habt. Das Spiel kann jederzeit manuell beendet werden.';
 
   @override
+  String get unnamed_player => 'Unbenannte:r Spieler:in';
+
+  @override
+  String get untitled_game => 'Unbenanntes Spiel';
+
+  @override
   String get version => 'Version';
 
   @override
