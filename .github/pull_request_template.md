@@ -12,18 +12,12 @@ This PR implements X by doing Y. The main change is in Z, which now handles ... 
 - Fixed a bug in component X
 - Refactored module X for better performance
 - Updated dependencies
-      
-## UI-Changes (if applicable)  
-*Before:*  
-![Before changes](url)  
-
-*After:*  
-![After changes](url)  
 
 ## PR-Checklist
 <!-- Make sure all items are completed before submitting the pull request for review. -->
 - [ ] I have localized all strings (de/en)
 - [ ] I have added tests for new database/DAO functions
+- [ ] I added user-relevant changes to the news
 
 ## Additional Notes
 <!-- Is there any additional context, limitations, or information that reviewers should be aware of? -->
