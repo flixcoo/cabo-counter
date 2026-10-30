@@ -38,9 +38,12 @@ enum CreateStatus { noModeSelected, minPlayers, maxPlayers, noPlayerName }
 /// - [validationError]: JSON validation error
 /// - [formatError]: JSON format error
 /// - [genericError]: Generic error during import
+/// - [duplicatesFound]: Some games were not imported because their IDs
+///   already exist locally
 enum ImportStatus {
   success,
   canceled,
+  duplicatesFound,
   validationError,
   formatError,
   genericError,
