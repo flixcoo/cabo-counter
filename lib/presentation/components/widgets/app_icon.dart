@@ -9,7 +9,7 @@ class AppIcon extends StatelessWidget {
   final double? size;
   final Color? color;
 
-  bool get _isSFSymbol => icon.fontPackage == 'flutter_sficon';
+  bool get _isSFSymbol => icon.fontFamilyFallback?.firstOrNull == 'sf2';
 
   @override
   Widget build(BuildContext context) {
