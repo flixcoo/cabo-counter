@@ -39,6 +39,15 @@ class GameSessionDao extends DatabaseAccessor<AppDatabase>
     );
   }
 
+  /// Inserts all given [gameSessions] into the database.
+  Future<void> addGameSessionsAsList(List<GameSession> gameSessions) async {
+    await transaction(() async {
+      for (final gameSession in gameSessions) {
+        await addGameSession(gameSession);
+      }
+    });
+  }
+
   /* Read */
 
   /// Retrieves the IDs of all game sessions in the database.

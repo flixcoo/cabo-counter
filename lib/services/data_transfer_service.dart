@@ -130,11 +130,7 @@ class DataTransferService {
       }
     }
 
-    await db.transaction(() async {
-      for (GameSession session in newSessions) {
-        await db.gameSessionDao.addGameSession(session);
-      }
-    });
+    await db.gameSessionDao.addGameSessionsAsList(newSessions);
 
     return ImportResult(
       status: duplicates.isEmpty
