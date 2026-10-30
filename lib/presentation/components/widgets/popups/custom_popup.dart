@@ -16,13 +16,22 @@ class CustomPopup<T> extends StatelessWidget {
     required this.title,
     required this.actions,
     this.message,
+    this.content,
     this.icon,
     this.iconColor,
-  });
+  }) : assert(
+         (message == null || content == null),
+         'Message and content can\'t both be set',
+       ),
+       assert(
+         !(message == null && content == null),
+         'Either message or content must have a value',
+       );
 
   final String title;
   final List<CustomPopupAction<T>> actions;
   final String? message;
+  final Widget? content;
   final IconData? icon;
   final Color? iconColor;
 
@@ -31,6 +40,7 @@ class CustomPopup<T> extends StatelessWidget {
     required String title,
     required List<CustomPopupAction<T>> actions,
     String? message,
+    Widget? content,
     IconData? icon,
     Color? iconColor,
     bool barrierDismissible = true,
@@ -44,6 +54,7 @@ class CustomPopup<T> extends StatelessWidget {
       pageBuilder: (context, _, _) => CustomPopup<T>(
         title: title,
         message: message,
+        content: content,
         icon: icon,
         iconColor: iconColor,
         actions: actions,
@@ -127,6 +138,7 @@ class CustomPopup<T> extends StatelessWidget {
                           ),
                         ),
                       ],
+                      ?content,
                     ],
                   ),
 

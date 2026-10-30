@@ -49,7 +49,8 @@ class PopupService {
   static Future<T?> showSelectionPopup<T>({
     required BuildContext context,
     required String title,
-    required String message,
+    String? message,
+    Widget? content,
     required List<CustomPopupAction<T>> actions,
     IconData? icon,
     Color? iconColor,
@@ -58,6 +59,7 @@ class PopupService {
       context: context,
       title: title,
       message: message,
+      content: content,
       icon: icon,
       iconColor: iconColor,
       actions: actions,
