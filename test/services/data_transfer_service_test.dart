@@ -171,6 +171,48 @@ void main() {
       expect(result, isFalse);
     });
 
+    test('Accepts consistent game sessions', () {
+      final result = DataTransferService.isValidContent([
+        gameSession1,
+        gameSession2,
+        gameSession3,
+      ]);
+      expect(result, isTrue);
+    });
+
+    test('Rejects inconsistent game sessions', () {
+      // Round with more scores than players
+      final gameMap = gameSession2.toJson();
+      final roundList = gameMap['roundList'] as List;
+      roundList[0] = {
+        ...roundList[0] as Map<String, dynamic>,
+        'scores': [2, 5, 5],
+        'scoreUpdates': [0, 5, 5],
+      };
+      var session = GameSession.fromJson(gameMap);
+      expect(DataTransferService.isValidContent([session]), isFalse);
+
+      // Kamikaze player index out of range
+      final kamikazeMap = gameSession3.toJson();
+      (kamikazeMap['roundList'] as List)[0] = {
+        ...(kamikazeMap['roundList'] as List)[0] as Map<String, dynamic>,
+        'kamikazePlayerIndex': 3,
+      };
+      session = GameSession.fromJson(kamikazeMap);
+      expect(DataTransferService.isValidContent([session]), isFalse);
+
+      // Negative cabo penalty
+      final penaltyMap = gameSession1.toJson()..['caboPenalty'] = -5;
+      session = GameSession.fromJson(penaltyMap);
+      expect(DataTransferService.isValidContent([session]), isFalse);
+
+      // One invalid session invalidates the whole list
+      expect(
+        DataTransferService.isValidContent([gameSession1, session]),
+        isFalse,
+      );
+    });
+
     test('Imports all games if no duplicates exist', () async {
       final result = await DataTransferService.importGameSessionsToDb(
         database,

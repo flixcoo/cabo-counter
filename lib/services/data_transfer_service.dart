@@ -95,6 +95,12 @@ class DataTransferService {
         return ImportResult(status: ImportStatus.validationError);
       }
 
+      // The schema can't check relations between fields, e.g. whether every
+      // round contains a score for every player.
+      if (!isValidContent(importedList)) {
+        return ImportResult(status: ImportStatus.validationError);
+      }
+
       return await importGameSessionsToDb(db, importedList);
     } on FormatException catch (e, stack) {
       print('[DataTransferService] $e');
@@ -156,6 +162,36 @@ class DataTransferService {
       print(stack);
       return false;
     }
+  }
+
+  /// Checks whether the data of all given [sessions] is consistent.
+  /// Returns `false` as soon as one session is invalid.
+  /// This covers the following rules:
+  /// - The point limit is greater than 0.
+  /// - The cabo penalty is not negative.
+  /// - Every round contains a score and a score update for every player.
+  /// - The cabo and kamikaze player indices of every round reference an
+  ///   existing player.
+  @visibleForTesting
+  static bool isValidContent(List<GameSession> sessions) {
+    for (GameSession session in sessions) {
+      final playerCount = session.players.length;
+      bool isPlayerIndex(int index) => index >= 0 && index < playerCount;
+
+      if (session.pointLimit != null && session.pointLimit! <= 0) return false;
+      if (session.caboPenalty < 0) return false;
+
+      final hasValidRounds = session.roundList.every(
+        (round) =>
+            round.scores.length == playerCount &&
+            round.scoreUpdates.length == playerCount &&
+            isPlayerIndex(round.caboPlayerIndex) &&
+            (round.kamikazePlayerIndex == null ||
+                isPlayerIndex(round.kamikazePlayerIndex!)),
+      );
+      if (!hasValidRounds) return false;
+    }
+    return true;
   }
 
   /// Validates the JSON data against the schema.
