@@ -60,6 +60,10 @@ class _CreateGameViewState extends State<CreateGameView> {
 
   bool get hasReachedMaxPlayers => playerNameControllers.length >= maxPlayers;
   bool get hasReachedMinPlayers => playerNameControllers.length <= minPlayers;
+
+  bool get everyPlayerHasAName =>
+      playerNameControllers.every((controller) => controller.text.trim() != '');
+
   bool get isValidGame =>
       selectedGameMode != GameMode.none &&
       playerNameControllers.length >= 2 &&
@@ -70,7 +74,6 @@ class _CreateGameViewState extends State<CreateGameView> {
     super.initState();
     selectedGameMode = widget.gameMode;
     titleController.text = widget.gameTitle ?? '';
-
     initializeController();
   }
 
@@ -431,11 +434,6 @@ class _CreateGameViewState extends State<CreateGameView> {
     }
   }
 
-  /// Checks if every player has a name.
-  /// Returns true if all players have a name, false otherwise.
-  bool get everyPlayerHasAName =>
-      playerNameControllers.every((controller) => controller.text != '');
-
   /// Creates a new gameSession and navigates to the active game view.
   /// This method creates a new gameSession object with the provided attributes in the text fields.
   /// It then adds the game session to the game manager and navigates to the active game view.
@@ -446,7 +444,7 @@ class _CreateGameViewState extends State<CreateGameView> {
     // Collect player names from the text controllers.
     List<String> playerNames = [];
     for (var controller in playerNameControllers) {
-      playerNames.add(controller.text);
+      playerNames.add(controller.text.trim());
     }
 
     // Create a list of Player objects with unique IDs and the corresponding attributes
@@ -465,7 +463,7 @@ class _CreateGameViewState extends State<CreateGameView> {
 
     final String title = titleController.text == ''
         ? getFallbackGameTitle()
-        : titleController.text;
+        : titleController.text.trim();
 
     final bool isPointsLimitEnabled = selectedGameMode == GameMode.pointLimit;
 
