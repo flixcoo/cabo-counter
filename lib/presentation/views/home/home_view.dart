@@ -319,6 +319,8 @@ class _HomeViewState extends State<HomeView> {
           context: context,
           title: loc.delete_game_title,
           message: loc.delete_game_message(gameTitle),
+          icon: AppIcons.delete,
+          iconColor: CustomTheme.red,
           actions: [
             CustomPopupAction(
               style: CustomPopupActionStyle.primary,

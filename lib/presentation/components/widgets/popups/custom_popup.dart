@@ -17,7 +17,7 @@ class CustomPopup<T> extends StatelessWidget {
     required this.actions,
     this.message,
     this.content,
-    this.icon,
+    required this.icon,
     this.iconColor,
   }) : assert(
          (message == null || content == null),
@@ -32,7 +32,7 @@ class CustomPopup<T> extends StatelessWidget {
   final List<CustomPopupAction<T>> actions;
   final String? message;
   final Widget? content;
-  final IconData? icon;
+  final IconData icon;
   final Color? iconColor;
 
   static Future<T?> show<T>({
@@ -41,7 +41,7 @@ class CustomPopup<T> extends StatelessWidget {
     required List<CustomPopupAction<T>> actions,
     String? message,
     Widget? content,
-    IconData? icon,
+    required IconData icon,
     Color? iconColor,
     bool barrierDismissible = true,
   }) {
@@ -107,19 +107,19 @@ class CustomPopup<T> extends StatelessWidget {
                 spacing: 20,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  if (icon != null) ...[
-                    Center(
-                      child: Container(
-                        width: 60,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          color: accent.withAlpha(38),
-                          shape: BoxShape.circle,
-                        ),
-                        child: AppIcon(icon!, color: accent, size: 30),
+                  Center(
+                    child: Container(
+                      width: 60,
+                      height: 60,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: accent.withAlpha(38),
+                        shape: BoxShape.circle,
                       ),
+                      child: AppIcon(icon, color: accent, size: 30),
                     ),
-                  ],
+                  ),
+
                   Column(
                     spacing: 10,
                     children: [

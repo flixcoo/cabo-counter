@@ -152,4 +152,25 @@ abstract class AppIcons {
   static IconData get duplicate => Platform.isIOS
       ? SFIcons.sf_document_on_document_fill
       : Icons.copy_all_rounded;
+
+  static IconData get success => Platform.isIOS
+      ? SFIcons.sf_checkmark_circle
+      : Icons.check_circle_outline_rounded;
+
+  static IconData get error => Platform.isIOS
+      ? SFIcons.sf_exclamationmark_circle
+      : Icons.error_outline_rounded;
+
+  static IconData get feedback => Platform.isIOS
+      ? SFIcons.sf_exclamationmark_bubble
+      : Icons.feedback_outlined;
+
+  static IconData get end_game =>
+      Platform.isIOS ? SFIcons.sf_flag_pattern_checkered : Icons.flag_outlined;
+
+  static IconData get trophy =>
+      Platform.isIOS ? SFIcons.sf_trophy_fill : Icons.emoji_events_rounded;
+
+  static IconData get star =>
+      Platform.isIOS ? SFIcons.sf_star_fill : Icons.star_rounded;
 }

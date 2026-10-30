@@ -486,7 +486,7 @@ class _RoundViewState extends State<RoundView> {
     VibrationService.heavyImpact();
     await PopupService.showInfoPopup(
       context: context,
-      icon: Icons.star_rounded,
+      icon: AppIcons.star,
       title: loc.bonus_points_title,
       message: resultText,
     );

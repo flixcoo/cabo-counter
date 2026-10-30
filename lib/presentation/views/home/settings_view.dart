@@ -290,7 +290,7 @@ class _SettingsViewState extends State<SettingsView> {
     VibrationService.warningNotification();
     PopupService.showSelectionPopup<void>(
       context: context,
-      icon: Icons.delete_outline_rounded,
+      icon: AppIcons.delete,
       iconColor: CustomTheme.red,
       title: loc.delete_data_title,
       message: loc.delete_data_message,
@@ -316,11 +316,11 @@ class _SettingsViewState extends State<SettingsView> {
     final Color iconColor;
 
     if (success) {
-      icon = Icons.check_circle_outline_rounded;
+      icon = AppIcons.success;
       iconColor = CustomTheme.primaryColor;
       VibrationService.successNotification();
     } else {
-      icon = Icons.error_outline_rounded;
+      icon = AppIcons.error;
       iconColor = CustomTheme.red;
       VibrationService.errorNotification();
     }
@@ -353,7 +353,7 @@ class _SettingsViewState extends State<SettingsView> {
     final shouldOverwrite =
         await PopupService.showSelectionPopup<bool>(
           context: context,
-          icon: Icons.copy_all_rounded,
+          icon: AppIcons.duplicate,
           iconColor: CustomTheme.kamikazeColor,
           title: loc.import_duplicates_title,
           content: Column(
@@ -480,7 +480,7 @@ class _SettingsViewState extends State<SettingsView> {
     VibrationService.warningNotification();
     PopupService.showSelectionPopup<void>(
       context: context,
-      icon: Icons.settings_backup_restore_rounded,
+      icon: AppIcons.reset,
       title: loc.reset_config_title,
       message: loc.reset_config_message,
       actions: dialogActions,
