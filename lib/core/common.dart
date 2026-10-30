@@ -15,7 +15,8 @@ extension FilenameSanitization on String {
   /// and removes any characters that are not alphanumeric, dots, underscores, or hyphens.
   /// If the resulting string is empty, returns the [fallback].
   String toSafeFilename({String fallback = 'game_session'}) {
-    final sanitized = replaceAll(' ', '_')
+    final sanitized = trim()
+        .replaceAll(' ', '_')
         .replaceAll('ä', 'ae')
         .replaceAll('ö', 'oe')
         .replaceAll('ü', 'ue')
