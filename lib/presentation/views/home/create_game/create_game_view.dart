@@ -59,11 +59,13 @@ class _CreateGameViewState extends State<CreateGameView> {
 
   bool get hasReachedMinPlayers => playerNameControllers.length <= minPlayers;
 
+  // Empty title or title with text excluding only whitespaces
   bool get isValidTitle =>
-      titleController.text == '' || titleController.text.trim().isNotEmpty;
+      titleController.text.isEmpty || titleController.text.trim().isNotEmpty;
 
-  bool get everyPlayerHasAName =>
-      playerNameControllers.every((controller) => controller.text.trim() != '');
+  bool get everyPlayerHasAName => playerNameControllers.every(
+    (controller) => controller.text.trim().isNotEmpty,
+  );
 
   bool get isValidGame =>
       selectedGameMode != GameMode.none &&
@@ -382,21 +384,17 @@ class _CreateGameViewState extends State<CreateGameView> {
     titleController.addListener(() => setState(() {}));
 
     // Prefill player
-    if (widget.players != null) {
-      for (var player in widget.players!) {
-        final controller = TextEditingController(text: player);
-        controller.addListener(() => setState(() {}));
-        playerNameControllers.add(controller);
-        playerNameFocusNodes.add(FocusNode());
-      }
-    } else {
-      playerNameControllers = List.generate(
-        minPlayers,
-        (index) => TextEditingController()..addListener(() => setState(() {})),
-      );
-      playerNameFocusNodes = List.generate(minPlayers, (index) => FocusNode());
-    }
+    final names = widget.players ?? List.filled(minPlayers, '');
+    playerNameControllers = [
+      for (final name in names) createPlayerController(name),
+    ];
+    playerNameFocusNodes = [for (final _ in names) FocusNode()];
   }
+
+  /// Creates a player controller with an optional prefilled [playerName]
+  TextEditingController createPlayerController([String playerName = '']) =>
+      TextEditingController(text: playerName)
+        ..addListener(() => setState(() {}));
 
   void addPlayerTextfield() {
     setState(() {
