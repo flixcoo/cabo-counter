@@ -17,6 +17,7 @@ import 'package:cabo_counter/presentation/views/home/active_game/active_game_vie
 import 'package:cabo_counter/presentation/views/home/create_game/mode_selection_view.dart';
 import 'package:cabo_counter/services/config_service.dart';
 import 'package:cabo_counter/services/vibration_service.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
@@ -137,6 +138,12 @@ class _CreateGameViewState extends State<CreateGameView> {
                                 maxLength: 24,
                                 textAlign: TextAlign.right,
                                 controller: titleController,
+                                // Prevents whitespace-only titles
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.deny(
+                                    RegExp(r'^\s+'),
+                                  ),
+                                ],
                                 decoration: InputDecoration(
                                   counterText: '',
                                   hint: Text(
