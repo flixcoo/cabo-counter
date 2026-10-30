@@ -29,14 +29,12 @@ class _GameTileState extends State<GameTile> {
     final loc = AppLocalizations.of(context);
     final session = widget.session;
     List<({IconData icon, String text})> attributes = [
-      (
-        icon: session.isPointsLimitEnabled
-            ? AppIcons.point_limit
-            : AppIcons.infinity,
-        text: session.isPointsLimitEnabled
-            ? getPointLabel(loc, session.pointLimit!)
-            : loc.unlimited,
-      ),
+      session.isPointsLimitEnabled
+          ? (
+              icon: AppIcons.point_limit,
+              text: getPointLabel(loc, session.pointLimit!),
+            )
+          : (icon: AppIcons.infinity, text: loc.unlimited),
       (
         icon: AppIcons.cabo_penalty,
         text: getPointLabel(loc, session.caboPenalty),
