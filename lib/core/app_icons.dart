@@ -1,8 +1,8 @@
 // ignore_for_file: non_constant_identifier_names
 import 'dart:io';
 
-import 'package:material_ui/material_ui.dart';
 import 'package:flutter_sficon/flutter_sficon.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A class that provides platform-specific icons for use in the app.
 abstract class AppIcons {
@@ -148,4 +148,8 @@ abstract class AppIcons {
 
   static IconData get tool =>
       Platform.isIOS ? SFIcons.sf_wrench_adjustable_fill : Icons.build;
+
+  static IconData get duplicate => Platform.isIOS
+      ? SFIcons.sf_document_on_document_fill
+      : Icons.copy_all_rounded;
 }
