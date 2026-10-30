@@ -47,26 +47,27 @@ class CreateGameView extends StatefulWidget {
 }
 
 class _CreateGameViewState extends State<CreateGameView> {
-  final TextEditingController titleController = TextEditingController();
+  late final TextEditingController titleController;
+  late GameMode selectedGameMode;
+  List<FocusNode> playerNameFocusNodes = [];
+  List<TextEditingController> playerNameControllers = [];
 
   final int minPlayers = 2;
   final int maxPlayers = 5;
 
-  List<FocusNode> playerNameFocusNodes = [];
-  List<TextEditingController> playerNameControllers = [];
-
-  /// Variable to hold the selected game mode.
-  late GameMode selectedGameMode;
-
   bool get hasReachedMaxPlayers => playerNameControllers.length >= maxPlayers;
 
   bool get hasReachedMinPlayers => playerNameControllers.length <= minPlayers;
+
+  bool get isValidTitle =>
+      titleController.text == '' || titleController.text.trim().isNotEmpty;
 
   bool get everyPlayerHasAName =>
       playerNameControllers.every((controller) => controller.text.trim() != '');
 
   bool get isValidGame =>
       selectedGameMode != GameMode.none &&
+      isValidTitle &&
       playerNameControllers.length >= 2 &&
       everyPlayerHasAName;
 
@@ -74,7 +75,6 @@ class _CreateGameViewState extends State<CreateGameView> {
   void initState() {
     super.initState();
     selectedGameMode = widget.gameMode;
-    titleController.text = widget.gameTitle ?? '';
     initializeController();
   }
 
@@ -377,6 +377,10 @@ class _CreateGameViewState extends State<CreateGameView> {
   }
 
   void initializeController() {
+    titleController = TextEditingController();
+    titleController.text = widget.gameTitle ?? '';
+    titleController.addListener(() => setState(() {}));
+
     // Prefill player
     if (widget.players != null) {
       for (var player in widget.players!) {
