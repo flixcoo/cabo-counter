@@ -59,6 +59,7 @@ class _CreateGameViewState extends State<CreateGameView> {
   late GameMode selectedGameMode;
 
   bool get hasReachedMaxPlayers => playerNameControllers.length >= maxPlayers;
+
   bool get hasReachedMinPlayers => playerNameControllers.length <= minPlayers;
 
   bool get everyPlayerHasAName =>
@@ -461,9 +462,10 @@ class _CreateGameViewState extends State<CreateGameView> {
       );
     }
 
-    final String title = titleController.text == ''
+    final String trimmedTitle = titleController.text.trim();
+    final String title = trimmedTitle.isEmpty
         ? getFallbackGameTitle()
-        : titleController.text.trim();
+        : trimmedTitle;
 
     final bool isPointsLimitEnabled = selectedGameMode == GameMode.pointLimit;
 
