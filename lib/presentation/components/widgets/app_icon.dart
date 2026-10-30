@@ -9,16 +9,19 @@ class AppIcon extends StatelessWidget {
   final double? size;
   final Color? color;
 
-  bool get _isSFSymbol => icon.fontFamilyFallback?.firstOrNull == 'sf2';
+  bool get _isSFSymbol => icon.fontFamily == null;
 
   @override
   Widget build(BuildContext context) {
     if (_isSFSymbol) {
       final iconTheme = IconTheme.of(context);
-      return SFIcon(
-        icon,
-        fontSize: size ?? iconTheme.size ?? 24,
-        color: color ?? iconTheme.color,
+      // SFIcon scales with the system text size, Icon does not.
+      return MediaQuery.withNoTextScaling(
+        child: SFIcon(
+          icon,
+          fontSize: size ?? iconTheme.size ?? 24,
+          color: color ?? iconTheme.color,
+        ),
       );
     }
     return Icon(icon, size: size, color: color);
