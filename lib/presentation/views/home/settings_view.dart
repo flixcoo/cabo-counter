@@ -448,7 +448,8 @@ class _SettingsViewState extends State<SettingsView> {
 
       // Canceled imports show no dialog and
       // duplicates are handled by [showImportDuplicatesPopup].
-      default:
+      case ImportStatus.canceled:
+      case ImportStatus.duplicatesFound:
         return ('', '');
     }
   }

@@ -255,23 +255,20 @@ void main() {
 
       expect(fetchedSessions.length, newSessions.length);
 
-      for (int i = 0; i < fetchedSessions.length; i++) {
-        expect(fetchedSessions[i].id, newSessions[i].id);
-        expect(fetchedSessions[i].title, newSessions[i].title);
-        expect(fetchedSessions[i].pointLimit, newSessions[i].pointLimit);
-        expect(fetchedSessions[i].caboPenalty, newSessions[i].caboPenalty);
-        expect(
-          fetchedSessions[i].isGameFinished,
-          newSessions[i].isGameFinished,
-        );
-        expect(
-          fetchedSessions[i].players.length,
-          newSessions[i].players.length,
-        );
-        expect(
-          fetchedSessions[i].roundList.length,
-          newSessions[i].roundList.length,
-        );
+      // getAllGameSessions doesn't guarantee an order, so match by ID.
+      final expected = {for (final s in newSessions) s.id: s};
+
+      for (final session in fetchedSessions) {
+        final expectedSession = expected[session.id];
+        if (expectedSession == null) {
+          fail('Unexpected game session ID: ${session.id}');
+        }
+        expect(session.title, expectedSession.title);
+        expect(session.pointLimit, expectedSession.pointLimit);
+        expect(session.caboPenalty, expectedSession.caboPenalty);
+        expect(session.isGameFinished, expectedSession.isGameFinished);
+        expect(session.players.length, expectedSession.players.length);
+        expect(session.roundList.length, expectedSession.roundList.length);
       }
     });
 

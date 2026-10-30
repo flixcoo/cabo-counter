@@ -6,11 +6,7 @@ void main() {
   group('News tests', () {
     test('Fallback news (english) are set', () {
       const fallbackLoc = 'en';
-      expect(
-        localizedNews,
-        isNotEmpty,
-        reason: 'News list is empty',
-      );
+      expect(localizedNews, isNotEmpty, reason: 'News list is empty');
 
       for (final entry in localizedNews) {
         expect(

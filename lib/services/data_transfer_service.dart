@@ -114,9 +114,8 @@ class DataTransferService {
   }
 
   /// Adds all [sessions] to the database whose IDs do not exist locally yet.
-  /// Sessions with an already existing ID are skipped and returned as
-  /// duplicates. If an ID occurs multiple times in [sessions], only the
-  /// first occurrence is considered.
+  /// Sessions with an already existing ID are skipped. If the local session is
+  /// identical, it counts as imported, otherwise it is returned as duplicate.
   @visibleForTesting
   static Future<ImportResult> importGameSessionsToDb(
     AppDatabase db,
@@ -126,13 +125,23 @@ class DataTransferService {
     final seenIds = <String>{};
     final newSessions = <GameSession>[];
     final duplicates = <GameSession>[];
+    int identicalAmount = 0;
 
     for (GameSession session in sessions) {
       if (!seenIds.add(session.id)) continue;
-      if (localIds.contains(session.id)) {
-        duplicates.add(session);
-      } else {
+      if (!localIds.contains(session.id)) {
         newSessions.add(session);
+        continue;
+      }
+
+      // Identical sessions are already imported, so they are not duplicates.
+      final localSession = await db.gameSessionDao.getGameSessionById(
+        gameSessionId: session.id,
+      );
+      if (localSession == session) {
+        identicalAmount++;
+      } else {
+        duplicates.add(session);
       }
     }
 
@@ -142,7 +151,7 @@ class DataTransferService {
       status: duplicates.isEmpty
           ? ImportStatus.success
           : ImportStatus.duplicatesFound,
-      importedAmount: newSessions.length,
+      importedAmount: newSessions.length + identicalAmount,
       duplicates: duplicates,
     );
   }

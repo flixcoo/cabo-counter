@@ -228,6 +228,31 @@ void main() {
       });
     });
 
+    test('Treats identical games as imported instead of duplicates', () async {
+      await database.gameSessionDao.addGameSession(gameSession2);
+
+      // Simulates an export of the local game and a re-import of the file.
+      final localGame = await database.gameSessionDao.getGameSessionById(
+        gameSessionId: gameSession2.id,
+      );
+      final exportedGame = GameSession.fromJson(
+        json.decode(json.encode(localGame!.toJson())),
+      );
+
+      final result = await DataTransferService.importGameSessionsToDb(
+        database,
+        [gameSession1, exportedGame],
+      );
+
+      expect(result.status, ImportStatus.success);
+      expect(result.importedAmount, 2);
+      expect(result.duplicates, isEmpty);
+      expect(await database.gameSessionDao.getAllGameSessionIds(), {
+        gameSession1.id,
+        gameSession2.id,
+      });
+    });
+
     test('Skips games whose ID already exists locally', () async {
       await database.gameSessionDao.addGameSession(gameSession2);
 
