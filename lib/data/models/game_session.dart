@@ -31,7 +31,12 @@ class GameSession {
     required this.caboPenalty,
     this.isGameFinished = false,
     List<Round>? roundList,
-  }) : id = id ?? const Uuid().v4(),
+  }) : assert(
+         pointLimit == null || pointLimit > 0,
+         'pointLimit must be null or greater than 0',
+       ),
+       assert(caboPenalty >= 0, 'caboPenalty must not be negative'),
+       id = id ?? const Uuid().v4(),
        roundList = roundList ?? [];
 
   /// Converts the GameSession object to a JSON map.

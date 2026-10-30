@@ -27,7 +27,11 @@ class CustomStepper extends StatefulWidget {
     required this.step,
     required this.onChanged,
     this.initialValue,
-  });
+  }) : assert(
+         minValue <= maxValue,
+         'minValue must not be greater than maxValue',
+       ),
+       assert(step > 0, 'step must be greater than 0');
 
   @override
   State<CustomStepper> createState() => _CustomStepperState();

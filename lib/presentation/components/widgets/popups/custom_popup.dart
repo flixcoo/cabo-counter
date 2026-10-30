@@ -45,6 +45,14 @@ class CustomPopup<T> extends StatelessWidget {
     Color? iconColor,
     bool barrierDismissible = true,
   }) {
+    assert(
+      (message == null || content == null),
+      'Message and content can\'t both be set',
+    );
+    assert(
+      !(message == null && content == null),
+      'Either message or content must have a value',
+    );
     return showGeneralDialog<T>(
       context: context,
       barrierDismissible: barrierDismissible,

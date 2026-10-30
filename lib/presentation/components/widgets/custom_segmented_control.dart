@@ -8,12 +8,16 @@ import 'package:material_ui/material_ui.dart';
 /// laid on top with a [spacing] gap between them, so the transitions between
 /// segments are completely filled with color.
 class CustomSegmentedControl<T extends Object> extends StatelessWidget {
-  const CustomSegmentedControl({
+  CustomSegmentedControl({
     super.key,
     required this.children,
     required this.groupValue,
     required this.onValueChanged,
-  });
+  }) : assert(children.isNotEmpty, 'children must not be empty'),
+       assert(
+         groupValue == null || children.containsKey(groupValue),
+         'groupValue must be null or a key of children',
+       );
 
   final Map<T, Widget> children;
   final T? groupValue;

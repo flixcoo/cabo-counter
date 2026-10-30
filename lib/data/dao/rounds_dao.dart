@@ -20,6 +20,11 @@ class RoundDao extends DatabaseAccessor<AppDatabase> with _$RoundDaoMixin {
     required int roundNumber,
     required List<Player> players,
   }) async {
+    assert(roundNumber >= 1, 'roundNumber must be at least 1');
+    assert(
+      round.scores.length == players.length,
+      'The round must contain a score for every player',
+    );
     final roundEntry = RoundTableCompanion.insert(
       id: round.id,
       gameSessionId: gameSessionId,
@@ -48,6 +53,10 @@ class RoundDao extends DatabaseAccessor<AppDatabase> with _$RoundDaoMixin {
     required List<Round> rounds,
     required List<Player> players,
   }) async {
+    assert(
+      rounds.every((round) => round.scores.length == players.length),
+      'Every round must contain a score for every player',
+    );
     if (rounds.isEmpty) return;
     await batch((batch) {
       final roundEntries = <RoundTableCompanion>[];
@@ -156,6 +165,11 @@ class RoundDao extends DatabaseAccessor<AppDatabase> with _$RoundDaoMixin {
     required int roundNumber,
     required List<Player> players,
   }) async {
+    assert(roundNumber >= 1, 'roundNumber must be at least 1');
+    assert(
+      round.scores.length == players.length,
+      'The round must contain a score for every player',
+    );
     await deleteRound(gameSessionId: gameSessionId, roundNumber: roundNumber);
 
     await addRound(

@@ -62,14 +62,14 @@ void main() {
         Round(
           gameSessionId: 'test-game-id',
           caboPlayerIndex: 0,
-          scores: [2, 5, 5],
-          scoreUpdates: [0, 5, 5],
+          scores: [2, 5],
+          scoreUpdates: [0, 5],
         ),
         Round(
           gameSessionId: 'test-game-id',
           caboPlayerIndex: 1,
-          scores: [7, 6, 6],
-          scoreUpdates: [7, 0, 0],
+          scores: [7, 6],
+          scoreUpdates: [7, 0],
         ),
       ],
       isGameFinished: true,

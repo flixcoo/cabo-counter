@@ -7,7 +7,11 @@ class GameStatistics {
   final List<Player> players;
   final List<Round> rounds;
 
-  GameStatistics({required this.players, required this.rounds});
+  GameStatistics({required this.players, required this.rounds})
+    : assert(
+        rounds.every((round) => round.scores.length == players.length),
+        'Every round must contain a score for every player',
+      );
 
   /// Whether every round of the game was a kamikaze round.
   bool get hasOnlyKamikazeRounds =>

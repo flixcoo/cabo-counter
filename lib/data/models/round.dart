@@ -21,7 +21,20 @@ class Round {
     required this.scores,
     required this.scoreUpdates,
     this.kamikazePlayerIndex,
-  }) : id = roundId ?? const Uuid().v4();
+  }) : assert(
+         scores.length == scoreUpdates.length,
+         'scores and scoreUpdates must have the same length',
+       ),
+       assert(
+         caboPlayerIndex >= 0 && caboPlayerIndex < scores.length,
+         'caboPlayerIndex is out of range',
+       ),
+       assert(
+         kamikazePlayerIndex == null ||
+             (kamikazePlayerIndex >= 0 && kamikazePlayerIndex < scores.length),
+         'kamikazePlayerIndex is out of range',
+       ),
+       id = roundId ?? const Uuid().v4();
 
   Map<String, dynamic> toJson() => {
     'id': id,

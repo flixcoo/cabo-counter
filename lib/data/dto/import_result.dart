@@ -12,7 +12,11 @@ class ImportResult {
     required this.status,
     this.importedAmount = 0,
     this.duplicates = const [],
-  });
+  }) : assert(importedAmount >= 0, 'importedAmount must not be negative'),
+       assert(
+         (status == ImportStatus.duplicatesFound) == duplicates.isNotEmpty,
+         'duplicates must be set if and only if status is duplicatesFound',
+       );
 
   final ImportStatus status;
   final int importedAmount;
