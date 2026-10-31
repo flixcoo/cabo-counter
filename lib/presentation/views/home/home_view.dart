@@ -126,7 +126,7 @@ class _HomeViewState extends State<HomeView> {
               ),
               enableSwitchAnimation: true,
               switchAnimationConfig: const SwitchAnimationConfig(
-                duration: Duration(milliseconds: 200),
+                duration: Duration(milliseconds: 300),
                 switchInCurve: Curves.linear,
                 switchOutCurve: Curves.linear,
                 transitionBuilder: AnimatedSwitcher.defaultTransitionBuilder,
