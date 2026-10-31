@@ -144,8 +144,8 @@ class GameSessionDao extends DatabaseAccessor<AppDatabase>
     await transaction(() async {
       for (final gameSession in gameSessions) {
         await deleteGameSession(gameSessionId: gameSession.id);
-        await addGameSession(gameSession);
       }
+      await addGameSessionsAsList(gameSessions);
     });
   }
 
