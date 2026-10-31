@@ -22,7 +22,6 @@ class SelectableTile extends StatefulWidget {
     required this.selectionColor,
     this.icon,
     this.description,
-    this.selectedTintAlpha = 40,
     this.centerContent = false,
   });
 
@@ -32,7 +31,6 @@ class SelectableTile extends StatefulWidget {
   final bool selected;
   final VoidCallback? onTap;
   final Color selectionColor;
-  final int selectedTintAlpha;
   final bool centerContent;
 
   @override
@@ -56,7 +54,7 @@ class _SelectableTileState extends State<SelectableTile> {
 
     final Color backgroundColor = selected
         ? Color.alphaBlend(
-            widget.selectionColor.withAlpha(widget.selectedTintAlpha),
+            widget.selectionColor.withAlpha(40),
             CustomTheme.tileColor,
           )
         : CustomTheme.tileColor;

@@ -62,6 +62,10 @@ class GameSessionController extends ChangeNotifier {
   /// Every other player receives half of the session's point limit, or 50
   /// points in unlimited mode. The kamikaze player receives 0 points.
   void applyKamikaze(int roundNum, int kamikazePlayerIndex) {
+    assert(
+      kamikazePlayerIndex >= 0 && kamikazePlayerIndex < players.length,
+      'kamikazePlayerIndex is out of range',
+    );
     List<int> roundScores = List.generate(players.length, (_) => 0);
     List<int> scoreUpdates = List.generate(players.length, (_) => 0);
     for (int i = 0; i < scoreUpdates.length; i++) {
@@ -98,6 +102,15 @@ class GameSessionController extends ChangeNotifier {
     List<int> roundScores,
     int caboPlayerIndex,
   ) {
+    assert(
+      roundScores.length == players.length,
+      'roundScores must contain a score for every player',
+    );
+    assert(
+      caboPlayerIndex >= 0 && caboPlayerIndex < players.length,
+      'caboPlayerIndex is out of range',
+    );
+
     /// List of the index of the player(s) with the lowest score
     List<int> lowestScoreIndex = _getLowestScoreIndex(roundScores);
 
@@ -126,6 +139,7 @@ class GameSessionController extends ChangeNotifier {
   /// multiple players with the same lowest score, all of them are returned.
   /// [roundScores] is a list of the scores of all players in the current round.
   List<int> _getLowestScoreIndex(List<int> roundScores) {
+    assert(roundScores.isNotEmpty, 'roundScores must not be empty');
     int lowestScore = roundScores[0];
     List<int> lowestScoreIndex = [0];
 
@@ -192,6 +206,18 @@ class GameSessionController extends ChangeNotifier {
     int caboPlayerIndex, [
     int? kamikazePlayerIndex,
   ]) {
+    assert(
+      roundScores.length == players.length,
+      'roundScores must contain a score for every player',
+    );
+    assert(
+      scoreUpdates.length == players.length,
+      'scoreUpdates must contain an update for every player',
+    );
+    assert(
+      roundNum >= 1 && roundNum <= roundList.length + 1,
+      'roundNum must reference an existing round or the next new round',
+    );
     const uuid = Uuid();
     Round newRound = Round(
       roundId: uuid.v4(),

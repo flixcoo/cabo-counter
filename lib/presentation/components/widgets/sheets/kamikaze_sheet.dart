@@ -123,7 +123,6 @@ class _KamikazeSheetState extends State<KamikazeSheet> {
                         return SelectableTile(
                           title: entry.value.name,
                           selectionColor: CustomTheme.kamikazeColor,
-                          selectedTintAlpha: 45,
                           selected: selectedIndex == entry.key,
                           onTap: () {
                             VibrationService.selectionClick();

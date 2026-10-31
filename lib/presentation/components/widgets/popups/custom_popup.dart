@@ -16,14 +16,23 @@ class CustomPopup<T> extends StatelessWidget {
     required this.title,
     required this.actions,
     this.message,
-    this.icon,
+    this.content,
+    required this.icon,
     this.iconColor,
-  });
+  }) : assert(
+         (message == null || content == null),
+         'Message and content can\'t both be set',
+       ),
+       assert(
+         !(message == null && content == null),
+         'Either message or content must have a value',
+       );
 
   final String title;
   final List<CustomPopupAction<T>> actions;
   final String? message;
-  final IconData? icon;
+  final Widget? content;
+  final IconData icon;
   final Color? iconColor;
 
   static Future<T?> show<T>({
@@ -31,7 +40,8 @@ class CustomPopup<T> extends StatelessWidget {
     required String title,
     required List<CustomPopupAction<T>> actions,
     String? message,
-    IconData? icon,
+    Widget? content,
+    required IconData icon,
     Color? iconColor,
     bool barrierDismissible = true,
   }) {
@@ -44,6 +54,7 @@ class CustomPopup<T> extends StatelessWidget {
       pageBuilder: (context, _, _) => CustomPopup<T>(
         title: title,
         message: message,
+        content: content,
         icon: icon,
         iconColor: iconColor,
         actions: actions,
@@ -88,19 +99,19 @@ class CustomPopup<T> extends StatelessWidget {
                 spacing: 20,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  if (icon != null) ...[
-                    Center(
-                      child: Container(
-                        width: 60,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          color: accent.withAlpha(38),
-                          shape: BoxShape.circle,
-                        ),
-                        child: AppIcon(icon!, color: accent, size: 30),
+                  Center(
+                    child: Container(
+                      width: 60,
+                      height: 60,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: accent.withAlpha(38),
+                        shape: BoxShape.circle,
                       ),
+                      child: AppIcon(icon, color: accent, size: 30),
                     ),
-                  ],
+                  ),
+
                   Column(
                     spacing: 10,
                     children: [
@@ -127,6 +138,7 @@ class CustomPopup<T> extends StatelessWidget {
                           ),
                         ),
                       ],
+                      ?content,
                     ],
                   ),
 

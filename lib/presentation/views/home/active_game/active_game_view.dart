@@ -1,5 +1,6 @@
 import 'package:cabo_counter/core/adaptive_page_route.dart';
 import 'package:cabo_counter/core/adaptive_sheet_route.dart';
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/common.dart';
 import 'package:cabo_counter/core/constants.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
@@ -316,7 +317,8 @@ class _ActiveGameViewState extends State<ActiveGameView> {
                               if (!success && context.mounted) {
                                 PopupService.showInfoPopup(
                                   context: context,
-                                  icon: Icons.error_outline_rounded,
+                                  icon: AppIcons.error,
+                                  iconColor: CustomTheme.red,
                                   title: AppLocalizations.of(context)
                                       .export_error_title,
                                   message: AppLocalizations.of(context)
@@ -382,7 +384,7 @@ class _ActiveGameViewState extends State<ActiveGameView> {
 
     PopupService.showSelectionPopup<bool>(
       context: context,
-      icon: Icons.flag_outlined,
+      icon: AppIcons.end_game,
       title: loc.end_game_title,
       message: loc.end_game_message,
       actions: [endGameAction, cancelAction],
@@ -466,7 +468,7 @@ class _ActiveGameViewState extends State<ActiveGameView> {
     final loc = AppLocalizations.of(context);
     return await PopupService.showSelectionPopup<bool>(
           context: context,
-          icon: Icons.delete_outline_rounded,
+          icon: AppIcons.delete,
           iconColor: Colors.red,
           title: loc.delete_game_title,
           message: loc.delete_game_message(gameSession.title),
@@ -502,7 +504,8 @@ class _ActiveGameViewState extends State<ActiveGameView> {
       final loc = AppLocalizations.of(context);
       PopupService.showInfoPopup(
         context: context,
-        icon: Icons.error_outline_rounded,
+        icon: AppIcons.error,
+        iconColor: CustomTheme.red,
         title: loc.id_error_title,
         message: loc.id_error_message,
       );
@@ -542,6 +545,8 @@ class _ActiveGameViewState extends State<ActiveGameView> {
         }
       });
     }
+
+    await gameSession.pendingWrites;
     widget.onSessionsUpdated.call();
   }
 
@@ -561,7 +566,7 @@ class _ActiveGameViewState extends State<ActiveGameView> {
     if (context.mounted) {
       PopupService.showInfoPopup(
         context: context,
-        icon: Icons.emoji_events_rounded,
+        icon: AppIcons.trophy,
         iconColor: CustomTheme.kamikazeColor,
         title: loc.end_of_game_title,
         message: loc.end_of_game_message(

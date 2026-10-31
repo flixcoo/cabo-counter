@@ -31,7 +31,12 @@ class GameSession {
     required this.caboPenalty,
     this.isGameFinished = false,
     List<Round>? roundList,
-  }) : id = id ?? const Uuid().v4(),
+  }) : assert(
+         pointLimit == null || pointLimit > 0,
+         'pointLimit must be null or greater than 0',
+       ),
+       assert(caboPenalty >= 0, 'caboPenalty must not be negative'),
+       id = id ?? const Uuid().v4(),
        roundList = roundList ?? [];
 
   /// Converts the GameSession object to a JSON map.
@@ -61,13 +66,17 @@ class GameSession {
           .map((e) => Round.fromJson(e))
           .toList();
 
+  /// Rounds [createdAt] to whole seconds
+  DateTime get _truncateCreatedAtToSeconds =>
+      createdAt.copyWith(millisecond: 0, microsecond: 0);
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is GameSession &&
           runtimeType == other.runtimeType &&
           id == other.id &&
-          createdAt == other.createdAt &&
+          _truncateCreatedAtToSeconds == other._truncateCreatedAtToSeconds &&
           title == other.title &&
           const ListEquality<Player>().equals(players, other.players) &&
           pointLimit == other.pointLimit &&
@@ -78,7 +87,7 @@ class GameSession {
   @override
   int get hashCode => Object.hash(
     id,
-    createdAt,
+    _truncateCreatedAtToSeconds,
     title,
     const ListEquality<Player>().hash(players),
     pointLimit,

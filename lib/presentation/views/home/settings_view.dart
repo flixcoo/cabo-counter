@@ -5,6 +5,7 @@ import 'package:cabo_counter/core/constants.dart';
 import 'package:cabo_counter/core/custom_theme.dart';
 import 'package:cabo_counter/core/enums.dart';
 import 'package:cabo_counter/data/db/database.dart';
+import 'package:cabo_counter/data/dto/import_result.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
 import 'package:cabo_counter/presentation/components/widgets/adaptive_switch.dart';
 import 'package:cabo_counter/presentation/components/widgets/custom_stepper.dart';
@@ -181,11 +182,11 @@ class _SettingsViewState extends State<SettingsView> {
                     prefixText: loc.import_data,
                     prefixIcon: AppIcons.import,
                     onPressed: () async {
-                      final status = await DataTransferService.importJsonFile(
+                      final result = await DataTransferService.importJsonFile(
                         context,
                       );
-                      if (mounted) showImportFeedbackDialog(status);
                       widget.onSessionsUpdated.call();
+                      if (mounted) showImportFeedbackDialog(result);
                     },
                   ),
 
@@ -289,7 +290,7 @@ class _SettingsViewState extends State<SettingsView> {
     VibrationService.warningNotification();
     PopupService.showSelectionPopup<void>(
       context: context,
-      icon: Icons.delete_outline_rounded,
+      icon: AppIcons.delete,
       iconColor: CustomTheme.red,
       title: loc.delete_data_title,
       message: loc.delete_data_message,
@@ -297,20 +298,33 @@ class _SettingsViewState extends State<SettingsView> {
     );
   }
 
-  /// Displays a feedback dialog for import operations based on the [ImportStatus].
-  /// If the import was canceled, no dialog is shown.
-  void showImportFeedbackDialog(ImportStatus status) {
+  /// Displays a feedback dialog for import operations based on the [ImportResult].
+  /// If the import was canceled, no dialog is shown. If duplicates were found,
+  /// the user is asked whether the local games should be overwritten.
+  void showImportFeedbackDialog(ImportResult result) {
+    final status = result.status;
     if (status == ImportStatus.canceled) return;
-    final (title, message) = getDialogContent(status);
+    if (status == ImportStatus.duplicatesFound) {
+      showImportDuplicatesPopup(result);
+      return;
+    }
 
-    final icon = status == ImportStatus.success
-        ? Icons.check_circle_outline_rounded
-        : Icons.error_outline_rounded;
-    final iconColor = status == ImportStatus.success
-        ? CustomTheme.primaryColor
-        : CustomTheme.red;
+    final (title, message) = getDialogContent(result);
+    final success = result.status == ImportStatus.success;
 
-    VibrationService.errorNotification();
+    final IconData icon;
+    final Color iconColor;
+
+    if (success) {
+      icon = AppIcons.success;
+      iconColor = CustomTheme.primaryColor;
+      VibrationService.successNotification();
+    } else {
+      icon = AppIcons.error;
+      iconColor = CustomTheme.red;
+      VibrationService.errorNotification();
+    }
+
     PopupService.showInfoPopup(
       context: context,
       icon: icon,
@@ -320,14 +334,103 @@ class _SettingsViewState extends State<SettingsView> {
     );
   }
 
-  /// Returns the dialog title and message based on the [ImportStatus].
-  /// [status] The status of the import operation.
-  /// Returns a tuple containing the title and message for the dialog.
-  (String, String) getDialogContent(ImportStatus status) {
+  /// Shows a popup listing the imported games that already exist locally and
+  /// lets the user decide whether to overwrite the local games with them.
+  Future<void> showImportDuplicatesPopup(ImportResult result) async {
     final loc = AppLocalizations.of(context);
-    switch (status) {
+
+    const displayedGamesAmount = 3;
+
+    final duplicateGamesAmount = result.duplicates.length;
+    final allGamesAmount = result.importedAmount + duplicateGamesAmount;
+    final hiddenGamesAmount = duplicateGamesAmount - displayedGamesAmount;
+    final hiddenGamesText = hiddenGamesAmount > 0
+        ? loc.import_more_games(hiddenGamesAmount)
+        : '';
+
+    VibrationService.warningNotification();
+    final shouldOverwrite =
+        await PopupService.showSelectionPopup<bool>(
+          context: context,
+          icon: AppIcons.duplicate,
+          iconColor: CustomTheme.kamikazeColor,
+          title: loc.import_duplicates_title,
+          content: Column(
+            spacing: 20,
+            children: [
+              Text(
+                loc.import_new_games_message(
+                  allGamesAmount,
+                  result.importedAmount,
+                  duplicateGamesAmount,
+                ),
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  for (final game in result.duplicates.take(
+                    displayedGamesAmount,
+                  ))
+                    Text(
+                      game.title.trim(),
+                      textAlign: TextAlign.start,
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  if (hiddenGamesText.isNotEmpty)
+                    Text(
+                      hiddenGamesText,
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: CustomTheme.textColor.withAlpha(150),
+                      ),
+                    ),
+                ],
+              ),
+              Text(loc.overwrite_games_message(duplicateGamesAmount)),
+            ],
+          ),
+          actions: [
+            CustomPopupAction(
+              label: loc.overwrite,
+              isDestructive: true,
+              returnValue: true,
+            ),
+            CustomPopupAction(
+              label: loc.skip,
+              style: CustomPopupActionStyle.secondary,
+              returnValue: false,
+            ),
+          ],
+        ) ??
+        false;
+    if (!shouldOverwrite || !mounted) return;
+
+    final success = await DataTransferService.overwriteGameSessionsInDb(
+      context,
+      result.duplicates,
+    );
+    widget.onSessionsUpdated.call();
+
+    if (!mounted) return;
+    showImportFeedbackDialog(
+      ImportResult(
+        status: success ? ImportStatus.success : ImportStatus.genericError,
+      ),
+    );
+  }
+
+  /// Returns the dialog title and message based on the [ImportResult].
+  /// [result] The result of the import operation.
+  /// Returns a tuple containing the title and message for the dialog.
+  (String, String) getDialogContent(ImportResult result) {
+    final loc = AppLocalizations.of(context);
+    switch (result.status) {
       case ImportStatus.success:
         return (loc.import_success_title, loc.import_success_message);
+
       case ImportStatus.validationError:
         return (
           loc.import_validation_error_title,
@@ -336,12 +439,17 @@ class _SettingsViewState extends State<SettingsView> {
 
       case ImportStatus.formatError:
         return (loc.import_format_error_title, loc.import_format_error_message);
+
       case ImportStatus.genericError:
         return (
           loc.import_generic_error_title,
           loc.import_generic_error_message,
         );
+
+      // Canceled imports show no dialog and
+      // duplicates are handled by [showImportDuplicatesPopup].
       case ImportStatus.canceled:
+      case ImportStatus.duplicatesFound:
         return ('', '');
     }
   }
@@ -372,7 +480,7 @@ class _SettingsViewState extends State<SettingsView> {
     VibrationService.warningNotification();
     PopupService.showSelectionPopup<void>(
       context: context,
-      icon: Icons.settings_backup_restore_rounded,
+      icon: AppIcons.reset,
       title: loc.reset_config_title,
       message: loc.reset_config_message,
       actions: dialogActions,

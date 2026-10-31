@@ -90,10 +90,33 @@
   "id_error_message": "Das Spiel hat bisher noch keine ID zugewiesen bekommen. Falls du das Spiel löschen möchtest, mache das bitte über das Hauptmenü. Alle neu erstellten Spiele haben eine ID.",
   "id_error_title": "ID Fehler",
   "import_data": "Spieldaten importieren",
+  "import_duplicates_title": "Spiele bereits vorhanden",
   "import_format_error_message": "Die Datei ist kein gültiges JSON-Format oder enthält ungültige Daten.",
   "import_format_error_title": "Falsches Format",
   "import_generic_error_message": "Der Import ist fehlgeschlagen.",
   "import_generic_error_title": "Import fehlgeschlagen",
+  "import_more_games": "+ {count} weitere",
+  "@import_more_games": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "import_new_games_message": "{importedGamesAmount, plural, =0{{duplicateGamesAmount, plural, =1{Dieses Spiel ist bereits vorhanden und konnte nicht importiert werden:} other{Alle {duplicateGamesAmount} Spiele sind bereits vorhanden und konnten nicht importiert werden:}}} other{{importedGamesAmount} von {allGamesAmount} Spielen wurden erfolgreich importiert. {duplicateGamesAmount, plural, =1{Ein Spiel ist bereits vorhanden und konnte nicht importiert werden:} other{{duplicateGamesAmount} Spiele sind bereits vorhanden und konnten nicht importiert werden:}}}}",
+  "@import_new_games_message": {
+    "placeholders": {
+      "allGamesAmount": {
+        "type": "int"
+      },
+      "importedGamesAmount": {
+        "type": "int"
+      },
+      "duplicateGamesAmount": {
+        "type": "int"
+      }
+    }
+  },
   "import_success_message": "Die Spieldaten wurden erfolgreich importiert.",
   "import_success_title": "Import erfolgreich",
   "import_validation_error_message": "Es wurden keine Cabo-Counter Spieldaten gefunden. Bitte stellen Sie sicher, dass es sich um eine gültige Cabo-Counter Exportdatei handelt.",
@@ -120,6 +143,15 @@
   "only_active_game_title": "Nur aktive Spiele",
   "only_active_games": "Nur aktive Spiele werden angezeigt",
   "overview": "Übersicht",
+  "overwrite": "Überschreiben",
+  "overwrite_games_message": "{duplicateGamesAmount, plural, =1{Möchtest du das lokale Spiel mit dem importierten überschreiben?} other{Möchtest du deine lokalen Spiele mit den importierten überschreiben?}}",
+  "@overwrite_games_message": {
+    "placeholders": {
+      "duplicateGamesAmount": {
+        "type": "int"
+      }
+    }
+  },
   "player": "Spieler:in",
   "players": "Spieler:innen",
   "point": "Punkt",
@@ -154,6 +186,7 @@
   "rounds_won_description": "Anzahl an Runden, die mit 0 Punkten gewertet wurden",
   "score_table": "Punktetabelle",
   "settings": "Einstellungen",
+  "skip": "Überspringen",
   "sort_by": "Sortieren nach",
   "sort_order": "Reihenfolge",
   "standard_game_title": "Spiel vom {date}",

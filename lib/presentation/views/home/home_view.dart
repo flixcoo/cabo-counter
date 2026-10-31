@@ -126,7 +126,7 @@ class _HomeViewState extends State<HomeView> {
               ),
               enableSwitchAnimation: true,
               switchAnimationConfig: const SwitchAnimationConfig(
-                duration: Duration(milliseconds: 200),
+                duration: Duration(milliseconds: 300),
                 switchInCurve: Curves.linear,
                 switchOutCurve: Curves.linear,
                 transitionBuilder: AnimatedSwitcher.defaultTransitionBuilder,
@@ -319,6 +319,8 @@ class _HomeViewState extends State<HomeView> {
           context: context,
           title: loc.delete_game_title,
           message: loc.delete_game_message(gameTitle),
+          icon: AppIcons.delete,
+          iconColor: CustomTheme.red,
           actions: [
             CustomPopupAction(
               style: CustomPopupActionStyle.primary,

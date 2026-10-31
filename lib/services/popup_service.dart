@@ -1,3 +1,4 @@
+import 'package:cabo_counter/core/app_icons.dart';
 import 'package:cabo_counter/core/enums.dart';
 import 'package:cabo_counter/l10n/generated/app_localizations.dart';
 import 'package:cabo_counter/presentation/components/widgets/popups/custom_popup.dart';
@@ -17,7 +18,7 @@ class PopupService {
     required BuildContext context,
     required String title,
     required String message,
-    IconData? icon,
+    required IconData icon,
     Color? iconColor,
     VoidCallback? onAfterPop,
   }) async {
@@ -49,15 +50,17 @@ class PopupService {
   static Future<T?> showSelectionPopup<T>({
     required BuildContext context,
     required String title,
-    required String message,
+    String? message,
+    Widget? content,
     required List<CustomPopupAction<T>> actions,
-    IconData? icon,
+    required IconData icon,
     Color? iconColor,
   }) async {
     return await CustomPopup.show<T>(
       context: context,
       title: title,
       message: message,
+      content: content,
       icon: icon,
       iconColor: iconColor,
       actions: actions,
@@ -75,7 +78,7 @@ class PopupService {
     final loc = AppLocalizations.of(context);
     return await PopupService.showSelectionPopup<PreRatingDialogDecision>(
           context: context,
-          icon: Icons.favorite_rounded,
+          icon: AppIcons.support,
           title: loc.pre_rating_title,
           message: loc.pre_rating_message,
           actions: [
@@ -108,7 +111,7 @@ class PopupService {
     final loc = AppLocalizations.of(context);
     return await PopupService.showSelectionPopup<BadRatingDialogDecision>(
           context: context,
-          icon: Icons.feedback_outlined,
+          icon: AppIcons.feedback,
           title: loc.bad_rating_title,
           message: loc.bad_rating_message,
           actions: [

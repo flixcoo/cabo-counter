@@ -245,6 +245,33 @@ void main() {
       },
     );
 
+    test('Inserting multiple game sessions works correctly', () async {
+      final newSessions = [gameSession, gameSession2];
+
+      await database.gameSessionDao.addGameSessionsAsList(newSessions);
+
+      final fetchedSessions = await database.gameSessionDao
+          .getAllGameSessions();
+
+      expect(fetchedSessions.length, newSessions.length);
+
+      // getAllGameSessions doesn't guarantee an order, so match by ID.
+      final expected = {for (final s in newSessions) s.id: s};
+
+      for (final session in fetchedSessions) {
+        final expectedSession = expected[session.id];
+        if (expectedSession == null) {
+          fail('Unexpected game session ID: ${session.id}');
+        }
+        expect(session.title, expectedSession.title);
+        expect(session.pointLimit, expectedSession.pointLimit);
+        expect(session.caboPenalty, expectedSession.caboPenalty);
+        expect(session.isGameFinished, expectedSession.isGameFinished);
+        expect(session.players.length, expectedSession.players.length);
+        expect(session.roundList.length, expectedSession.roundList.length);
+      }
+    });
+
     test('Deleting a game session works correctly', () async {
       await database.gameSessionDao.addGameSession(gameSession);
       var session = await database.gameSessionDao.getGameSessionById(
