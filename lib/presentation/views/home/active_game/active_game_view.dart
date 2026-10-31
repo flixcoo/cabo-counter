@@ -545,6 +545,8 @@ class _ActiveGameViewState extends State<ActiveGameView> {
         }
       });
     }
+
+    await gameSession.pendingWrites;
     widget.onSessionsUpdated.call();
   }
 

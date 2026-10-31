@@ -170,14 +170,16 @@ class RoundDao extends DatabaseAccessor<AppDatabase> with _$RoundDaoMixin {
       round.scores.length == players.length,
       'The round must contain a score for every player',
     );
-    await deleteRound(gameSessionId: gameSessionId, roundNumber: roundNumber);
+    await transaction(() async {
+      await deleteRound(gameSessionId: gameSessionId, roundNumber: roundNumber);
 
-    await addRound(
-      gameSessionId: gameSessionId,
-      round: round,
-      roundNumber: roundNumber,
-      players: players,
-    );
+      await addRound(
+        gameSessionId: gameSessionId,
+        round: round,
+        roundNumber: roundNumber,
+        players: players,
+      );
+    });
   }
 
   /* Delete */
