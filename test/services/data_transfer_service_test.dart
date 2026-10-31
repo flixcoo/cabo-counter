@@ -253,6 +253,21 @@ void main() {
       });
     });
 
+    test('Ignores fractions of a second when comparing games', () async {
+      // The database stores createdAt in whole seconds, while the in-memory
+      // session (as used by the single game export) keeps the fraction.
+      await database.gameSessionDao.addGameSession(gameSession1);
+
+      final result = await DataTransferService.importGameSessionsToDb(
+        database,
+        [gameSession1],
+      );
+
+      expect(result.status, ImportStatus.success);
+      expect(result.importedAmount, 1);
+      expect(result.duplicates, isEmpty);
+    });
+
     test('Skips games whose ID already exists locally', () async {
       await database.gameSessionDao.addGameSession(gameSession2);
 
