@@ -103,7 +103,7 @@
       }
     }
   },
-  "import_new_games_message": "{importedGamesAmount, plural, =0{{duplicateGamesAmount, plural, =1{This game already exists and could not be imported} other{All {duplicateGamesAmount} games already exist and could not be imported}}} other{{importedGamesAmount} of {allGamesAmount} games were imported successfully. {duplicateGamesAmount, plural, =1{One game already exists and could not be imported} other{{duplicateGamesAmount} games already exist and could not be imported}}}}",
+  "import_new_games_message": "{importedGamesAmount, plural, =0{{duplicateGamesAmount, plural, =1{This game already exists and could not be imported:} other{All {duplicateGamesAmount} games already exist and could not be imported:}}} other{{importedGamesAmount} of {allGamesAmount} games were imported successfully. {duplicateGamesAmount, plural, =1{One game already exists and could not be imported:} other{{duplicateGamesAmount} games already exist and could not be imported:}}}}",
   "@import_new_games_message": {
     "placeholders": {
       "allGamesAmount": {

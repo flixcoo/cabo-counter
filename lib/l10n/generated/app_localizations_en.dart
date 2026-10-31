@@ -234,15 +234,15 @@ class AppLocalizationsEn extends AppLocalizations {
       duplicateGamesAmount,
       locale: localeName,
       other:
-          '$duplicateGamesAmount games already exist and could not be imported',
-      one: 'One game already exists and could not be imported',
+          '$duplicateGamesAmount games already exist and could not be imported:',
+      one: 'One game already exists and could not be imported:',
     );
     String _temp1 = intl.Intl.pluralLogic(
       duplicateGamesAmount,
       locale: localeName,
       other:
-          'All $duplicateGamesAmount games already exist and could not be imported',
-      one: 'This game already exists and could not be imported',
+          'All $duplicateGamesAmount games already exist and could not be imported:',
+      one: 'This game already exists and could not be imported:',
     );
     String _temp2 = intl.Intl.pluralLogic(
       importedGamesAmount,

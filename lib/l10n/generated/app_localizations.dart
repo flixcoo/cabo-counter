@@ -466,7 +466,7 @@ abstract class AppLocalizations {
   /// No description provided for @import_new_games_message.
   ///
   /// In de, this message translates to:
-  /// **'{importedGamesAmount, plural, =0{{duplicateGamesAmount, plural, =1{Dieses Spiel ist bereits vorhanden und konnte nicht importiert werden} other{Alle {duplicateGamesAmount} Spiele sind bereits vorhanden und konnten nicht importiert werden}}} other{{importedGamesAmount} von {allGamesAmount} Spielen wurden erfolgreich importiert. {duplicateGamesAmount, plural, =1{Ein Spiel ist bereits vorhanden und konnte nicht importiert werden} other{{duplicateGamesAmount} Spiele sind bereits vorhanden und konnten nicht importiert werden}}}}'**
+  /// **'{importedGamesAmount, plural, =0{{duplicateGamesAmount, plural, =1{Dieses Spiel ist bereits vorhanden und konnte nicht importiert werden:} other{Alle {duplicateGamesAmount} Spiele sind bereits vorhanden und konnten nicht importiert werden:}}} other{{importedGamesAmount} von {allGamesAmount} Spielen wurden erfolgreich importiert. {duplicateGamesAmount, plural, =1{Ein Spiel ist bereits vorhanden und konnte nicht importiert werden:} other{{duplicateGamesAmount} Spiele sind bereits vorhanden und konnten nicht importiert werden:}}}}'**
   String import_new_games_message(
     int allGamesAmount,
     int importedGamesAmount,

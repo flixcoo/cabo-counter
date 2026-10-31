@@ -347,7 +347,6 @@ class _SettingsViewState extends State<SettingsView> {
     final hiddenGamesText = hiddenGamesAmount > 0
         ? loc.import_more_games(hiddenGamesAmount)
         : '';
-    final onlyFailedGames = allGamesAmount == duplicateGamesAmount;
 
     VibrationService.warningNotification();
     final shouldOverwrite =
@@ -360,35 +359,36 @@ class _SettingsViewState extends State<SettingsView> {
             spacing: 20,
             children: [
               Text(
-                '${loc.import_new_games_message(allGamesAmount, result.importedAmount, duplicateGamesAmount)}${onlyFailedGames ? '.' : ':'}',
-              ),
-
-              // Show only when at least one game was sucessfully imported
-              if (!onlyFailedGames)
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    for (final game in result.duplicates.take(
-                      displayedGamesAmount,
-                    ))
-                      Text(
-                        game.title.trim(),
-                        textAlign: TextAlign.start,
-                        style: const TextStyle(fontSize: 14),
-                      ),
-                    if (hiddenGamesText.isNotEmpty)
-                      Text(
-                        hiddenGamesText,
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: CustomTheme.textColor.withAlpha(150),
-                        ),
-                      ),
-                  ],
+                loc.import_new_games_message(
+                  allGamesAmount,
+                  result.importedAmount,
+                  duplicateGamesAmount,
                 ),
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  for (final game in result.duplicates.take(
+                    displayedGamesAmount,
+                  ))
+                    Text(
+                      game.title.trim(),
+                      textAlign: TextAlign.start,
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  if (hiddenGamesText.isNotEmpty)
+                    Text(
+                      hiddenGamesText,
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: CustomTheme.textColor.withAlpha(150),
+                      ),
+                    ),
+                ],
+              ),
               Text(loc.overwrite_games_message(duplicateGamesAmount)),
             ],
           ),
